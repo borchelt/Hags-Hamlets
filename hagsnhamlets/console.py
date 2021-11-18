@@ -3,7 +3,8 @@
 from os import name
 from prints import printr
 from prints import prints
-from playsound import playsound
+#from playsound import playsound
+import item
 
 class console(object):
     def __init__(self, player):
@@ -13,8 +14,8 @@ class console(object):
     def start(self):
 
         p1 = self.player
-        playsound(p1.location.song, False)
-        bigList = [p1.inventory, p1.location.interactables]
+        #playsound(p1.location.song, False)
+        bigList = [p1.location.interactables]
         everything = []
         for sub in bigList:
             for i in sub:
@@ -31,11 +32,12 @@ class console(object):
             #quits the program
             if action == "quit":
                 quitB = True
-            #player inventory method goes here once player is more fleshed out
+            
+            if(action == "inventory" or action == "open inventory" or action == "i"):
+                p1.inven()
             #save method goes here once that is implemented
 
             #actions for looking at stuff
-            #if "look" in action:
 
             #look around the area
             if(action == "look around"):
@@ -49,6 +51,28 @@ class console(object):
                 for i in everything:
                     if i.name.lower() == target:
                         prints(i.desc)
+
+            #actions for picking stuff up
+
+            if("pick up" in action): 
+                target = action.replace("pick up ", '')
+                if target == "all":
+                    for i in everything:
+                        if type(i) is item.item:
+                            if(i.pickup):
+                                p1.inventory.append(i)
+                                p1.location.interactables.remove(i)
+                                prints(f"You got the {i.name}")
+
+
+                for i in everything:
+                    if i.name.lower() == target:
+                        if type(i) is item.item:
+                            if(i.pickup):
+                                p1.inventory.append(i)
+                                p1.location.interactables.remove(i)
+                                prints(f"You got the {i.name}")
+
 
                 
 

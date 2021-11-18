@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
-import time
 import location
 import player
 from prints import printr
 from prints import prints
 import console
 from item import item
-from playsound import playsound
 #setup
 
 
@@ -14,7 +12,7 @@ print("Loading...")
 
 #set up the inital player and locations
 startLocal = location.Location("Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", 
-[item("old stump"), item("a spear in the ground"), item("your sense of dread")], ["More Woods"])
+[item("old stump"), item("old spear"), item("dread")], ["More Woods", "More Woods", "More Woods"])
 player1 = player.Player("", "It's you", 1, 10, 10, 10, 10, [item("nothing")], ["Rusty Sword", "Old Shield"], startLocal)
 
 
@@ -32,6 +30,7 @@ def main():
     if player1.name == "debug":
         con = console.console(player1)
         con.start()
+        exit()
 
     prints(f"\nOH! So you're {player1.name}, huh? Well, it's great to meet you.")
 
@@ -53,8 +52,10 @@ def main():
         elif(i<99):
             prints(".",)
         else:
-            prints("", .1, False)
-    prints("", 1)
+                prints("", .1, False)
+
+    print(".")
+    prints("_", 1)
     prints(f"you wake up.", 3)
 
     #start up the console

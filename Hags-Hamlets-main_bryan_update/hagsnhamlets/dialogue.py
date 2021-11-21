@@ -8,9 +8,10 @@ def dialogue(dialogue_options, dialogue_outcome):
 
     def choose():
         global dialogue_option_chosen
-        prints("Choose an option by # below..... \n" ,.3) 
+        prints("Choose an option by # below....." ,.3)
+        prints("",.3)
         for i in range(len(dialogue_options)):
-            prints(f"{i + 1}. {dialogue_options[i]}", .3)
+            prints(f"   {i + 1}. {dialogue_options[i]}", .3)
         
 
         dialogue_option_chosen = input()

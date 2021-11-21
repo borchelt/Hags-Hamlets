@@ -38,14 +38,20 @@ def play_intro():
     prints("..")
     prints(".")
 
-    prints(f"Suddenly, you are awake. You feel your head thump against the ground as you are being dragged. \n", 3)
+    prints(f"Suddenly, you are awake. You feel your head thump against the ground as you are being dragged. ", 3)
+    prints("",.3)
 
 
-    prints("\"You're awake! Oh! That's incredible. Just incredible...\" \n",3)
-    prints("...The voice pauses, coughing and grunting as he lets go of your leg. \n", 3)
-    prints("\"Forgive me friend, I thought you were dead! You understand...\" \n", 2)
-    prints("You feel a hand reach down and hoist you two your feet. You're a little caught off guard! \n", 3)
-    prints(f"\"Wait...no...it can't be! Are you?...????? \n" , 4)
+    prints("\"You're awake! Oh! That's incredible. Just incredible...\" ",3)
+    prints("",.3)
+    prints("...The voice pauses, coughing and grunting as he lets go of your leg. ", 3)
+    prints("",.3)
+    prints("\"Forgive me friend, I thought you were dead! You understand...\" ", 2)
+    prints("",.3)
+    prints("You feel a hand reach down and hoist you two your feet. You're a little caught off guard! ", 3)
+    prints("",.3)
+    prints(f"\"Wait...no...it can't be! Are you?...????? " , 4)
+    prints("",.3)
 
 
     old_greg_dialogue()

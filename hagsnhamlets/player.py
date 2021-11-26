@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 from prints import prints
 from prints import printr
+from random import *
+from math import floor
+import weapon
 #placeholder
 class Player(object):
 
@@ -8,7 +11,9 @@ class Player(object):
         self.name = name
         self.desc = desc
         self.level = level
+        self.ac = 10 + dex
         self.hp = hp
+        self.maxHp = hp
         self.mag = mag
         self.dex = dex
         self.str = str
@@ -61,8 +66,78 @@ class Player(object):
                                 prints(f"{i+1}. {self.inventory[i].name}")
                             break
 
+                        if "equip" in num or num == "e":
+                            
+                            if len(self.equipped) >= 2:
+                                if type(self.inventory[add-1]) == weapon.weapon:
+                                    prints(f"1. {self.equipped[0].name}")
+                                    prints(f"2. {self.equipped[1].name}")
+                                    acc = int(input(printr("Which item do you want to unequip first? ")))-1
+                                    self.inventory.append(self.equipped[acc])
+                                    self.equipped[acc] = self.inventory[add-1]
+                                    self.inventory.remove(self.equipped[add-1])
+                                    prints("equipped!")
+                                    for i in range(len(self.inventory)):
+                                        prints(f"{i+1}. {self.inventory[i].name}")
+                                    quitC = True
+
+                            else:
+                                if type(self.inventory[add-1]) == weapon.weapon:
+                                    self.equipped.append(self.inventory[add-1])
+                                    self.inventory.remove(self.inventory[add-1])
+                                    prints("equipped!")
+                                    for i in range(len(self.inventory)):
+                                        prints(f"{i+1}. {self.inventory[i].name}")
+                                    quitC = True
+
+                            
             except ValueError:
                 continue
+    def attack(self, weap, enemy):
+        prints(f"You {weap.type} your {weap.name} at the {enemy.name}")
+        prints(".", .5)
+        enemy.hit([floor(randrange(1, 20) + weap.toHit + self.str), floor(randrange(1, 6) + weap.dmg + self.str)])
 
-           
-    
+    def hit(self, aPack):
+        roll = aPack[0]
+        damage = aPack[1]
+        if roll > self.ac:
+            self.hp -= damage
+            prints(f"It connects! You take {damage} damage.")
+            prints(f"You have {self.hp}/{self.maxHp} HP remaining.")
+        else:
+            prints("It misses!")
+        if self.hp <= 0:
+            self.die()
+        
+    def die(self):
+        prints("                   ___________________                     ",.3)
+        prints("                 / ..,.,...,. .,.,...,.\                   ",.3)
+        prints("                /               #####$$ \                  ",.3)
+        prints("               /.,.                 ,,,..\                 ",.3)
+        prints("              /.,.                   ,...||                ",.3)
+        prints("              .      You Have Died      ..|                ",.3)
+        prints("              |   ..$                     |                ",.3)
+        prints("              ####                        |                ",.3)
+        prints("              |   ###@$$2                 |                ",.3)
+        prints("              |@$$#@#@                    |                ",.3)
+        prints("              |                     ##### |                ",.3)
+        prints("              |   ...                     |                ",.3)
+        prints("              |        ...      #####     |                ",.3)
+        prints("              | .......             ...   |                ",.3)
+        prints("..............|___________________________|..............  ",.3)
+        prints("@#$@#^$&^$%&$#%#$%#$^&$&^#$%@%@$#^@@$@@@#$@$#@#$@#$@#$@#$@@",.3)
+        prints("@@$@$@#^$^%$&$%#%@#$%#&$#$@$$#^#@@@#$@##$#@#$@#$@#$#@$@#$#@",.3)
+        prints("")
+        prints("")
+        prints("        Within minutes of your passing, a swarm            ", .3)
+        prints("    of rats is upon your corpse. Soon there is nothing     ", .3)
+        prints("    left of your mortal remains. Your weapons have been    ", .3)
+        prints("    carted off to the Rat King's Nest, where they will     ", .3)
+        prints("    remain until one who is worthy comes to claim them.    ", .3)
+        prints("                                                            ", .3)
+        prints("                                                            ", .3)
+        prints("^%$&%^*%^$&$^W$#&$%*&^&(^%$#$%^#$$%@$#%^&$^%*&%^&$^#$%#$%@##", .3)
+        prints("@#^%*^&*^%&$%^#%#$&%*^&$%%^$*^&&$%^#$^$%&%^*^&*^&%$^^#^#%#%@00", .3)
+        input(printr("Press any key to continue:"))
+        exit()

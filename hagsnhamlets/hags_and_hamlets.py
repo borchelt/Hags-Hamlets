@@ -133,40 +133,10 @@ def main():
     if tutorial_needed == True: 
         tutorial()  
         combat_tutorial_zone()
+        dialogue_tutorial()
+
     
-    
-    """     #move to hamlet
-
-        #move to tavern
-        
-        prints("----LATER AT THE TAVERN---- ", .3)
-        prints("",.3)
-
-        prints("####################################################################",.3)
-        prints("",.3)
-
-        prints("",.3)
-        tavern_title_ascii()
-        prints("",.3)
-        tavern_ascii()
-        prints("##################################################################### ", .3)
-        prints("",.3)
-        
-        prints("",.3)
-        prints("    You are terribly confused. You felt yourself die. You felt the light in yourself fade ", .3)
-        prints("like a candle blown out by a draft. It was time to seek some answers. More importantly, ",.3)
-        prints("you could use a little bit of sustenance.",.3)
-        prints("",.3)
-
-        innkeeper_dialogue()
-        """
-    """ 
-
-    print("Entering the Tavern!")
-    
-    the_tavern = location.Location("The Tavern", "A warm and inviting location.", "hnh_forestTheme_conceptQ.mp3",[item("barstool")], ["Upstairs", "Cellar", "The Hamlet"], [])
-
-    """
+   
 
 
     #start up the console

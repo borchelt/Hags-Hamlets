@@ -5,13 +5,13 @@ from prints import printr
 from prints import prints
 import console
 from item import item
-from dialogue import *
 from you_have_died import *
+
+from dialogue import *
+from npcs import *
+from ascii_art import * 
 #from console import * 
 #setup
-
-from npcs import *
-from dialogue import *
 
 
 def tutorial():
@@ -26,51 +26,24 @@ def combat_tutorial_zone():
         prints(f" \"Well, I sure hope you're able to fight!,\" he calls to you. ", .3)
         prints(" \"Quick! Grab a weapon or neither of us are making it back to the hamlet!", .3)
         
-        #equip
-
-        #attack
-
-            #choose move
-                #slash
-                #stab
-                #lunge
-                #parry/riposte
-                #defend
-
-
-                
-            #deal damage
-
-            #recieve damage
-
-
-        #stats
-
-
-
-
-
-
-
-
-
-        prints("")
-                ###Combat here!!!
-        prints("You're suddenly assaulted by a skeleton! Type \"look skeleton\" to learn more about this enemy.",.3)
+        prints("##### WELCOME TO THE COMBAT TUTORIAL. Here you will learn how to be a great warrior!",.3)
+        prints("",.3)
+        prints("##### At the beginning of each combat, you'll be facing off against an enemy.")
+        prints("You're suddenly assaulted by a skeleton! ##### Type \"look skeleton\" to learn more about this enemy.",.3)
+        prints("",.3)
                 ##skeleton image/desc
-        prints("Try to take a swing at the skeleton. Type, \"attack skeleton\" to do battle!")
+        prints("Try to take a swing at the skeleton. #### Type, \"attack skeleton\" to do battle!")
+        prints("",.3)
                 #demo successful hit/doesn't kill
                 #player gets hit
                 #player instructed to block
-        prints("Quick! Defend yourself! Type, \"block skeleton\" to try to block its next attack.", .3) 
+        prints("Quick! Defend yourself! #### Type, \"block skeleton\" to try to block its next attack.", .3) 
                 #end the fight 
         prints("Try as you might, the Skeleton overpowers you. You try to block its swing, to no avail.",.3)
 
         prints("...The skeleton delivers a powerful swing to the side of your temple. \n " , 3)
         
         prints("",.3)
-
-
         you_have_died()
         prints("",.3)
 
@@ -82,7 +55,7 @@ def combat_tutorial_zone():
         prints(" \"My Gods!,\" Old Greg exclaims, \"You're...back! I watched you die!\" ")
 
         prints("...You were standing there. You felt yourself die, and yet...",.3)
-
+        prints("",.3)
         prints("The skeleton is once again advancing towards you. How is any of this possible?",.3)
 
         # playeer can kill skeleton now
@@ -95,17 +68,26 @@ def combat_tutorial_zone():
 
 
 def dialogue_tutorial():
-     
-    #move to hamlet
 
-        #move to tavern
-    
-    prints("----LATER AT THE TAVERN---- ", .3)
+    prints("Old Greg leads you back to the Hamlet and the nearby Tavern.",.3)
+    prints("You can't help but to take in some of the sights on your path.")
+    prints("####Type \'look at the hamlet\' to get your first glimpse of your surroundings.")
+
+    def look_hamlet():
+        look_at_hamlet = input()    
+        if "look" in look_at_hamlet and "hamlet" in look_at_hamlet:
+            prints("The hamlet is a quaint place. There are a few things around you.")
+            #full description of hamlet, and teach to examine
+            #provides goals
+        else:
+            prints("Please look at your surroundings. Type \'look at the hamlet\'",.3)
+            look_hamlet()
+
+    look_hamlet()
     prints("",.3)
+    prints("You arrive at the Tavern.")
 
     prints("####################################################################",.3)
-    prints("",.3)
-
     prints("",.3)
     tavern_title_ascii()
     prints("",.3)
@@ -119,11 +101,26 @@ def dialogue_tutorial():
     prints("you could use a little bit of sustenance.",.3)
     prints("",.3)
 
-    innkeeper_dialogue()
-
-
-    print("Entering the Tavern!")
+    prints("You approach the bartop, Old Greg in tow. You feel your shoulders drop as you collapse onto the stool.",.3)
+    prints("The innkeeper turns around to face you. \"Good heavens stranger! You look a little beat up, don't ya?\" ",.3)
+    prints("",.3)
+    prints("You should try to talk to the innkeeper. Type \"talk to innkeeper\" to speak with her.")
     
-    the_tavern = location.Location("The Tavern", "A warm and inviting location.", "hnh_forestTheme_conceptQ.mp3",[item("barstool")], ["Upstairs", "Cellar", "The Hamlet"], [])
+    #player should try to talk to innkeeper
+    talk = input()
+        
+    if talk == "talk to innkeeper":
+        prints("You start talking to the innkeeper.")
+    
+        innkeeper_dialogue()
+    
+    else:
+        print("I didn't catch that.")
+    
+
+
+
+
+    #the_tavern = location.Location("The Tavern", "A warm and inviting location.", "hnh_forestTheme_conceptQ.mp3",[item("barstool")], ["Upstairs", "Cellar", "The Hamlet"], [])
 
     

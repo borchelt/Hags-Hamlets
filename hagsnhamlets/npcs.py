@@ -159,6 +159,3 @@ def trade(target_npc):
 
 #old_greg_dialogue()
 #innkeeper_dialogue()
-
-#old_greg_dialogue()
-#innkeeper_dialogue()

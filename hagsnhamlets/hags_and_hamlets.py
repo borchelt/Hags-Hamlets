@@ -5,9 +5,9 @@ from prints import printr
 from prints import prints
 import console
 from item import item
-from dialogue import *
+#from dialogue import *
 from tutorial import * 
-from npcs import *
+#from npcs import *
 from intro import *
 from ascii_art import * 
 import enemy

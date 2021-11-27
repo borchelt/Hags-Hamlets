@@ -8,8 +8,9 @@ from item import item
 from you_have_died import *
 
 from dialogue import *
-from npcs import *
+from npcs import * 
 from ascii_art import * 
+import enemy
 #from console import * 
 #setup
 
@@ -28,16 +29,48 @@ def combat_tutorial_zone():
         
         prints("##### WELCOME TO THE COMBAT TUTORIAL. Here you will learn how to be a great warrior!",.3)
         prints("",.3)
-        prints("##### At the beginning of each combat, you'll be facing off against an enemy.")
-        prints("You're suddenly assaulted by a skeleton! ##### Type \"look skeleton\" to learn more about this enemy.",.3)
-        prints("",.3)
-                ##skeleton image/desc
-        prints("Try to take a swing at the skeleton. #### Type, \"attack skeleton\" to do battle!")
+        prints("        ##### At the beginning of each combat, you'll be facing off against an enemy.")
+    
+        prints("You're suddenly assaulted by a skeleton!",.3)
+        prints("    ##### Type \"look skeleton\" to learn more about this enemy.",.3)
+
+        
+        def examine_enemy():
+
+            look_skeleton = input()
+
+            if look_skeleton == "look skeleton" or "look at skeleton": 
+                for i in range(0,20):
+                    print("")
+                skeleton_ascii()
+                
+                #HOW TO READ INFO ABOUT ENEMIES
+                prints("Here you can learn all you need to know about the skeleton.")
+                prints("ALL THESE THINGS ABOUT SKELETONS")
+
+            else:
+                prints("Type \"look skeleton\" to learn more about this enemy.",.3)
+                examine_enemy()
+        
+        examine_enemy()
+
+        prints("You'll need a weapon to defeat the skeleton. Try to take the Old Spear.")
+
+        
+        def take_spear():
+            take_the_spear = input()
+            if take_the_spear == "take the spear":
+                print("You've taken the spear.") 
+
+        prints("Try to take a swing at the skeleton. ",.3)
+        prints("    #### Type, \"attack skeleton\" to do battle!",.3)
         prints("",.3)
                 #demo successful hit/doesn't kill
                 #player gets hit
                 #player instructed to block
-        prints("Quick! Defend yourself! #### Type, \"block skeleton\" to try to block its next attack.", .3) 
+        prints("Quick! Defend yourself! ",.3)
+        prints("    #### Type, \"block skeleton\" to try to block its next attack.", .3) 
+        prints("",.3)
                 #end the fight 
         prints("Try as you might, the Skeleton overpowers you. You try to block its swing, to no avail.",.3)
 
@@ -112,12 +145,7 @@ def dialogue_tutorial():
     if talk == "talk to innkeeper":
         prints("You start talking to the innkeeper.")
     
-        innkeeper_dialogue()
-    
-    else:
-        print("I didn't catch that.")
-    
-
+    #innkeeper_dialogue()
 
 
 

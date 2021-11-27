@@ -7,7 +7,7 @@ from random import *
 from math import floor
 #from playsound import playsound
 import item
-
+from ascii_art import * 
 from npcs import trade
 from npcs import tradable_npcs
 

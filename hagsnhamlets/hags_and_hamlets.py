@@ -12,24 +12,44 @@ from intro import *
 from ascii_art import * 
 import enemy
 import weapon
+import combat
+
 #setup
 
 
 print("Loading...")
 
 #set up the inital player and locations
-weap = weapon.weapon("old bone club", -1, 3, "swings")
-spear = weapon.weapon("old spear", 1, 0, "stab")
-sword = weapon.weapon("sword", 1, 0, "slash")
-shield = weapon.weapon("old shield", -1, 0, "swing")
+weap = weapon.weapon("old bone club", 
+                                   -1, 
+                                    3, 
+                            "swings")
+
+spear = weapon.weapon("old spear", 
+                                1, 
+                                0, 
+                                "stab")
+
+sword = weapon.weapon("sword", 
+                            1, 
+                            0, 
+                        "slash")
+
+shield = weapon.weapon("old shield", 
+                                 -1, 
+                                  0, 
+                            "swing")
+
+                            
 startLocal = location.Location("Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", 
-[item("old stump", "a stump", False), spear, item("dread")], ["More Woods", "More Woods", "More Woods"], [])
+[item("old stump", "a stump", False), spear, item("dread")], ["The Tavern", "More Woods", "More Woods"], [])
 player1 = player.Player("", "It's you", 1, 10, 10, 0, 10, [item("nothing")], [sword, shield], startLocal)
 
 skele = enemy.enemy("Skeleton","A pile of bones, held together only by the will of the dead.", 5, 
                     [weap,weap,weap], 10, [item("bone shard")], "The Skeleton crumbles to dust.", startLocal)
-startLocal.enemyArr = [skele]
-
+#strange_spirit = enemy.enemy("Strange Spirit", "A frightening spectre.", 666, [], 666, [item("Hag's Soul")], "The Hag Queen screeches as she disintegrates into thousdands of dark particles.", startLocal)
+#startLocal.enemyArr = [skele, strange_spirit]
+#startLocal.enemyArr = [skele]
 
 def main():
     #runtime
@@ -104,6 +124,7 @@ def main():
         tutorial_needed = True 
     else:
         prints("You don't need the tutorial, huh? Tough guy. Good luck!")
+        tutorial_needed = False 
     
     if intro == True:
         play_intro()
@@ -113,48 +134,45 @@ def main():
         combat_tutorial_zone()
     
     
-    #move to hamlet
+    """     #move to hamlet
 
+        #move to tavern
+        
+        prints("----LATER AT THE TAVERN---- ", .3)
+        prints("",.3)
 
-    #move to tavern
+        prints("####################################################################",.3)
+        prints("",.3)
 
-    prints("----LATER AT THE TAVERN---- ", .3)
-    prints("",.3)
+        prints("",.3)
+        tavern_title_ascii()
+        prints("",.3)
+        tavern_ascii()
+        prints("##################################################################### ", .3)
+        prints("",.3)
+        
+        prints("",.3)
+        prints("    You are terribly confused. You felt yourself die. You felt the light in yourself fade ", .3)
+        prints("like a candle blown out by a draft. It was time to seek some answers. More importantly, ",.3)
+        prints("you could use a little bit of sustenance.",.3)
+        prints("",.3)
 
-    prints("####################################################################",.3)
-    prints("",.3)
+        innkeeper_dialogue()
+        """
+    """ 
 
-    prints("",.3)
-    tavern_title_ascii()
-    prints("",.3)
-    tavern_ascii()
-    prints("##################################################################### ", .3)
-    prints("",.3)
+    print("Entering the Tavern!")
     
-    prints("",.3)
-    prints("    You are terribly confused. You felt yourself die. You felt the light in yourself fade ", .3)
-    prints("like a candle blown out by a draft. It was time to seek some answers. More importantly, ",.3)
-    prints("you could use a little bit of sustenance.",.3)
-    prints("",.3)
+    the_tavern = location.Location("The Tavern", "A warm and inviting location.", "hnh_forestTheme_conceptQ.mp3",[item("barstool")], ["Upstairs", "Cellar", "The Hamlet"], [])
 
-    innkeeper_dialogue()
-
-
-
-
-
-
-
-
+    """
 
 
     #start up the console
     
     con = console.console(player1)
     con.start()
-
-
-
+    
 
 
 if __name__ == "__main__":

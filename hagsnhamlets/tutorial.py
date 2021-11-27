@@ -53,6 +53,8 @@ def combat_tutorial_zone():
 
         prints("")
         prints("------##### INSERT COMBAT HERE ##### ------", 3)
+
+
         prints("")
 
         prints("...The skeleton delivers a powerful swing to the side of your temple. \n " , 3)

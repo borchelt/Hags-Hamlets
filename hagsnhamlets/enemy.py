@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+#from hags_and_hamlets.ascii_art import goblin_ascii, skeleton
 from prints import *
 from random import *
 from math import floor
+from ascii_art import * 
 class enemy():
     def __init__(self,name, desc, hp, weapons, ac, drops, death, local):
         self.name = name
@@ -12,7 +14,7 @@ class enemy():
         self.drops = drops 
         self.death = death
         self.local = local
-    
+
     
     def hit(self, aPack, drop = True):
         roll = aPack[0]

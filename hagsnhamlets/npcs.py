@@ -7,7 +7,8 @@ import console
 from item import item
 from dialogue import *
 from tutorial import *
-from ascii_art import * 
+from ascii_art import *
+import pandas as pd  
 #setup
 
 
@@ -119,6 +120,32 @@ def innkeeper_dialogue():
 
     dialogue(dialogue_options, dialogue_outcome)
 
+
+def trade(target_npc):
+
+    if target_npc == "innkeeper":
+        prints("",.3)
+        prints("We've got all kinds of things.")
+        prints("",.3)
+
+            
+    
+    trade_inv = {
+    "LEVEL": [1, 1, 2, 1],
+    "HP": [0, 0, 0, 0],
+    "MAG": [1, 0, 0, 0],
+    "DEX": [1, 0, 0, 0],
+    "GP": [5, 5, 10, 4]
+
+    }
+
+    trade_df = pd.DataFrame(trade_inv, index = ["Sword", "Tower Shield", "Leather Armor", "Leather Helmet"])
+
+    prints(trade_df, .3) 
+
+
+#old_greg_dialogue()
+#innkeeper_dialogue()
 
 #old_greg_dialogue()
 #innkeeper_dialogue()

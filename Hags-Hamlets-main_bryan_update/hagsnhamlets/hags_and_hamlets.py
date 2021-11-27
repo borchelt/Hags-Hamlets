@@ -96,9 +96,11 @@ def main():
         tutorial_needed = True 
     else:
         prints("You don't need the tutorial, huh? Tough guy. Good luck!")
+        tutorial_needed = False 
     
     if intro == True:
         play_intro()
+
 
     if tutorial_needed == True: 
         tutorial()  

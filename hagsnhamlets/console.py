@@ -8,6 +8,8 @@ from math import floor
 #from playsound import playsound
 import item
 
+from npcs import trade 
+
 class console(object):
     def __init__(self, player):
         self.player = player
@@ -140,6 +142,18 @@ class console(object):
                         i.attack2(self.player)
                     if att == 2:
                         i.attack3(self.player)
+            
+            """   #actions for dialogue
+                if "talk" in action:
+                    turn = True 
+                    target = action.replace("talk to ", '')
+                    target = target.replace("talk with ", '')
+            """      
+
+            if "trade" in action:
+
+                target_npc = input("Trade with whom? >>> ")
+                trade(target_npc)    
 
 
                 

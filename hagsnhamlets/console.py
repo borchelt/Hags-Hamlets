@@ -8,7 +8,10 @@ from math import floor
 #from playsound import playsound
 import item
 
-from npcs import trade 
+from npcs import trade
+from npcs import tradable_npcs
+
+global action 
 
 class console(object):
     def __init__(self, player):
@@ -64,7 +67,8 @@ class console(object):
 
             #actions for picking stuff up
 
-            if("pick up" in action): 
+            if("pick up" in action):
+                
                 bigList = [p1.location.interactables, p1.location.enemyArr]
                 everything = []
                 for sub in bigList:
@@ -150,11 +154,18 @@ class console(object):
                     target = target.replace("talk with ", '')
             """      
 
+            #Trade comes from NPCs
+        
             if "trade" in action:
+                for i in range(len(tradable_npcs)):
+                    if tradable_npcs[i] in action:
+                        target_npc = tradable_npcs[i]
+                    elif i == len(tradable_npcs):
+                        prints(f"I can't trade with {action}")
+                        return 
 
-                target_npc = input("Trade with whom? >>> ")
+                       
                 trade(target_npc)    
 
 
-                
 

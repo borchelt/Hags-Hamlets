@@ -7,7 +7,7 @@ import console
 from item import item
 from dialogue import *
 from you_have_died import *
-
+#from console import * 
 #setup
 
 
@@ -54,7 +54,8 @@ def combat_tutorial_zone():
         prints("")
         prints("------##### INSERT COMBAT HERE ##### ------", 3)
 
-
+        prints("You're suddenly assaulted by a skeleton! Type \"look skeleton\" to learn more about this enemy.",.3)
+        
         prints("")
 
         prints("...The skeleton delivers a powerful swing to the side of your temple. \n " , 3)

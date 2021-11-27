@@ -49,7 +49,7 @@ skele = enemy.enemy("Skeleton","A pile of bones, held together only by the will 
                     [weap,weap,weap], 10, [item("bone shard")], "The Skeleton crumbles to dust.", startLocal)
 #strange_spirit = enemy.enemy("Strange Spirit", "A frightening spectre.", 666, [], 666, [item("Hag's Soul")], "The Hag Queen screeches as she disintegrates into thousdands of dark particles.", startLocal)
 #startLocal.enemyArr = [skele, strange_spirit]
-#startLocal.enemyArr = [skele]
+startLocal.enemyArr = [skele]
 
 def main():
     #runtime
@@ -75,7 +75,7 @@ def main():
 
 
 
-    print(f"\nWell {player1.name}, I can't promise this world will be incredibly kind to you. Regardless, WELCOME TO")
+    """   print(f"\nWell {player1.name}, I can't promise this world will be incredibly kind to you. Regardless, WELCOME TO")
     prints("---------------------------------------------------------------------------------------------------------------         ||  .|#", .5)
     prints("        -------------------------------------------------------------------------------------------------------         || . |#", .5)
     prints("          _______  _______  _______      __               _______  _______  _        _______ _________ _______          ||  .|#", .5)
@@ -109,7 +109,8 @@ def main():
     prints("#$%$%^#@$@#       " , .2)
     prints("@$#@$             " , .2)
     prints("@@                " , .2)
-    prints(".")
+    prints(".") """
+
     press_anything = input("Press anything to continue >>>> ")
     
     skip_intro = input("Would you like to skip the intro? Y/N >>>> " ).lower()
@@ -170,8 +171,10 @@ def main():
 
     #start up the console
     
+    
     con = console.console(player1)
     con.start()
+    
     
 
 

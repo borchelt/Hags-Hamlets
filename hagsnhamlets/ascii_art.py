@@ -783,7 +783,7 @@ def border_art_right():
     prints("        || . |#")
     prints("        ||  .|#")
     prints("        || . |#")
-    o
+    
 
 
 

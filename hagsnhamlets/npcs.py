@@ -120,6 +120,8 @@ def innkeeper_dialogue():
 
     dialogue(dialogue_options, dialogue_outcome)
 
+global tradable_npcs
+tradable_npcs = ["innkeeper", "blacksmith"]
 
 def trade(target_npc):
 
@@ -128,21 +130,32 @@ def trade(target_npc):
         prints("We've got all kinds of things.")
         prints("",.3)
 
-            
+        npc_inventory = {
+        "GP": [1, 3, 5],
+        "HP": [ f"+{1}", f"+{4}", f"+{8}" ]
+        }
+
+        innkeeper_shop = pd.DataFrame(npc_inventory, index = ["Ale", "Bread", "Cheese"])
+
+        print(innkeeper_shop)
     
-    trade_inv = {
-    "LEVEL": [1, 1, 2, 1],
-    "HP": [0, 0, 0, 0],
-    "MAG": [1, 0, 0, 0],
-    "DEX": [1, 0, 0, 0],
-    "GP": [5, 5, 10, 4]
+    if target_npc == "blacksmith":
+        prints("",.3)
+        prints(" \"Sure! What is it you were needin',\" the blacksmith smiles, pausing to look up at you.",.3)
+        prints("",.3)
 
-    }
+        npc_inventory = {
+        "GP": [     4,         8,      12   ],
+        "AP": [ f"+{5}", f"+{0}", f"+{0}"   ],
+        "ATK": [ f"+{0}", f"+{1}", f"+{+0}" ],
+        "MAG": [ f"+{5}", f"+{0}", f"+{1}"  ],
+        "DEX": [ f"+{0}", f"+{0}", f"+{5}"  ],
+        }
 
-    trade_df = pd.DataFrame(trade_inv, index = ["Sword", "Tower Shield", "Leather Armor", "Leather Helmet"])
+        innkeeper_shop = pd.DataFrame(npc_inventory, index = ["Wizard's Robes", "Soldier's Sword", "Comfortable Shoes"])
 
-    prints(trade_df, .3) 
-
+        print(innkeeper_shop)
+        
 
 #old_greg_dialogue()
 #innkeeper_dialogue()

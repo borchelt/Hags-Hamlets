@@ -54,31 +54,89 @@ def combat_tutorial_zone():
         
         examine_enemy()
 
-        prints("You'll need a weapon to defeat the skeleton. Try to take the Old Spear.")
+        prints("You'll need a weapon to defeat the skeleton. You see a spear sticking into an old stump.",.3)
+        prints("Try to take the Old Spear.",.3)
+        prints("    #### Type \'take the spear\' to take it.",.3)
 
-        
         def take_spear():
             take_the_spear = input()
             if take_the_spear == "take the spear":
-                print("You've taken the spear.") 
+                print("You've taken the spear.")
+        take_spear()
+        prints("",.3)
+        prints("Now you'll want to equip the spear.")
+        prints("    #### Type \'equip spear\' to equip it.")
+        prints("",.3)
+
+        def babys_first_weapon():
+            equip_spear = input()
+            if equip_spear == "equip spear":
+                print("You have equipped the spear.")
+            else:
+                print("Equip the weapon to fight the skeleton. Type \'equip spear' to equip it.")
+                babys_first_weapon()
+        
+        babys_first_weapon()
+
 
         prints("Try to take a swing at the skeleton. ",.3)
         prints("    #### Type, \"attack skeleton\" to do battle!",.3)
+
+        def first_attack():
+            first_swing = input()
+            if first_swing == "attack skeleton":
+                prints("You thrust the spear at the skeleton.")
+                prints("...",.3)
+                prints("...It hits! You deal 4 damage.",.3)
+            else:
+                prints("Do battle! Type \'attack skeleton\' to defeat your foe.")
+                first_attack()
+        
+        first_attack()
+
+        prints("The skeleton is not deterred. It swipes at your feet!")
+        prints("...",.3)
+        prints("...It hits! The skeleton deals 3 damage to you.")
         prints("",.3)
+        
+
+
                 #demo successful hit/doesn't kill
                 #player gets hit
                 #player instructed to block
         prints("Quick! Defend yourself! ",.3)
         prints("    #### Type, \"block skeleton\" to try to block its next attack.", .3) 
         prints("",.3)
-                #end the fight 
-        prints("Try as you might, the Skeleton overpowers you. You try to block its swing, to no avail.",.3)
+        prints("The skeleton lunges at you with the bone shard.",.3)
+        prints("",.3)
 
-        prints("...The skeleton delivers a powerful swing to the side of your temple. \n " , 3)
+        def first_block():
+            block = input()
+            if block == "block skeleton":
+                prints("You try to block the incoming attack.",.3)
+                prints("...")
+                prints("...You successfully blocked the attack!",.3)
         
+        first_block()
+
         prints("",.3)
-        you_have_died()
-        prints("",.3)
+                #end the fight
+        
+        def lose_the_fight():
+            prints("    ##### Finish the skeleton off. Keep attacking!")
+            
+            #attack 3 more times
+            #miss and get hit
+            prints("Try as you might, the Skeleton overpowers you. You try to block its swing, to no avail.",.3)
+            prints("...The skeleton delivers a powerful swing to the side of your temple. \n " , 3)
+            
+            prints("",.3)
+            you_have_died()
+            prints("",.3)
+        
+        lose_the_fight()
+
+
 
         #Player should lose this fight and die once so that they can respawn/talk to Old Greg and realize they can't die
 
@@ -90,10 +148,26 @@ def combat_tutorial_zone():
         prints("...You were standing there. You felt yourself die, and yet...",.3)
         prints("",.3)
         prints("The skeleton is once again advancing towards you. How is any of this possible?",.3)
+        prints("",.3)
+        prints("You aren't able to let yourself remain confused for long. Several more shapes begin to emerge from the fog.",.3)
+        prints("Several skeletons have joined the other. They are all coming towards you, shambling and making all sorts of horrid sounds.",.3)
+        
+        prints("",.3)
 
-        # playeer can kill skeleton now
+        prints("Old Greg screams, \"Oh my Gods! Run lad, run!!!\" No sooner, Old Greg is sprinting down the path out of the graveyard.",.3)
+        prints("      #### Type 'run away' to escape the skeleton horde.")
+
+        def first_runaway():
+            run = input()
+            if run == "run away":
+                prints("The skeletons swipe at you, but miss. You follow Old Greg down the path.")
+            else:
+                prints("Escape with Old Greg. Type \"run away\" to flee the skeleton horde.",.3)
+        
+        first_runaway()
 
         prints("\"Well I'll be damned,\" Old Greg exclaims,\"My old heart can't take this kind of excitement.\" ",.3)
+        prints("You both take a moment to catch your breath.",.3)
         prints("",.3)
         prints("\"Friend, I think you've earned yourself a hot meal. Thanks for saving me.\"",.3)
 
@@ -101,6 +175,8 @@ def combat_tutorial_zone():
 
 
 def dialogue_tutorial():
+    from npcs import innkeeper_dialogue
+
 
     prints("Old Greg leads you back to the Hamlet and the nearby Tavern.",.3)
     prints("You can't help but to take in some of the sights on your path.")
@@ -145,7 +221,7 @@ def dialogue_tutorial():
     if talk == "talk to innkeeper":
         prints("You start talking to the innkeeper.")
     
-    #innkeeper_dialogue()
+    innkeeper_dialogue()
 
 
 

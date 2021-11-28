@@ -36,6 +36,7 @@ class console(object):
 
             #actions for player management
 
+
             #quits the program
             if action == "quit":
                 turn = False

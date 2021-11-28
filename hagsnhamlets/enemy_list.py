@@ -10,7 +10,7 @@ weap = weapon.weapon("old bone club",
 
 #should always be able to run from, but always take 1 damage getting away and be forced out unless they leave the squirrel king a treat. 
 squirrels = enemy.enemy("Swarm of Squirrels","You have unwittingly stepped into the glade of the Squirrel King, ChitterScritch the 4th, blessings upon them. You should leave an offering or run.", 666, 
-                    [weap], 10, [item("King ChitterScritch's Crown"), item("Strange Gem")], "The unspeakable has happened. The squirrels have all died. How have wrought such death?", PathBehindTheCottage)
+                    [weap], 10, [item("King ChitterScritch's Crown"), item("Strange Gem")], "The unspeakable has happened. The squirrels have all died. How have you wrought such gruesome death?", PathBehindTheCottage)
 
 bandit = enemy.enemy("Bandit","A thug with no conscience. It's hard to believe there are people out here acting this way, despite the Hags presence.", 8, 
                     [weap], 10, [item("gold purse"), item("rapier"), item("strange document")], "You can tell that the bandit realized their mistake, just as it was too late. You saw the look in their eyes as they fail to dodge your killing blow. They collapse.", Outskirts)

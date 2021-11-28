@@ -32,9 +32,13 @@ class Location(object):
             
         prints("")
         prints("From your current location, you can travel to:")
-        for i in range(len(self.adj_locations)):
-            prints(f"{i+1}. {self.adj_locations[i].name}")
 
+        prints("This is self.adj_locations:")
+       
+        prints(self.adj_locations[i])
+
+        for i in range(len(self.adj_locations)):
+            prints(f"{i+1}. {self.adj_locations[i]}")
             
         
     #once we have a player class: def move(self, dest, player)

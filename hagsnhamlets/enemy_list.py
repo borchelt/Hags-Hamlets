@@ -19,6 +19,10 @@ bandit = enemy.enemy("Bandit","A thug with no conscience. It's hard to believe t
 drunkard = enemy.enemy("Angry Drunkard"," \"You're not wise, picking a fight with me! Get 'im boys!", 3, 
                     [weap], 10, [item("bottle")], "Your attack connects and the bats fall harshly, splattering on the ground.", Tavern, Sewers, Speakeasy)
 
+thief_king_goon = enemy.enemy("Thief King"," \"I know just the alley to dump you in, stranger.\" ", 20, 
+                    [weap], 10, [item("skull ring")], "The precision of your movements was enough to catch the Thief King off guard. Their blood decorates the walls, desk and papers.", ThiefKingDen)                    
+
+
 goblin = enemy.enemy("goblin","An angry, fiesty goblin. While not dangerous alone, goblins in numbers are problen. Where there is one, there are bound to be more.", 3, 
                     [weap,weap,weap], 10, [item("goblin bow")], "The goblin howls in pain before going limp, collapsing to the ground and twitching.", GoblinCamp)
 

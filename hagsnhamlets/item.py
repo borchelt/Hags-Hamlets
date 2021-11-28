@@ -7,3 +7,4 @@ class item:
         self.name = name
         self.desc = desc
         self.pickup = pickup
+

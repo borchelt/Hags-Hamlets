@@ -75,7 +75,7 @@ def main():
 
 
 
-    """   print(f"\nWell {player1.name}, I can't promise this world will be incredibly kind to you. Regardless, WELCOME TO")
+    print(f"\nWell {player1.name}, I can't promise this world will be incredibly kind to you. Regardless, WELCOME TO")
     prints("---------------------------------------------------------------------------------------------------------------         ||  .|#", .5)
     prints("        -------------------------------------------------------------------------------------------------------         || . |#", .5)
     prints("          _______  _______  _______      __               _______  _______  _        _______ _________ _______          ||  .|#", .5)
@@ -109,7 +109,7 @@ def main():
     prints("#$%$%^#@$@#       " , .2)
     prints("@$#@$             " , .2)
     prints("@@                " , .2)
-    prints(".") """
+    prints(".")
 
     press_anything = input("Press anything to continue >>>> ")
     

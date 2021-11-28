@@ -213,16 +213,38 @@ def dialogue_tutorial():
     prints("You approach the bartop, Old Greg in tow. You feel your shoulders drop as you collapse onto the stool.",.3)
     prints("The innkeeper turns around to face you. \"Good heavens stranger! You look a little beat up, don't ya?\" ",.3)
     prints("",.3)
-    prints("You should try to talk to the innkeeper. Type \"talk to innkeeper\" to speak with her.")
+    prints("You should try to talk to the innkeeper.")
+    prints("    ### Type \"talk to innkeeper\" to speak with them.",.3)
     
     #player should try to talk to innkeeper
-    talk = input()
-        
-    if talk == "talk to innkeeper":
-        prints("You start talking to the innkeeper.")
     
-    innkeeper_dialogue()
+    def babys_first_words():
+        talk = input()
+            
+        if talk == "talk to innkeeper":
+            prints("You start talking to the innkeeper.")
+            innkeeper_dialogue()
+        else: 
+            prints("Try talking to the innkeeper. Type \"talk to innkeepeer\" to speak with them.",.3)
+            babys_first_words()
 
+
+    babys_first_words()
+
+    print("####     There are some NPCs that you can Trade with. ")
+
+    def trade_tutorial():
+        from npcs import trade
+        prints("Inititate a trade with the innkeeper.")
+        prints("    ### Type \"trade innkeeper\" to start trading with them.")
+        init_trade = input()
+
+        if init_trade == "trade innkeeper":
+            trade("innkeeper")
+        else:
+            trade_tutorial()
+            
+    trade_tutorial()
 
 
     #the_tavern = location.Location("The Tavern", "A warm and inviting location.", "hnh_forestTheme_conceptQ.mp3",[item("barstool")], ["Upstairs", "Cellar", "The Hamlet"], [])

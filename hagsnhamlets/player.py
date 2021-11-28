@@ -75,7 +75,7 @@ class Player(object):
                                     acc = int(input(printr("Which item do you want to unequip first? ")))-1
                                     self.inventory.append(self.equipped[acc])
                                     self.equipped[acc] = self.inventory[add-1]
-                                    self.inventory.remove(self.equipped[add-1])
+                                    self.inventory.remove(self.equipped[acc])
                                     prints("equipped!")
                                     for i in range(len(self.inventory)):
                                         prints(f"{i+1}. {self.inventory[i].name}")
@@ -96,7 +96,7 @@ class Player(object):
     def attack(self, weap, enemy):
         prints(f"You {weap.type} your {weap.name} at the {enemy.name}")
         prints(".", .5)
-        enemy.hit([floor(randrange(1, 20) + weap.toHit + self.str), floor(randrange(1, 6) + weap.dmg + self.str)])
+        enemy.hit([randrange(1, 20) + weap.toHit + self.str,randrange(1, 6) + weap.dmg + self.str])
 
     def hit(self, aPack):
         roll = aPack[0]

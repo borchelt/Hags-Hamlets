@@ -1,6 +1,6 @@
 from prints import printr
 from prints import prints
-#from npcs import trade
+
 
 def dialogue(dialogue_options, dialogue_outcome):
     global choice_made
@@ -41,10 +41,8 @@ def dialogue(dialogue_options, dialogue_outcome):
     dialogue_option_chosen = int(dialogue_option_chosen)
 
     for i in range(1, len(dialogue_options)):
-            
         if dialogue_option_chosen != len(dialogue_options):
             dialogue(dialogue_options,dialogue_outcome)
-        
 
 
                         

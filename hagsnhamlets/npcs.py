@@ -152,6 +152,9 @@ def blacksmith_dialogue():
     dialogue(dialogue_options, dialogue_outcome)
 
 def librarian_dialogue():
+
+    librarian_ascii()
+    prints("",.3)
     dialogue_options = [
     "     Who are you? ", 
     "     What are doing right now?", 
@@ -181,6 +184,10 @@ def librarian_dialogue():
 
 def merchant_dialogue():
 
+    merchant_ascii()
+    prints("",.3)
+
+
     dialogue_options = [
     "     *** TRADE ***  What are you selling, friend? ", 
     "     What is your name?", 
@@ -201,6 +208,9 @@ def merchant_dialogue():
 
 def general_store_owner_dialogue():
 
+    general_store_owner_ascii()
+    prints("",.3)
+
     dialogue_options = [
     "     *** TRADE *** I'd like to see your wares.", 
     "     What is your name?", 
@@ -220,6 +230,10 @@ def general_store_owner_dialogue():
     dialogue(dialogue_options, dialogue_outcome)
 
 def farmer_dialogue():
+
+    farmer_ascii()
+    prints("",.3)
+
     dialogue_options = [
     "     Wait! Stop running! What has happened to you?", 
     "     What is your name?", 
@@ -239,6 +253,10 @@ def farmer_dialogue():
     dialogue(dialogue_options, dialogue_outcome)
 
 def thief_king_dialogue():
+
+    thief_king_ascii()
+    prints("",.3)
+
     
     dialogue_options = [
     "     Are you the one they call the Thief King?", 
@@ -261,6 +279,10 @@ def thief_king_dialogue():
     dialogue(dialogue_options, dialogue_outcome)
 
 def hunter_dialogue():
+
+    hunter_ascii()
+    prints("",.3)
+
     
     dialogue_options = [
     "     Who are you?", 
@@ -282,6 +304,10 @@ def hunter_dialogue():
 
 def drunkard_dialogue():
 
+    drunkard_ascii()
+    prints("",.3)
+
+
     dialogue_options = [
     "     Try to wake the drunkard."
     "     Pour his beer on him."
@@ -302,6 +328,10 @@ def drunkard_dialogue():
 
 def dwarven_miner_dialogue():
 
+    dwarven_miner_ascii()
+    prints("",.3)
+
+
     dialogue_options = [
     "     What is your name?", 
     "     Are you in danger?", 
@@ -321,6 +351,9 @@ def dwarven_miner_dialogue():
     dialogue(dialogue_options, dialogue_outcome)
 
 def guard_dialogue():
+
+    guard_ascii(),
+    prints("",.3)
 
     dialogue_options = [
     "     I'm friendly! I swear!", 
@@ -343,6 +376,8 @@ tradable_npcs = ["innkeeper", "blacksmith", "librarian", "merchant", "general st
     #if target npc is non-merchant type and player does not have correct quest item, trade option should not appear 
 
 def trade(target_npc):
+
+    
 
     if target_npc == "innkeeper":
         prints("",.3)

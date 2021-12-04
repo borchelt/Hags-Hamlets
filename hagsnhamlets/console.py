@@ -102,8 +102,7 @@ class console(object):
                     if p1.location.adj_locations[i.name] in action:
                         p1.move(p1.location.adj_locations[i])
                         break 
-            else: 
-                prints("I don't understand what you are trying to do.")
+            
                 
 
             #actions for combat 

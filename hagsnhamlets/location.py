@@ -38,9 +38,8 @@ class Location(object):
             
         
     #once we have a player class: def move(self, dest, player)
-        
+    
     def move(self, dest, player):
         for i in range(len(self.adj_location)):
             if dest == self.adj_location[i]:
                 player.current_location = self.adj_locations[i]
-    

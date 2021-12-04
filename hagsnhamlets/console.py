@@ -101,7 +101,8 @@ class console(object):
                 for i in range(len(p1.location.adj_locations)): 
                     if p1.location.adj_locations[i.name] in action:
                         p1.move(p1.location.adj_locations[i])
-                        break 
+                        break
+                    
             
                 
 

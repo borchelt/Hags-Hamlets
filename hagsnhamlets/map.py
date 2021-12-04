@@ -13,6 +13,36 @@ import random
 class map():
 
 
+
+    def populate_interactables(max_items, where, item_list):
+        global rand_item_index
+
+        def get_random_item():
+            global rand_item_index
+            max_item_list_size = len(item_list)
+            rand_item_index = random.randint(0, max_item_list_size)
+
+        global rand_item_index
+        fail_count = 0
+
+        for i in range(0, max_items):
+            get_random_item() 
+            item_chance = random.randint(0,10)
+            if item_chance % 2 == 0:
+                where.interactables.append(item_list[rand_item_index])
+                
+
+
+        else:
+            fail_count += 1
+        
+        if fail_count == max_items:
+            where.interactables.clear()
+        
+    
+        
+    
+
     def populate_enemies(max_enemies, where, who):
         
         fail_count = 0 
@@ -55,7 +85,7 @@ class map():
     farm = Location("The Barn", "a faded barn stands amidst the trees","hnh_forestTheme_conceptQ.mp3", [], [],[])
     glade = Location("The Glade", "perhaps the only truly beautiful place left, you swear you can just barely see the sun up there", "hnh_forestTheme_conceptQ.mp3", [],[],[])
 
-    
+    """
     #OLD MINES
     old_mines_entrance = Location("Old Mines: Entrance", "Once a great mine, the resources have been mostly used up. The dwarven miners that still work here must fight to keep it clear of enemies in the absence of more capable fighters.", [],[],[]),
     old_mines_main_chamber = Location("Old Mines: First Chamber", "The Old Mine is dimly lit by torches. Several groups of dwarves are huddled. Some are tending to wounds, others eating lunch.", [],[],[])
@@ -134,20 +164,21 @@ class map():
 
     
 
-    """ 
+    
     populate_enemies(1, map.old_mines_floor1_NW, map.bat)
     populate_enemies(2, map.old_mines_floor1_N, map.bat)
     populate_enemies(2, map.old_mines_floor1_NE, map.bat)
     #door room has no enemies
     populate_enemies(3, map.old_mines_floor2_W, giant_spider)
-     """
-
+     
+    """
 
     
 
 
     #HAMLET 
     hamlet = Location("The Town Square", "The center of this once bustling hamlet now lies quiet and defeated", "hnh_forestTheme_conceptQ.mp3", [], [],[])
+    
     store = Location("The General Store", "A dusty counter sits at the back of this one room shop, the only other furnature being a small shelf laden with baubles","hnh_forestTheme_conceptQ.mp3", [], [],[])
     sundial = Location("The Sundial", "A stone slab marked with anchient runes sits inbetween two small houses, nobody but you seems to even relize its there.","hnh_forestTheme_conceptQ.mp3", [], [],[])
     tavern = Location("The Tavern", "Perhaps the only place in the hamlet with any life still inside, you even hear the occasional chuckle coming from inside","hnh_forestTheme_conceptQ.mp3", [], [],[])
@@ -157,7 +188,7 @@ class map():
     wagon = Location("The Merchant Wagon", "The small covered wagon smells of incense and dust.", [], [],[])
     well = Location("The Well", "you cant see the bottom of the well, but for some reason, you can hear running water below.", [], [],[])
 
-    #SEWERS 
+    """ #SEWERS 
     sewers = Location("Sewer Entrance", "It definitely smells like a sewer. With some effort, you would be able to move the cover and enter. It seems dark.", [],[],[])
     sewer_tunnels = Location("Sewer Tunnels", "A disgusting smell assaults your senses every second that you spend here.", [],[],[])
     sewer_tunnelsN = Location("Sewer Tunnels", "The path widens. This looks like a maintenance tunnel.", [],[],[])
@@ -183,7 +214,6 @@ class map():
 
     rat_kings_nest = Location("The Rat King's Nest", "This place is a mess of trinkets, weapons, armor and scraps of paper. You're not sure which smells worse- the sewers or the nest.", [],[],[])
     rat_kings_nest.interactables = []
-    
     sewers.adj_locations(sewer_tunnels)
     sewer_tunnels.adj_locations(sewers, sewer_tunnelsN, sewer_tunnelsW)
     sewer_tunnelsN.adj_locations(sewer_tunnels, sewer_tunnelsE)
@@ -191,7 +221,7 @@ class map():
     thieves_den.adj_locations(sewer_tunnelsE)
     speakeasy.adj_locations(sewer_tunnelsE)
     sewer_tunnelsW.adj_locations(sewer_tunnels, rat_kings_nest),
-    
+     """
 
 
     hamlet.adj_locations = [store, sundial, tavern, QBoard, blacksmith, library, wagon, well ]
@@ -232,7 +262,11 @@ class map():
     boneShard = item("Bone Shard", "You can feel the hate within.")
     hide = item("Wolf Pelt", "No animal in this forest can keep a healthy coat, these hides are proo.f")
 
-    cemetery.interactables = [newGrave, medGrave, ancGrave]
+    cemetery_item_list = [deathcap, ruby, toadEye, herbs, doll, noose, tombStone, riverGlass]
+    populate_interactables(3, cemetery, cemetery_item_list)
+
+    #cemetery.interactables = [newGrave, medGrave, ancGrave]
+    
     outskirts.interactables = [oldSpear, tombStone]
     tree.interactables = [ruby, noose]
     woodsN.interactables = [herbs]

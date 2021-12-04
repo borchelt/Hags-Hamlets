@@ -11,7 +11,8 @@ import enemy
 from weapon import weapon
 import random 
 class map():
-    cemetery = Location("The Graveyard", "A cold and unfeeling feild of stone.", "hnh_forestTheme_conceptQ.mp3",[], [], [])
+    cemetery = Location("The Graveyard", "A cold and unfeeling feild of stone.", "hnh_forestTheme_conceptQ.mp3",[],[],[],)
+    the_hill = Location("The Hill", "A rocky path leads up a steep hill towards what the locals know as \"Hangman's Hill\".", "hnh_forestTheme_conceptQ.mp3", [], [], [])
     outskirts = Location("The Outskirts", "Rollng hills of what might once have been grass", "hnh_forestTheme_conceptQ.mp3", [], [], [])
     gates = Location("The Old Gate", "The two humaniod statues tower above any tree in the forest, they seem to watch as you as you pass by."
                     ,"hnh_forestTheme_conceptQ.mp3", [],[],[])
@@ -184,7 +185,7 @@ class map():
     zombie = enemy.enemy("Zombie","A ghoulish fiend approaches. They limber towards you, flesh hanging from their bones. Gross!", 5, 
                         [rusted_blade, rusted_blade, grab], 10, [item("rotten body parts")], "The zombie trips towards you. As it stumbles, it catches your attack and is decapitated in an excessive display of gore.", cemetery)
  
- 
+
 
     def populate_enemies(max_enemies, where, who):
         

@@ -10,6 +10,7 @@ import item
 from ascii_art import * 
 from npcs import trade
 from npcs import tradable_npcs
+from location import * 
 
 global action 
 
@@ -94,6 +95,16 @@ class console(object):
                                 p1.inventory.append(i)
                                 p1.location.interactables.remove(i)
                                 prints(f"You got the {i.name}")
+            #move action
+            if ("move" in action):
+                turn = True 
+                for i in range(len(p1.location.adj_locations)): 
+                    if p1.location.adj_locations[i.name] in action:
+                        p1.move(p1.location.adj_locations[i])
+                        break 
+            else: 
+                prints("I don't understand what you are trying to do.")
+                
 
             #actions for combat 
             if action == "flee" or action == "run":

@@ -218,7 +218,7 @@ def general_store_owner_dialogue():
     "     *** QUEST *** Is there anything that you need help with?",
     "     Goodbye."
     ]
-
+    
     dialogue_outcome = [
         "   \"Of course! I've the best crafting materials in the land.\" ", 
         "   \"Mr. Barry Barrelpine, humbly at your service. Anything you need, anything at all, I will sell it to you!\" ",

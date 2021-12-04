@@ -9,7 +9,7 @@ from intro import *
 from ascii_art import * 
 import enemy
 from weapon import weapon
-
+import random 
 class map():
     cemetery = Location("The Graveyard", "A cold and unfeeling feild of stone.", "hnh_forestTheme_conceptQ.mp3",[], [], [])
     outskirts = Location("The Outskirts", "Rollng hills of what might once have been grass", "hnh_forestTheme_conceptQ.mp3", [], [], [])
@@ -45,6 +45,7 @@ class map():
     library = Location("The Library","Most of the books have been overrun by mold, but you may still be able to find something usefull", [], [],[])
     wagon = Location("The Merchant Wagon", "The small covered wagon smells of incense and dust.", [], [],[])
     well = Location("The Well", "you cant see the bottom of the well, but for some reason, you can hear running water below.", [], [],[])
+
     cemetery.adj_locations = [outskirts]
     outskirts.adj_locations = [cemetery, gates, tree]
     tree.adj_locations = [outskirts]
@@ -137,35 +138,71 @@ class map():
                                     3, 
                             "swings")
 
-    #should always be able to run from, but always take 1 damage getting away and be forced out unless they leave the squirrel king a treat. 
+    squirrel_bow = weapon("Squirrel Bow", 1, 1, "shoots")
+    squirrel_spear = weapon("Squirrel Spear", 1, 1, "throws")
+    squirrel_dag = weapon("Squirrel Dagger", 1, 1, "stabs")
+
+    #should always be able to run from, but always take 1 damage getting away and be forced out unless they leave the squirrel king a treat
     squirrels = enemy.enemy("Squirrels","You have unwittingly stepped into the glade of the Squirrel King, ChitterScritch the 4th, blessings upon them. You should leave an offering or run.", 666, 
-                        [weap,weap,weap], 10, [item("King ChitterScritch's Crown"), item("Strange Gem")], "The unspeakable has happened. The squirrels have all died. How have wrought such death?", glade)
+                        [squirrel_bow, squirrel_spear, squirrel_dag], 10, [item("King ChitterScritch's Crown"), item("Strange Gem")], "The unspeakable has happened. The squirrels have all died. How have wrought such death?", glade)
+    king_chitterscritch = enemy.enemy("King ChitterScritch the 4th", "The other squirrels obviously revere this most impressive Squirrel.", 100, [squirrel_bow, squirrel_spear, squirrel_dag], 10, item("King ChitterScritch's Wand", pickup=True), "The mighty King lay fallen. Are you content now, murderer?", glade),
+
+    dagger = weapon("Common Dagger", 2, 3, "stabs")
+    shortsword = weapon("Shortsword", 3, 3, "lunges")
+    basic_bow = weapon("Common Bow", 2, 3, "fires")
 
     bandit = enemy.enemy("Bandit","A thug with no conscience. It's hard to believe there are people out here acting this way, despite the Hags presence.", 8, 
-                        [weap,weap,weap], 10, [item("gold purse"), item("rapier"), item("strange document")], "You can tell that the bandit realized their mistake, just as it was too late. You saw the look in their eyes as they fail to dodge your killing blow. They collapse.", outskirts)
+                        [dagger, shortsword], 10, [item("gold purse"), item("rapier"), item("strange document")], "You can tell that the bandit realized their mistake, just as it was too late. You saw the look in their eyes as they fail to dodge your killing blow. They collapse.", outskirts)
     bandit2 = enemy.enemy("Bandit","A thug with no conscience. It's hard to believe there are people out here acting this way, despite the Hags presence.", 8, 
-                        [weap,weap,weap], 10, [item("gold purse"), item("rapier"), item("strange document")], "You can tell that the bandit realized their mistake, just as it was too late. You saw the look in their eyes as they fail to dodge your killing blow. They collapse.", outskirts)
+                        [basic_bow], 10, [item("gold purse"), item("rapier"), item("strange document")], "You can tell that the bandit realized their mistake, just as it was too late. You saw the look in their eyes as they fail to dodge your killing blow. They collapse.", outskirts)
+
+    broken_bottle = weapon("Broken Bottle", 1, 1, "slashes")
 
     drunkard = enemy.enemy("Drunkard"," \"You're not wise, picking a fight with me! Get 'im boys!", 3, 
-                        [weap,weap,weap], 10, [item("bottle")], "Your attack connects and the bats fall harshly, splattering on the ground.", tavern)
+                        [broken_bottle], 10, [item(" broken bottle")], "You hear a crunching sound as the drunkard falls face first into the edge of the table at velocity. He drops.", tavern)
 
+    goblin_pike = weapon("Goblin Pike", 1, 3, "stabs")
+    goblin_bow = weapon("Goblin Bow", 2, 3, "fires")
+    goblin_axe = weapon("Goblin Axe", 3, 2, "swings")
     goblin = enemy.enemy("goblin","An angry, fiesty goblin. While not dangerous alone, goblins in numbers are problen. Where there is one, there are bound to be more.", 3, 
-                        [weap,weap,weap], 10, [item("goblin bow")], "The goblin howls in pain before going limp, collapsing to the ground and twitching.", sundial)
+                        [goblin_pike, goblin_bow, goblin_axe], 10, [item("Grog", "A skin full of a foul smelling, dark drink.", pickup="true")], "The goblin howls in pain before going limp, collapsing to the ground and twitching.", sundial)
 
+    
     bat = enemy.enemy("Bats","A swarm of bats clouds your vision. The sound is incredible as wings fly past your face and around your head.", 1, 
-                        [weap,weap,weap], 10, [item("bat's wings")], "Your attack connects and the bats fall harshly, splattering on the ground.", sundial)
+                        [bite, bite, bite], 10, [item("bat's wings")], "Your attack connects and the bats fall harshly, splattering on the ground.", sundial)
 
+    
     giant_spider = enemy.enemy("Spider","A hulking, fierce insect. This is no time to be act idley. Look out!", 15, 
-                        [weap,weap,weap], 10, [item("venomous sac"), item("spider eyes"), item("giant spider mandible")], "The spider crumples into a bent, twisted shape as it hugs its wounds. It dies, shortly after", sundial)
+                        [bite, bite, bite], 10, [item("venomous sac"), item("spider eyes"), item("giant spider mandible")], "The spider crumples into a bent, twisted shape as it hugs its wounds. It dies, shortly after", sundial)
 
-
+    phantasmal_scream = weapon("Phantasmal Scream", 2, 3, "shrieks")
     angry_spirit = enemy.enemy("Spirit","Suddenly a spectacularly spooky spectre swiftly swims through the air towards you. Oh my!", 3, 
-                        [weap,weap,weap], 10, [item("ectoplasm"), item("ghostly blade")], "The spectre is spooped. They dissipate into nothingness, returning to the void.", tree)
+                        [phantasmal_scream ], 10, [item("ectoplasm"), item("ghostly blade")], "The spectre is spooped. They dissipate into nothingness, returning to the void.", tree)
 
-
+    rusted_blade = weapon("Rusted Blade", 1, 2, "slowly swings")
+    grab = weapon("hands", 0, 3, "grabs")
     zombie = enemy.enemy("Zombie","A ghoulish fiend approaches. They limber towards you, flesh hanging from their bones. Gross!", 5, 
-                        [weap,weap,weap], 10, [item("rotten body parts")], "The zombie trips towards you. As it stumbles, it catches your attack and is decapitated in an excessive display of gore.", cemetery)
+                        [rusted_blade, rusted_blade, grab], 10, [item("rotten body parts")], "The zombie trips towards you. As it stumbles, it catches your attack and is decapitated in an excessive display of gore.", cemetery)
+ 
+ 
 
+    def populate_enemies(max_enemies, where, who):
+        
+        fail_count = 0 
+        for i in range(0, max_enemies):
+            enemy_chance = random.randint(0,10)
+            if enemy_chance % 2 == 0:
+                where.enemyArr.append(who)
+
+            else:
+                fail_count += 1
+
+            if fail_count == max_enemies: 
+                where.enemyArr.clear()
+            
+
+
+    outskirts.enemyArr = [bandit]
     outskirts.enemyArr = [bandit, bandit2]
     cemetery.enemyArr = [zombie]
     tree.enemyArr = [angry_spirit]

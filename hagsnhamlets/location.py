@@ -33,7 +33,7 @@ class Location(object):
         prints("")
         prints("From your current location, you can travel to:")
         for i in range(len(self.adj_locations)):
-            prints(f"{i+1}. {self.adj_locations[i].name}")
+            prints(f"{i+1}. {self.adj_locations[i]}")
 
             
         

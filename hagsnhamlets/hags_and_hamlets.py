@@ -14,42 +14,36 @@ import enemy
 import weapon
 import combat
 
+from map import *
 #setup
 
 
 print("Loading...")
 
 #set up the inital player and locations
-weap = weapon.weapon("old bone club", 
-                                   -1, 
-                                    3, 
-                            "swings")
 
-spear = weapon.weapon("old spear", 
-                                1, 
-                                0, 
-                                "stab")
+""" 
+weap = weapon("old bone club", -1, 3, "swings")
+"""
 
-sword = weapon.weapon("sword", 
-                            1, 
-                            0, 
-                        "slash")
+spear = weapon("old spear", 1, 3,"stab")
 
-shield = weapon.weapon("old shield", 
-                                 -1, 
-                                  0, 
-                            "swing")
+sword = weapon("sword", 1, 0, "slash")
+
+shield = weapon("old shield", -1, 0, "swing") 
 
                             
 startLocal = location.Location("Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", 
 [item("old stump", "a stump", False), spear, item("dread")], ["The Tavern", "More Woods", "More Woods"], [])
 player1 = player.Player("", "It's you", 1, 10, 10, 0, 10, [item("nothing")], [sword, shield], startLocal)
 
-skele = enemy.enemy("Skeleton","A pile of bones, held together only by the will of the dead.", 5, 
-                    [weap,weap,weap], 10, [item("bone shard")], "The Skeleton crumbles to dust.", startLocal)
+#skele = enemy.enemy("Skeleton","A pile of bones, held together only by the will of the dead.", 5, 
+                   #[weap,weap,weap], 10, [item("bone shard")], "The Skeleton crumbles to dust.", startLocal)
 #strange_spirit = enemy.enemy("Strange Spirit", "A frightening spectre.", 666, [], 666, [item("Hag's Soul")], "The Hag Queen screeches as she disintegrates into thousdands of dark particles.", startLocal)
 #startLocal.enemyArr = [skele, strange_spirit]
-startLocal.enemyArr = [skele]
+#startLocal.enemyArr = [skele]
+
+map.populate_enemies(10, startLocal, map.skel1)
 
 def main():
     #runtime

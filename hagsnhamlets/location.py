@@ -2,9 +2,11 @@
 from prints import printr
 from prints import prints
 class Location(object):
+  
 
-    def __init__(self, name, desc, song, interactables, adj_locations, enemyArr = []):
 
+    def __init__(self, name, desc , song, interactables = [] , adj_locations = [], enemyArr = []):
+        
         self.name = name
         self.desc = desc
         self.song = song
@@ -32,6 +34,8 @@ class Location(object):
             
         prints("")
         prints("From your current location, you can travel to:")
+
+                
         for i in range(len(self.adj_locations)):
             prints(f"{i+1}. {self.adj_locations[i].name}")
 
@@ -39,7 +43,20 @@ class Location(object):
         
     #once we have a player class: def move(self, dest, player)
     
-    def move(self, dest, player):
-        for i in range(len(self.adj_location)):
-            if dest == self.adj_location[i]:
-                player.current_location = self.adj_locations[i]
+    """   def move(self, dest, p1):
+            from console import p1
+            for i in range(len(self.adj_location)):
+                if dest == self.adj_location[i]:
+                    p1.current_location = self.adj_locations[i]
+    """
+    """ 
+    def move(where):
+
+        from console import p1
+        for i in range(len(p1.location.adj_locations)):
+          
+            prints(f"{i}.")
+
+    """
+    
+

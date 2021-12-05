@@ -11,6 +11,8 @@ from ascii_art import *
 from npcs import trade
 from npcs import tradable_npcs
 from location import * 
+from map import * 
+
 
 global action 
 
@@ -95,14 +97,36 @@ class console(object):
                                 p1.inventory.append(i)
                                 p1.location.interactables.remove(i)
                                 prints(f"You got the {i.name}")
-            #move action
-            if ("move" in action):
-                turn = True 
-                for i in range(len(p1.location.adj_locations)): 
-                    if p1.location.adj_locations[i.name] in action:
-                        p1.move(p1.location.adj_locations[i])
-                        break
+            
+            def move():
+            
+                global avail_locations
+                avail_locations = []
+                print("Hi, I'm paul!")
+                bullshit = str(p1.location.name)
+
+                for i in range(len(p1.location.adj_locations)):
+                    avail_locations.append(p1.location.adj_locations[i])
+                
+            
+            if "move" in action:
+                #from Location. import map_list
+                for i in range(len(map_list)):
+                    print(map_list[i])
                     
+                desired_location = [int(i) for i in action.split() if i.isdigit()]
+                desired_location = desired_location[0]
+                prints(f"You want to go to position {desired_location}")
+                move()
+                
+                
+
+                #p1.location == current_location
+                #prints(str(p1.location[0]))
+                
+               
+        
+                            
             
                 
 

@@ -8,9 +8,9 @@ from math import floor
 #from playsound import playsound
 import item
 from ascii_art import * 
-from npcs import trade
-from npcs import tradable_npcs
-from location import * 
+from npcs import *
+from asciiNameFetch import *
+
 
 global action 
 
@@ -18,6 +18,21 @@ class console(object):
     def __init__(self, player):
         self.player = player
     
+    def move(self, action):
+        name = nameFetch()
+        target = action.lower()
+        target = target.replace("go to ", '')
+        target = target.replace("move to ", '')
+        target = target.replace("go ", "")
+        target = target.replace("move ", "")
+        self.turn = False
+        for i in self.player.location.adj_locations:
+                if i.name.lower() == target:
+                    self.player.location = i
+                    name.printName(i.name, i)
+                    prints(self.player.location.look())
+                    self.turn = False
+                
     #gets a player and prompts them to do things, the main controller of the game
     def start(self):
         turn = False
@@ -65,6 +80,7 @@ class console(object):
                 for i in everything:
                     if i.name.lower() == target:
                         prints(i.desc)
+            
 
             #actions for picking stuff up
 
@@ -81,7 +97,7 @@ class console(object):
                 target = action.replace("pick up ", '')
                 if target == "all":
                     for i in everything:
-                        if type(i) is item.item or issubclass(type(i), item.item):
+                        if type(i) is item or issubclass(type(i), item):
                             if(i.pickup):
                                 p1.inventory.append(i)
                                 p1.location.interactables.remove(i)
@@ -90,34 +106,23 @@ class console(object):
 
                 for i in everything:
                     if i.name.lower() == target:
-                        if type(i) is item.item or issubclass(type(i), item.item):
+                        if type(i) is item or issubclass(type(i), item):
                             if(i.pickup):
                                 p1.inventory.append(i)
                                 p1.location.interactables.remove(i)
                                 prints(f"You got the {i.name}")
-            #move action
-            if ("move" in action):
-                turn = True 
-                for i in range(len(p1.location.adj_locations)): 
-                    if p1.location.adj_locations[i.name] in action:
-                        p1.move(p1.location.adj_locations[i])
-                        break
-                    
-            
-                
 
             #actions for combat 
             if action == "flee" or action == "run":
 
-                if floor(random()) == 1:
+                if randint(0, 1) == 1:
                     prints("you run like the coward you are")
-                    for i in len(self.p1.location.enemyArr):
-                        self.p1.location.enemyArr.hit([999, 999], False)
+                    self.move(f"go to {p1.location.adj_locations[randrange(0, len(p1.location.adj_locations))].name}")
                         
             if "attack" in action:
                 turn = True
                 target = action.replace("attack the ", '')
-                target = action.replace("attack ", '')
+                target = target.replace("attack ", '')
                 target = target.replace(" with", '')
                 target = target.split(" ")
                 if(len(target) > 2):
@@ -128,29 +133,36 @@ class console(object):
                         if i.name.lower() == target[0]:
                             enemy = i
                     self.player.attack(self.player.equipped[0], i)
-                num = 1
-                while num < len(target)-1:
-                    target[num] += target[num+1]
-                    del target[num+1]
-                    num += 1
-                    
-                enemy = False
-                weapon = False
+                else:
+                    num = 1
+                    while num < len(target)-1:
+                        target[num] += target[num+1]
+                        del target[num+1]
+                        num += 1
+                        
+                    enemy = False
+                    weapon = False
 
-                for i in p1.location.enemyArr:
-                    if i.name.lower() == target[0]:
-                        enemy = i
+                    for i in p1.location.enemyArr:
+                        if i.name.lower() == target[0]:
+                            enemy = i
 
-                        for y in self.player.equipped:
-                            if y.name.lower() == target[1]:
-                                weapon = y
-                if(enemy and weapon):
-                    self.player.attack(weapon, i)
+                            for y in self.player.equipped:
+                                print(target)
+                                if y.name.lower() == target[1]:
+                                    weapon = y
+                    if(enemy and weapon):
+                        self.player.attack(weapon, i)
+            
+            if "go" in action or "move" in action:
+                if(p1.location.enemyArr == []):
+                    turn = False
+                    self.move(action)
 
             #end of turn: enemies attack
             if(turn):
                 for i in self.player.location.enemyArr:
-                    att = randrange(0,2)
+                    att = randint(0,2)
                     if att == 0:
                         i.attack(self.player)
                     if att == 1:
@@ -158,25 +170,35 @@ class console(object):
                     if att == 2:
                         i.attack3(self.player)
             
-            """   #actions for dialogue
-                if "talk" in action:
-                    turn = True 
-                    target = action.replace("talk to ", '')
-                    target = target.replace("talk with ", '')
-            """      
+            #actions for dialogue
+            if "talk" in action:
+                turn = True 
+                target = action
+                target = target.replace("talk to ", '')
+                target = target.replace("talk with ", '')
+                for i in p1.location.interactables:
+                    if i.name.lower() == target and type(i) == npc:
+                        i.talk(p1)
+            
+            #wip
+            # if "give" in action:
+            #     turn = True
+            #     target = action
+            #     target = target.replace("give the ", '')
+            #     target = target.replace("give ", '')
+            #     target = target.replace(" to", '')
+            #     target = target.split(" ")
+            #     if(len(target) > 2):
+            #         target[1] += " "
+            #         for i in p1.location.interactables:
+            #             if i.name.lower() == target[] and type(i) == npc:
+            #                 i.talk(p1)
 
-            #Trade comes from NPCs
-        
-            if "trade" in action:
-                for i in range(len(tradable_npcs)):
-                    if tradable_npcs[i] in action:
-                        target_npc = tradable_npcs[i]
-                    elif i == len(tradable_npcs):
-                        prints(f"I can't trade with {action}")
-                        return 
+                  
+
 
                        
-                trade(target_npc)    
+                
 
 
 

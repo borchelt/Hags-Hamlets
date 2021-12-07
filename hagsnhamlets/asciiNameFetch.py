@@ -2,6 +2,7 @@ from prints import printr
 from prints import prints
 import player
 import console 
+from map import *
 
 class nameFetch():
     def woods_title_ascii(self):
@@ -189,28 +190,40 @@ class nameFetch():
         prints("\/ /_/ \__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|___/  \/   |_|  \___|\___|")
         prints("                  |___/                                                 ")
 
-    def printName(self, name):
+    def printName(self, name, local):
         if(name == "The Clearing"):
             self.clearing_title_ascii()
+            map.populate_enemies(0, local, map.skel1)
         elif name == "The Forest":
             self.forest_title_ascii()
+            map.populate_enemies(2, local, map.wolf1)
         elif name == "The Northern Woods" or name == "The Northwestern Woods" or name == "The Southern Woods" or name == "The Southeastern Woods" or name == "The Southwestern Woods" or name =="The Southeastern-er Woods" or name == "The Northeastern Woods":
             self.woods_title_ascii()
+            map.populate_enemies(2, local, map.skel1)
         elif name == "The Graveyard":
             self.graveyard_title_ascii()
+            map.populate_enemies(2, local, map.skel1)
         elif name == "The Outskirts":
             self.outskirts_title_ascii()
+            map.populate_enemies(1, local, map.bandit)
         elif name == "The Old Gate":
             self.outskirts_title_ascii()
+            map.populate_enemies(0, local, map.skel1)
         elif name == "The Hangman's Tree":
             self.hangman_tree_title_ascii()
+            map.populate_enemies(2, local, map.angry_spirit)
         elif name == "The Waterfall":
             self.woods_title_ascii()
+            map.populate_enemies(0, local, map.skel1)
         elif name == "The Cove":
             self.woods_title_ascii()
+            map.populate_enemies(1, local, map.skel1)
         elif name == "The Twisted Path":
             self.woods_title_ascii()
+            map.populate_enemies(0, local, map.skel1)
         elif name == "The Hunter's Camp":
             self.hunters_camp_title_ascii()
+            map.populate_enemies(0, local, map.skel1)
         elif name == "The Old Cottage":
             self.abandoned_cottage_title_ascii()
+            map.populate_enemies(0, local, map.skel1)

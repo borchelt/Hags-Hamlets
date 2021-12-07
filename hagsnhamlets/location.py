@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 from prints import printr
 from prints import prints
+from item_list import *
+
+
 class Location(object):
 
-    def __init__(self, name, desc, song, interactables, adj_locations, enemyArr = []):
+    def __init__(self, name, desc, song, interactables, adj_locations, enemyArr = [], indoors = False):
 
         self.name = name
         self.desc = desc
@@ -11,7 +14,9 @@ class Location(object):
         self.interactables = interactables
         self.adj_locations = adj_locations
         self.enemyArr = enemyArr
+        self.indoors = indoors
 
+    
     #formatted info about the location
     def look(self):
 
@@ -38,8 +43,11 @@ class Location(object):
             
         
     #once we have a player class: def move(self, dest, player)
-    
+        
     def move(self, dest, player):
         for i in range(len(self.adj_location)):
             if dest == self.adj_location[i]:
                 player.current_location = self.adj_locations[i]
+ 
+        
+

@@ -7,7 +7,7 @@ import weapon
 #placeholder
 class Player(object):
 
-    def __init__(self, name, desc, level, hp, mag, dex, str, inventory, equipped, location):
+    def __init__(self, name, desc, level, hp, mag, dex, str, inventory, equipped, location, gold = 999999):
         self.name = name
         self.desc = desc
         self.level = level
@@ -20,6 +20,7 @@ class Player(object):
         self.inventory = inventory
         self.equipped = equipped
         self.location = location
+        self.gold = gold
     
     def inven(self):
 

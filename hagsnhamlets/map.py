@@ -262,7 +262,7 @@ class map():
     #cemetery.interactables = [newGrave, medGrave, ancGrave, greg, smith, cemetery_box]
     
     
-    cemetery.interactables = [newGrave, medGrave, ancGrave, greg, smith, wooden_box, startingChest] 
+    cemetery.interactables = [newGrave, medGrave, ancGrave, greg, smith, wooden_box, mixed_container] 
 
     
     outskirts.interactables = [oldSpear, tombStone]

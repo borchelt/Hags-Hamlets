@@ -190,40 +190,56 @@ def populate_mixed_container(what_container_list, item_lists, num_items, unlocke
     new_container = chosen_container
 
     max_items = num_items
+    global current_items
     current_items = 0
 
+    def fill_first_round():
+        global current_items
+        for i in range(len(item_lists)):
+            max_list_length = 0 
+            max_list_length = len(item_lists[i])
+            rand_item = random.randint(0, max_list_length)
+            rand_item = item_lists[i][rand_item]
+            new_container.contents.append(rand_item)
+            current_items +=1
+    fill_first_round()
+    print(f"Current item count = {current_items}")
+    needed_items = max_items - current_items
+    print(f"Neeed {needed_items} more items")
     
-    for i in range(len(item_lists)):
-        max_list_length = 0 
-        if i == 1:
+    def fill_second_round():
+        global current_items
+        for i in range(0, needed_items):
+            max_list_length = 0
             max_list_length = len(item_lists[i])
             rand_item = random.randint(0, max_list_length)
             rand_item = item_lists[i][rand_item]
             new_container.contents.append(rand_item)
+            current_items +=1
+    
+    if current_items < max_items:
+        print("Need more items")
+        fill_second_round()
 
-        if i == 2:
-            max_list_length = len(item_lists[i])
-            rand_item = random.randint(0, max_list_length)
-            rand_item = item_lists[i][rand_item]
-            new_container.contents.append(rand_item)
 
-        if i == 3:
-            max_list_length = len(item_lists[i])
-            rand_item = random.randint(0, max_list_length)
-            rand_item = item_lists[i][rand_item]
-            new_container.contents.append(rand_item)
-
+    if current_items == max_items:
+        print("max items hit")
 
     return new_container
 
 
 
-mixed_container = populate_mixed_container(all_containers, [food_list, armor_list, weapon_list], 3)
+mixed_container = populate_mixed_container(all_containers, [food_list, armor_list, weapon_list], 5)
+
+food_container = populate_mixed_container(all_containers, [food_list, food_list, weapon_list], 5)
+
+def print_container_contents(container):
+
+    for i in range(len(container.contents)):
+        print(container.contents[i])
         
 
-print("The contents of mixed_container are")
+print_container_contents(food_container)
 
-for i in range(len(mixed_container.contents)):
-    print(mixed_container.contents[i])
 
 

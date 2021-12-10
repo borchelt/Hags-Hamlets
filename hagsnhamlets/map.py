@@ -99,7 +99,7 @@ class map():
                         [bite, bite, bite], 10, [item("bat's wings", "A severed bat's wing")], "Your attack connects and the bats fall harshly, splattering on the ground.", old_mines_floor1_N)
     hatchling_spider = enemy.enemy("Spider Hatchling", "While this spider is not as big as it will eventually be, it is much larger than you are comfortable being close to.", 3, [bite, bite, bite], 5, [], "A sickly squishing noise and a hiss erupts from the spider.", old_mines_floor2_W)
     giant_spider = enemy.enemy("Giant Spider","A hulking, fierce insect. This is no time to be act idley. Look out!", 15, 
-                        [bite, bite, bite], 10, [item("venomous sac", "A foul smelling sac that you've retrieved from the spider. Probably worth keeping for a potion."), item("spider eyes", "The soft, gushy eyeballs of the spider stare back at you lifelessly."), item("giant spider mandible", "A spider's mandible.")], "The spider crumples into a bent, twisted shape as it hugs its wounds. It dies, shortly after", old_mines_spider_lair)
+                        [bite, bite, bite], 10, [item("venomous sac", "A foul smelling sac that you've retrieved from the spider. Probably worth keeping for a potion."), item("spider eyes", "The soft, gushy eyeballs of the spider stare back at you lifelessly."), item("giant spider mandible", "A spider's mandible."), item("An Ornate Key", "Amazing that the spider didn't digest this. You wonder what lock it might fit.")], "The spider crumples into a bent, twisted shape as it hugs its wounds. It dies, shortly after", old_mines_spider_lair)
     
     #OLD MINES ENEMY POPULATION 
 
@@ -117,19 +117,22 @@ class map():
     old_mines_spider_lair.enemyArr = [giant_spider]
 
     #old_mines_entrance.interactables = []
-    old_mines_floor1_N.interactables = []
+    old_mines_floor1_N.interactables = [small_health_chest]
     old_mines_floor1_NE.interactables = []
     old_mines_floor1_NW.interactables = []
-    old_mines_floor2.interactables = []
+    old_mines_floor2.interactables = [small_armor_chest]
     old_mines_floor2_W.interactables = []
-    old_mines_floor2_W2.interactables = []
-    old_mines_center_chamber.interactables = []
+    old_mines_floor2_W2.interactables = [medium_armor_chest, large_weapon_chest]
+
+    #SILVER ORE NEEDS TO GO HERE 
+    
+    old_mines_center_chamber.interactables = [large_health_chest]
     old_mines_floor2_W3.interactables = []
     old_mines_floor2_wN.interactables = []
-    old_mines_floor2_wN2.interactables = []
+    old_mines_floor2_wN2.interactables = [small_health_chest]
     old_mines_floor2_wN2_W.interactables = []
-    old_mines_floor2_wN2_W2.interactables = []
-    old_mines_spider_lair.interactables = []
+    old_mines_floor2_wN2_W2.interactables = [small_health_chest]
+    old_mines_spider_lair.interactables = [large_health_chest]
     
     
     """ 
@@ -151,7 +154,7 @@ class map():
     well = Location("The Well", "you cant see the bottom of the well, but for some reason, you can hear running water below.", [], [],[],True)
 
     hamlet.adj_locations = [store, sundial, tavern, QBoard, blacksmith, library, wagon, well]
-    hamlet.interactables = []
+    hamlet.interactables = [small_weapon_chest, large_health_chest]
 
     store.adj_locations = [hamlet]
     store.interactables = []
@@ -160,7 +163,7 @@ class map():
     sundial.interactables = []
 
     tavern.adj_locations = [hamlet]
-    tavern.interactables = []
+    tavern.interactables = [small_health_chest, beer, beer, beer, chicken, beef, plate, plate, silver_fork, wine, wine_glass]
 
     QBoard.adj_locations = [store, tavern, sundial, blacksmith, library, wagon, well]
     QBoard.interactables = []
@@ -172,7 +175,7 @@ class map():
     wagon.interactables = []
 
     well.adj_locations = [store, sundial, tavern, QBoard, blacksmith, library, wagon]
-    well.interactables = []
+    well.interactables = [small_health_chest, small_weapon_chest]
 
      #SEWERS 
     sewers = Location("Sewer Entrance", "It definitely smells like a sewer. With some effort, you would be able to move the cover and enter. It seems dark.", [],[],[])
@@ -187,14 +190,14 @@ class map():
     sewer_tunnelsE.enemyArr = []
     sewer_tunnelsW.enemyArr = []
 
-    sewer_tunnels.interactables = []
-    sewer_tunnelsN.interactables = []
-    sewer_tunnelsE.interactables = [] 
-    sewer_tunnelsW.interactables = []
+    sewer_tunnels.interactables = [bottle, bottle,]
+    sewer_tunnelsN.interactables = [bottle, throwing_knife]
+    sewer_tunnelsE.interactables = [small_armor_chest] 
+    sewer_tunnelsW.interactables = [small_health_chest]
 
 
     speakeasy = Location("The Speakeasy", "A place for seedier types to relax and try to forget about the Hags' Curse.", [],[],[], True)
-    speakeasy.interactables = []
+    speakeasy.interactables = [beer, beer, beer, beer, wine, plate, small_weapon_chest, bottle]
 
     thieves_den = Location("Thieves' Den", "This place is well hidden beneath the Hamlet. It seems odd that such a remote space in the world would be home to such a place.", [],[],[],True)
     thieves_den.interactables = []
@@ -262,18 +265,18 @@ class map():
     #cemetery.interactables = [newGrave, medGrave, ancGrave, greg, smith, cemetery_box]
     
     
-    cemetery.interactables = [newGrave, medGrave, ancGrave, greg, smith, wooden_box, mixed_container] 
+    cemetery.interactables = [newGrave, medGrave, ancGrave, greg, smith, small_health_chest, small_weapon_chest, small_armor_chest] 
 
     
-    outskirts.interactables = [oldSpear, tombStone]
-    tree.interactables = [ruby, noose]
+    outskirts.interactables = [oldSpear, tombStone, small_health_chest]
+    tree.interactables = [ruby, noose, small_health_chest]
     woodsN.interactables = [herbs]
     woodsDeadN.interactables = [stump, oldHammer]
     woodsSE.interactables = [herbs]
     woodsNW.interactables = [deathcap]
     woodsDeadS.interactables = [oldSword]
     waterfall.interactables = [riverGlass]
-    cottage.interactables = [doll, toadEye]
+    cottage.interactables = [doll, toadEye, small_weapon_chest]
 
     claw = weapon("Claws", 1, 4, "swipes")
     bite = weapon("Teeth", 3, 1, "bites")

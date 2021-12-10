@@ -144,6 +144,8 @@ town_container = [wooden_box, barrel]
 #old mine containers
 old_mine_containers = [wooden_box, barrel, iron_chest, weapon_rack, mine_cart, egg_sac]
 
+
+
 #forest container
 forest_container = [sus_tree, berry_bush]
 
@@ -151,95 +153,76 @@ forest_container = [sus_tree, berry_bush]
 sewer_container = [pile_of_refuse, loose_stone]
 
 
+ 
 
 def populate_container(what_container_list, item_list, num_items, unlocked = True):
     
+    #print(f"I've chosen this container list: {what_container_list}")
+    #print(f"I've chosen this item list: {item_list}")
+    #print(f"I'm looking for: {num_items}")
+
     max_container_length = len(what_container_list)
-    #print(f"I've chosen {what_container_list}, {item_list}, {num_items}, {unlocked} as my container.")
-    #print(f"Max length is {max_container_length}")
+    #print(f"Container list length is {max_container_length}")
+    #print(f"The contents of what_container list are:")
+    
+    #for i in range(len(what_container_list)):
+        #print(f"{i}. {what_container_list[i].name}")
 
-    chosen_container_index = random.randint(1, max_container_length)
-
+    chosen_container_index = random.randint(0, max_container_length -1)
     chosen_container = what_container_list[chosen_container_index]
-    print(f"I've chosen {chosen_container.name}")
+    #print(f"I chose {what_container_list[chosen_container_index].name} as my container.")
     
-    new_container = chosen_container
-    
+    new_container = container("", "", [])
+    new_container.name = chosen_container.name
+    new_container.desc = chosen_container.desc
+
+
     max_item_list_length = len(item_list)
-    for i in range(1, num_items):
+    #print(f"I can pull from {max_item_list_length} items in the list.")
+    for i in range(0, num_items):
         rand_item = random.randint(1, max_item_list_length)
-        new_container.contents.append(item_list[rand_item])
+        #print(f"I'm choosing {item_list[rand_item]}")
+        if i != num_items: 
+            #print(f"Adding {item_list[rand_item]} to the list")
+            new_container.contents.append(item_list[rand_item -1])
 
     return new_container
 
 
 
 
-""" startingChest = populate_container(all_containers, armor_list, 5)
 
-print("The contents of startingChest are:")
-for i in range(len(startingChest.contents)):
-    print(startingChest.contents[i])
- """
-
-def populate_mixed_container(what_container_list, item_lists, num_items, unlocked = True):
-    
-    max_container_length = len(what_container_list)
-    chosen_container_index = random.randint(0, max_container_length)
-    chosen_container = what_container_list[chosen_container_index]
-    new_container = chosen_container
-
-    max_items = num_items
-    global current_items
-    current_items = 0
-
-    def fill_first_round():
-        global current_items
-        for i in range(len(item_lists)):
-            max_list_length = 0 
-            max_list_length = len(item_lists[i])
-            rand_item = random.randint(0, max_list_length)
-            rand_item = item_lists[i][rand_item]
-            new_container.contents.append(rand_item)
-            current_items +=1
-    fill_first_round()
-    print(f"Current item count = {current_items}")
-    needed_items = max_items - current_items
-    print(f"Neeed {needed_items} more items")
-    
-    def fill_second_round():
-        global current_items
-        for i in range(0, needed_items):
-            max_list_length = 0
-            max_list_length = len(item_lists[i])
-            rand_item = random.randint(0, max_list_length)
-            rand_item = item_lists[i][rand_item]
-            new_container.contents.append(rand_item)
-            current_items +=1
-    
-    if current_items < max_items:
-        print("Need more items")
-        fill_second_round()
+def container_printer(my_container):
 
 
-    if current_items == max_items:
-        print("max items hit")
-
-    return new_container
+    print(f"The container chosen was: {my_container.name}")
+    print("The contents of the container are: ")
+    for i in range(len(my_container.contents)):
+        print(f"{i+1}. {my_container.contents[i]}")
 
 
 
-mixed_container = populate_mixed_container(all_containers, [food_list, armor_list, weapon_list], 5)
+startingChest = populate_container(town_container, weapon_list, 3)
+startingChest2 = populate_container(cemetery_containers, food_list, 5)
 
-food_container = populate_mixed_container(all_containers, [food_list, food_list, weapon_list], 5)
 
-def print_container_contents(container):
+small_health_chest = populate_container(town_container, food_list, 1)
+medium_health_chest = populate_container(town_container, food_list, 2)
+large_health_chest = populate_container(town_container, food_list, 3)
 
-    for i in range(len(container.contents)):
-        print(container.contents[i])
-        
+health_chests = [small_health_chest, medium_health_chest, large_health_chest]
 
-print_container_contents(food_container)
+small_weapon_chest = populate_container(town_container, weapon_list, 1)
+medium_weapon_chest = populate_container(town_container, weapon_list, 2)
+large_weapon_chest = populate_container(town_container, weapon_list, 3)
+
+weapon_chests = [small_weapon_chest, medium_weapon_chest, large_weapon_chest]
+
+small_armor_chest = populate_container(town_container, armor_list, 1)
+medium_armor_chest = populate_container(town_container, armor_list, 2)
+large_armor_chest = populate_container(town_container, armor_list, 3)
+
+armor_chests = [small_armor_chest, medium_armor_chest, large_armor_chest]
 
 
 

@@ -1,6 +1,4 @@
 from location import Location
-from prints import printr
-from prints import prints
 from item import item
 from dialogue import *
 from tutorial import * 
@@ -19,6 +17,7 @@ from item_list import *
 
 class map():
 
+    #CURRENTLY NOT IN USE 
     def populate_enemies(max_enemies, where, who):
         
         for i in range(0, max_enemies):
@@ -46,10 +45,10 @@ class map():
     woodsSW = Location("The Southwestern Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
     woodsDeadN = Location("The Northeastern Woods", "A dead end, the trees grow too dense and the shadows too dark.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
     woodsDeadS = Location("The Southeastern-er Woods", "A dead end, the trees grow too dense and the shadows too dark.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    waterfall = Location("The Waterfall", "Murky water thunders over the fall, what could it be hiding?", "hnh_forestTheme_conceptQ.mp3", [],[],[])
-    dampCave = Location("The Cove", "The deafaning roar of the waterfall falls surprisingly quiet beyond the veil of foam and murk", "hnh_forestTheme_conceptQ.mp3", [], [],[], True)
+    waterfall = Location("The Waterfall", "Murky water cascades over the falls and into the pool below. You stop for a moment, taking in the view, when you think you see a flash of light from behind the falls.", "hnh_forestTheme_conceptQ.mp3", [],[],[])
+    dampCave = Location("The Cove", "The deafening roar of the waterfall falls surprisingly quiet beyond the veil of foam and murk", "hnh_forestTheme_conceptQ.mp3", [], [],[], True)
     path = Location("The Twisted Path", "A small, twisting path beckons you deeper into the woods.","hnh_forestTheme_conceptQ.mp3", [], [],[])
-    camp = Location("The Hunter's Camp", "whatever fire was once here has long since died out, a raggedy tent sits nested between two large daggerlike stones","hnh_forestTheme_conceptQ.mp3", [], [],[])
+    camp = Location("The Hunter's Camp", "Whatever fire was once here has long since died out. A raggedy tent is haphazardly nested between two large daggerlike stones. ","hnh_forestTheme_conceptQ.mp3", [], [],[])
 
     forest = Location("The Forest", "The Hamlet eventually gives way to the forest, the trees press close, and the fog closer.","hnh_forestTheme_conceptQ.mp3", [], [],[])
     cottage = Location("The Old Cottage", "a small stream cuts directly through the sagging cottage, you swear you can hear faint music from inside.", "hnh_forestTheme_conceptQ.mp3", [], [],[])
@@ -73,7 +72,7 @@ class map():
     old_mines_floor2_wN2_W = Location("Old Mines: Webbed Path", "You're not sure you should be here. The entirety of the corridor is covered with webs. The decaying husks of the spiders' victims hang from the ceiling.", [],[],[],True)
     old_mines_floor2_wN2_W2 = Location("Old Mines", "The webs are next to impassable here, but just ahead you can a clearer space." ,[], [], [],True)
     old_mines_spider_lair = Location("Spiders' Lair", "A large cavern littered with bodies, bones and webs. Hundreds of spider eggs cling to the floor, walls and ceiling of the cavern.", [],[],[],True)
-
+    
     #OLD MINES FLOOR 1 DIRECTIONAL 
     #old_mines_entrance.adj_locations = [old_mines_main_chamber]
     old_mines_main_chamber.adj_locations = [old_mines_floor1_NW, old_mines_floor1_N, old_mines_floor1_NE]
@@ -125,7 +124,7 @@ class map():
     old_mines_floor2_W2.interactables = [medium_armor_chest, large_weapon_chest]
 
     #SILVER ORE NEEDS TO GO HERE 
-    
+
     old_mines_center_chamber.interactables = [large_health_chest]
     old_mines_floor2_W3.interactables = []
     old_mines_floor2_wN.interactables = []
@@ -135,6 +134,8 @@ class map():
     old_mines_spider_lair.interactables = [large_health_chest]
     
     
+
+    #CURRENTLY NOT IN USE 
     """ 
     
     populate_enemies(1, old_mines_floor1_NW, bat)
@@ -360,7 +361,7 @@ class map():
     grab = weapon("hands", 0, 3, "grabs")
     zombie = enemy.enemy("Zombie","A ghoulish fiend approaches. They limber towards you, flesh hanging from their bones. Gross!", 5, 
                         [rusted_blade, rusted_blade, grab], 10, [item("rotten body parts", "You can't forsee a use for these.")], "The zombie trips towards you. As it stumbles, it catches your attack and is decapitated in an excessive display of gore.", cemetery)
- 
+    
  
 
    

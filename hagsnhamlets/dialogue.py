@@ -2,7 +2,7 @@ from prints import printr
 from prints import prints
 #from npcs import trade
 
-def dialogue(dialogue_options, dialogue_outcome, npc, player):
+def dialogue(dialogue_options, dialogue_outcome):
     global choice_made
     global dialogue_option_chosen
 
@@ -14,7 +14,7 @@ def dialogue(dialogue_options, dialogue_outcome, npc, player):
             prints(f"   {i + 1}. {dialogue_options[i]}", .3)
         
 
-        dialogue_option_chosen = input(printr("> "))
+        dialogue_option_chosen = input("> s")
         return dialogue_option_chosen
         
     choose()
@@ -36,19 +36,14 @@ def dialogue(dialogue_options, dialogue_outcome, npc, player):
             for i in range(len(dialogue_outcome)):
                 if choice_made == valid_response[i]:
                     prints(f"{dialogue_outcome[i]}")
-                    prints("")
-                    if(i == npc.tradeNum):
-                        npc.trade(player)
-                    if(i == npc.questNum):
-                        npc.questFunc()
-
+                    print("")
     
     dialogue_option_chosen = int(dialogue_option_chosen)
 
     for i in range(1, len(dialogue_options)):
             
         if dialogue_option_chosen != len(dialogue_options):
-            dialogue(dialogue_options,dialogue_outcome, npc, player)
+            dialogue(dialogue_options,dialogue_outcome)
         
 
 

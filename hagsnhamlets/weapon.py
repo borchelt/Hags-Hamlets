@@ -1,4 +1,4 @@
-from item import item
+from item import *
 
 class weapon(item):
     def __init__(self, name, dmg, toHit, type, desc="tempDesc", pickup=True,):
@@ -6,35 +6,3 @@ class weapon(item):
         self.dmg = dmg
         self.toHit = toHit
         self.type = type
-    
-
-
-    #WEAPONS
-    forest_weapons = [
-
-
-    ]
-
-    old_mines_weapons = [ 
-
-    ]
-
-    sewers_weapons = [
-
-    ]
-
-        
-    #ARMOR
-
-    forest_armor = [ 
-
-    ]
-
-    old_mines_armor = [ 
-
-    ]
-
-    sewers_armor = [ 
-
-    ]
-

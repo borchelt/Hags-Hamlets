@@ -1,0 +1,52 @@
+Battle axe
+bludgeon
+club
+flail
+flanged mace
+pick
+mace
+morning star
+quarterstaff
+war hammer
+arming sword
+dagger
+estoc
+falchion
+katana
+knife
+longsword
+rapier
+sabre
+shortsword
+glaive
+lance
+halberd
+axe
+pike
+war scythe
+bow
+longbow
+recurve bow
+crossbow
+arbalest
+repeating crossbow
+sling
+throwing knife
+throwing spear
+javelin
+club
+dagger
+greatclub
+handaxe
+javelin
+mace
+sickle
+dart
+scimitar
+rapier
+trident
+whip
+maul
+lance
+
+

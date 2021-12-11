@@ -13,6 +13,7 @@ from ascii_art import *
 import enemy
 import weapon
 import combat
+from npcs import *
 
 from map import *
 #setup
@@ -32,10 +33,10 @@ sword = weapon("sword", 1, 0, "slash")
 
 shield = weapon("old shield", -1, 0, "swing") 
 
-    
-#startLocal = location.Location("Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", 
-#[item("old stump", "a stump", False), spear, item("dread")], ["The Tavern", "More Woods", "More Woods"], [])
-player1 = player.Player("", "It's you", 1, 10, 10, 0, 10, [item("nothing")], [sword, shield], map.cemetery)
+                            
+startLocal = location.Location("Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", 
+[item("old stump", "a stump", False), spear, item("dread", "A horrible feeling"), greg], ["The Tavern", "More Woods", "More Woods"], [])
+player1 = player.Player("", "It's you", 1, 50, 10, 0, 10, [item("nothing", "Zip. Zero. Zilch!")], [sword, shield], map.cemetery)
 
 #skele = enemy.enemy("Skeleton","A pile of bones, held together only by the will of the dead.", 5, 
                    #[weap,weap,weap], 10, [item("bone shard")], "The Skeleton crumbles to dust.", startLocal)
@@ -43,7 +44,6 @@ player1 = player.Player("", "It's you", 1, 10, 10, 0, 10, [item("nothing")], [sw
 #startLocal.enemyArr = [skele, strange_spirit]
 #startLocal.enemyArr = [skele]
 
-#map.populate_enemies(10, startLocal, map.skel1)
 
 def main():
     #runtime
@@ -67,8 +67,8 @@ def main():
     border_right = ["        ||  .|#", "        || . |#", "        ||  .|#", "        || . |#"] 
 
 
-    """ 
 
+    """ 
     print(f"\nWell {player1.name}, I can't promise this world will be incredibly kind to you. Regardless, WELCOME TO")
     prints("---------------------------------------------------------------------------------------------------------------         ||  .|#", .5)
     prints("        -------------------------------------------------------------------------------------------------------         || . |#", .5)
@@ -103,8 +103,8 @@ def main():
     prints("#$%$%^#@$@#       " , .2)
     prints("@$#@$             " , .2)
     prints("@@                " , .2)
-    prints(".")
-     """
+    prints(".") """
+
     press_anything = input("Press anything to continue >>>> ")
     
     skip_intro = input("Would you like to skip the intro? Y/N >>>> " ).lower()

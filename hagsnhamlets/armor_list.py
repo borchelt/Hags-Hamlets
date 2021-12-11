@@ -21,10 +21,12 @@ bracers = item("Bracers", "Bracers")
 boots = item("Boots", "Boots")
 cuirass = item("Cuirass", "Cuirass")
 
-armor_list = ['chainmail', 'lamellar', 'leather', 'plate', 'ringmail', 'scale', 'obsidian', 'glass', 'robes', 'helmet', 'coif', 'hood', 'mantle', 'breastplate', 'greaves', 'bracers', 'boots', 'cuirass']
+armor_listProto = ['chainmail', 'lamellar', 'leather', 'plate', 'ringmail', 'scale', 'obsidian', 'glass']
+armor_listProto2 = ['robes', 'helmet', 'coif', 'hood', 'mantle', 'breastplate', 'greaves', 'bracers', 'boots', 'cuirass']
+armor_list = []
 
-""" for i in range(len(armor_list)):
-    armor_list[i] == f"{armor_list[i]} armor"
+for i in range(len(armor_listProto)):
+    for y in range(len(armor_listProto2)):
+        armor_list.append(item(f"{armor_listProto[i]} {armor_listProto2[y]}",f"{armor_listProto[i]} {armor_listProto2[y]}" ))
 
-print(armor_list)
- """
+ 

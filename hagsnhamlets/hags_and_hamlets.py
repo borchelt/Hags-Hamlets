@@ -33,10 +33,11 @@ sword = weapon("sword", 1, 0, "slash")
 
 shield = weapon("old shield", -1, 0, "swing") 
 
+silOre = item("Silver Ore", "it glitters with potential")
                             
 startLocal = location.Location("Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", 
 [item("old stump", "a stump", False), spear, item("dread", "A horrible feeling"), greg], ["The Tavern", "More Woods", "More Woods"], [])
-player1 = player.Player("", "It's you", 1, 50, 10, 0, 10, [item("nothing", "Zip. Zero. Zilch!")], [sword, shield], map.cemetery)
+player1 = player.Player("", "It's you", 1, 50, 10, 0, 10, [item("nothing", "Zip. Zero. Zilch!"), silOre], [sword, shield], map.cemetery)
 
 #skele = enemy.enemy("Skeleton","A pile of bones, held together only by the will of the dead.", 5, 
                    #[weap,weap,weap], 10, [item("bone shard")], "The Skeleton crumbles to dust.", startLocal)

@@ -231,7 +231,7 @@ class nameFetch():
                 map.populate_enemies(2, local, map.bat)
             else:
                 map.populate_enemies(2, local, map.goblin)
-        elif name ==  "Old Mines: Webbed Path" or "Spiders' Lair":
+        elif name ==  "Old Mines: Webbed Path" or name == "Spiders' Lair":
             self.old_mine_title_ascii()
             map.populate_enemies(3, local, map.hatchling_spider)
         else:

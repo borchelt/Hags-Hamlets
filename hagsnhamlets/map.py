@@ -19,7 +19,6 @@ from item_list import *
 
 class map():
 
-    #CURRENTLY NOT IN USE 
     def populate_enemies(max_enemies, where, who):
         
         for i in range(0, max_enemies):
@@ -117,7 +116,7 @@ class map():
     old_mines_floor2_wN2_W2.enemyArr = [hatchling_spider, hatchling_spider]
     old_mines_spider_lair.enemyArr = [giant_spider]
 
-    old_mines_entrance.interactables = []
+    old_mines_entrance.interactables = [dwarven_miner]
     old_mines_floor1_N.interactables = [small_health_chest]
     old_mines_floor1_NE.interactables = []
     old_mines_floor1_NW.interactables = []
@@ -157,25 +156,25 @@ class map():
     well = Location("The Well", "you cant see the bottom of the well, but for some reason, you can hear running water below.", [], [],[],True)
 
     hamlet.adj_locations = [store, sundial, tavern, QBoard, blacksmith, library, wagon, well]
-    hamlet.interactables = [small_weapon_chest, large_health_chest]
+    hamlet.interactables = [small_weapon_chest, large_health_chest, greg]
 
     store.adj_locations = [hamlet]
-    store.interactables = []
+    store.interactables = [general_store_owner]
 
     sundial.adj_locations = [store, tavern, QBoard, blacksmith, library, wagon, well,]
     sundial.interactables = []
 
     tavern.adj_locations = [hamlet]
-    tavern.interactables = [small_health_chest, beer, beer, beer, chicken, beef, plate, plate, silver_fork, wine, wine_glass]
+    tavern.interactables = [innkeeper, small_health_chest, beer, beer, beer, chicken, beef, plate, plate, silver_fork, wine, wine_glass]
 
     QBoard.adj_locations = [store, tavern, sundial, blacksmith, library, wagon, well]
     QBoard.interactables = []
 
     library.adj_locations = [hamlet]
-    library.interactables = []
+    library.interactables = [librarian, small_health_chest, small_health_chest, pamphlet, glass]
 
     wagon.adj_locations = [store, tavern, sundial, blacksmith, library, QBoard, well,]
-    wagon.interactables = []
+    wagon.interactables = [merchant]
 
     well.adj_locations = [store, sundial, tavern, QBoard, blacksmith, library, wagon]
     well.interactables = [small_health_chest, small_weapon_chest]
@@ -200,10 +199,10 @@ class map():
 
 
     speakeasy = Location("The Speakeasy", "A place for seedier types to relax and try to forget about the Hags' Curse.", [],[],[], True)
-    speakeasy.interactables = [beer, beer, beer, beer, wine, plate, small_weapon_chest, bottle]
+    speakeasy.interactables = [drunkard, beer, beer, beer, beer, wine, plate, small_weapon_chest, bottle]
 
     thieves_den = Location("Thieves' Den", "This place is well hidden beneath the Hamlet. It seems odd that such a remote space in the world would be home to such a place.", [],[],[],True)
-    thieves_den.interactables = []
+    thieves_den.interactables = [thief_king]
 
     rat_kings_nest = Location("The Rat King's Nest", "This place is a mess of trinkets, weapons, armor and scraps of paper. You're not sure which smells worse- the sewers or the nest.", [],[],[], True)
     rat_kings_nest.interactables = []
@@ -284,6 +283,7 @@ class map():
     woodsDeadS.interactables = [oldSword]
     waterfall.interactables = [riverGlass]
     cottage.interactables = [doll, toadEye, small_weapon_chest]
+    gates.interactables = [guard, small_health_chest]
 
     claw = weapon("Claws", 1, 4, "swipes")
     bite = weapon("Teeth", 3, 1, "bites")
@@ -390,7 +390,6 @@ class map():
     forest.enemyArr = [wolf1]
     woodsS.enemyArr = [wolf2]
     woodsDeadN.enemyArr = [wolf3]
- 
     
 
 

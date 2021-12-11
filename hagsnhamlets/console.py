@@ -10,6 +10,7 @@ from item import *
 from ascii_art import * 
 from npcs import *
 from asciiNameFetch import *
+from new_container import container
 
 
 global action 
@@ -111,6 +112,19 @@ class console(object):
                                 p1.inventory.append(i)
                                 p1.location.interactables.remove(i)
                                 prints(f"You got the {i.name}")
+            
+            #open containers
+            if "open" or "look in" in action:
+                turn = False
+                target = action
+                target = target.replace("open the ", "")
+                target = target.replace("open ", "")
+                target = target.replace("look in the ", "")
+                target = target.replace("look in ", "")
+                for i in everything:
+                    if type(i) == container:
+                        if i.name.lower() == target:
+                            i.open(p1)
 
             #actions for combat 
             if action == "flee" or action == "run":
@@ -189,6 +203,15 @@ class console(object):
                                 p1.inventory.remove(i)
                                 drank = True
  
+            #actions for dialogue
+            if "talk" in action:
+                turn = True 
+                target = action
+                target = target.replace("talk to ", '')
+                target = target.replace("talk with ", '')
+                for i in p1.location.interactables:
+                    if i.name.lower() == target and type(i) == npc:
+                        i.talk(p1)
 
             #end of turn: enemies attack
             if(turn):
@@ -201,17 +224,9 @@ class console(object):
                     if att == 2:
                         i.attack3(self.player)
             
-            #actions for dialogue
-            if "talk" in action:
-                turn = True 
-                target = action
-                target = target.replace("talk to ", '')
-                target = target.replace("talk with ", '')
-                for i in p1.location.interactables:
-                    if i.name.lower() == target and type(i) == npc:
-                        i.talk(p1)
             
-            #wip
+            
+
             # if "give" in action:
             #     turn = True
             #     target = action
@@ -220,10 +235,24 @@ class console(object):
             #     target = target.replace(" to", '')
             #     target = target.split(" ")
             #     if(len(target) > 2):
-            #         target[1] += " "
-            #         for i in p1.location.interactables:
-            #             if i.name.lower() == target[] and type(i) == npc:
-            #                 i.talk(p1)
+            #         print(target)
+            #         target[0] += " "
+            #         target[0] = target[0]+target[1]
+            #         target.remove(target[1])
+            #         print(target)   
+            #     for i in p1.location.interactables:
+            #         if i.name.lower() == target[1] and type(i) == npc:
+            #             print("foundNPC")
+            #             for y in p1.inventory:
+            #                 if target[0] == y.name.lower():
+            #                     print("foundItem")
+            #                     for l in i.questTrades:
+            #                         print(l)
+            #                         if l[1] == y.name:
+            #                             print("foundTrade")
+            #                             p1.inventory.append(l[0])
+            #                             l[2]()
+
 
                   
 

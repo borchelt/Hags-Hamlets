@@ -7,7 +7,7 @@ import weapon
 #placeholder
 class Player(object):
 
-    def __init__(self, name, desc, level, hp, mag, dex, str, inventory, equipped, location):
+    def __init__(self, name, desc, level, hp, mag, dex, str, inventory, equipped, location, hb = False, bloat = 0, luck = 0, gold = 999999):
         self.name = name
         self.desc = desc
         self.level = level
@@ -20,6 +20,10 @@ class Player(object):
         self.inventory = inventory
         self.equipped = equipped
         self.location = location
+        self.gold = gold
+        self.bloat = bloat
+        self.luck = luck
+        self.hb = hb
     
     def inven(self):
 
@@ -109,7 +113,7 @@ class Player(object):
             prints("It misses!")
         if self.hp <= 0:
             self.die()
-        
+
     def die(self):
         prints("                   ___________________                     ",.3)
         prints("                 / ..,.,...,. .,.,...,.\                   ",.3)
@@ -141,3 +145,8 @@ class Player(object):
         prints("@#^%*^&*^%&$%^#%#$&%*^&$%%^$*^&&$%^#$^$%&%^*^&*^&%$^^#^#%#%@00", .3)
         input(printr("Press any key to continue:"))
         exit()
+
+    def heal(self, amount):
+        self.hp += amount
+        if(self.hp > self.maxHp):
+            self.hp = self.maxHp

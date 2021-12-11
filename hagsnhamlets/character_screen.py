@@ -2,12 +2,16 @@
 #import player
 from prints import printr
 from prints import prints
-import console
+from player import Player
+from console import * 
 #from dialogue import * 
 #from item import item
 from ascii_art import *
 #import weapon
 import pandas as pd
+from hags_and_hamlets import player1
+
+
 
 def art():
     prints("—#|||#|||#|||#|||#|||#|||#|||#|||#|||#|||#|||#|||#|||#|||#|||#|||#—")
@@ -27,11 +31,11 @@ def character_pd():
     prints("",.3)
 
     char_stats_data = {
-        "HP": [0],
-        "AP": [0],
-        "ATK": [0],
-        "MAG": [0],
-        "DEX": [0],
+        "HP": [player1.hp],
+        "AC": [player1.ac],
+        "MAG": [player1.mag],
+        "DEX": [player1.dex],
+        "STR": [player1.str],
 
     }
     char_stats_table = pd.DataFrame(char_stats_data, index = ['STATS:   '])
@@ -49,10 +53,15 @@ def character_pd():
         "ATK":[ f"+{0}", f"+{0}", f"+{0}", f"+{0}"],
         "MAG": [ f"+{0}", f"+{0}", f"+{0}", f"+{0}"],
         "DEX":[ f"+{0}", f"+{0}", f"+{0}", f"+{0}"],
-        "Quest Item": [ f"True", f"  .  ", f"  .  ", f"  .  ",]
+        #"Quest Item": [ f"True", f"  .  ", f"  .  ", f"  .  ",]
         }
 
-    char_inv_table = pd.DataFrame(char_inv_table_data, index = ["ITEM 1", "ITEM 2", "ITEM 3", "AND SO ON..."])
+    char_inv_table = pd.DataFrame(char_inv_table_data, index = [])
+    for i in range(len(player1.inventory)):
+        char_inv_table.index.append(player1.inventory[i])
+    
+
+
     """ for i in range(len(char_inv_table.index())):
         char_inv_table.index[i].append(f"{i}. {char_inv_table.index[i]}")
     """

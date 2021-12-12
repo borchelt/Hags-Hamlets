@@ -228,24 +228,41 @@ def blacksmith_intro():
     prints("\"What?\"")
 
 def blacksmith_quest(self):
-    prints("\"Work?, im afraid to say I aint got much ta pay with, run along now\"")
-    prints("\"Wait.. I know yer type, that thing on yer belt you call a weapon tells me all I need ta know\"")
-    prints("\"I got no work for ye, but I been hearing rumors of something in the old mines\"")
-    prints("\"some of my er.. contacts been telling me there's a right good bit o silver somewhere in those tunnels\"")
-    prints("\"as much as i'd love to make myself something, seeing as yer the one that saved ol' greg, not me,")
-    prints("I'm willin ta bet you're gonna need it more than I\"")
-    prints("\"bring it here, and I'll make somethin out of it flat\"")
+    prints("\"Work?, im afraid to say I aint got much ta pay with, run along now,\" the smith says, turning back to his work.")
+    prints("After a moment of contemplation, the smith looks back at you,\"Wait..forgive me,\" he says.")
+    prints("    \"I know yer type, that thing on yer belt you call a weapon tells me all I need")
+    prints("      to know. I got no work for ye, but I been hearing rumors of something in the")
+    prints("      Old Mines, North of the Forest Clearing. Some of my suppliers have told me there's")
+    prints("      a right good bit o silver somewhere in those tunnels. As much as I'd love to make")
+    prints("      myself something, you saved Ol' Greg. I'm willin ta bet you're gonna need it more")
+    prints("      than any of the lousy guard around these parts. Bring me the SILVER ORE and I'll")
+    prints("      a forge you a mighty weapon indeed.\"")
+
     self.setQuest("     **Turn in Silver ore**", "\"You got it? hand it over son!\"", 4, 0)
+    prints("")
+
 
     
 
 def blacksmith_questEnd():
-    prints("He looks over the ore you hand him, inspecting it carefully")
-    prints("\"This'll do, good work\"")
-    prints("He begins his work, heating the forge and hammering away for hours without rest")
-    prints("Eventually, the ore begins to resemble a fine blade, then a fine sword")
-    prints("Finally, the weapon is done. he hands it to you, clearly proud of his work")
-    prints("You got the Silver Sword!", 1)
+    prints("He looks over the ore you hand him, inspecting it carefully.")
+    prints("    \"Well now,\" the Blacksmith says, obviously impressed, \"It must have been")
+    prints("     quite the feat for you to get this out of that Mine. I hope it wasn't too")
+    prints("     much trouble.\"")
+    prints("")
+    prints("    He begins his work, heating the forge and hammering away for hours without rest")
+    prints("occasionally you fetched more water or would pass the Blacksmith a bit of food")
+    prints("or drink. It was the least you could do. Eventually the ore began to take shape.")
+    prints("With every strike of the Blacksmith's hammer, the ore was transformed into something")
+    prints("more and more like a sword. For many hours he continued on, sweating and laboring")
+    prints("over his task. Eventually, the ore became a blade. Later, a sword. Lastly, a treaure")
+    prints("worthy of a Hero. At last the Blacksmith hands you the weapon, a slight grin on his")
+    prints("otherwise expressionless face.")
+    prints("    \"Here lad, take this. You'll need it to bring peace to these people.\"")
+    prints("")
+    prints("              ----####  YOU GOT THE SILVER SWORD #####----", 1)
+    prints("")
+
 
 smith_dialogue_options = [
 "     *** TRADE *** What do you have for sale?", 
@@ -272,7 +289,7 @@ smith_trades = [[axe, 35], [sword, 50], [hammer, 25]]
 smith_questTrades = [[silSword, "Silver Ore", blacksmith_questEnd, 3]]
 
 
-smith = npc("blacksmith", blacksmith_ascii, blacksmith_intro, smith_dialogue_options, smith_dialogue_outcomes, 0, smith_trades, smith_questTrades, 3, blacksmith_quest)
+smith = npc("Blacksmith", blacksmith_ascii, blacksmith_intro, smith_dialogue_options, smith_dialogue_outcomes, 0, smith_trades, smith_questTrades, 3, blacksmith_quest)
 
 
 
@@ -281,30 +298,15 @@ def librarian_intro():
     prints("The libarian is preocciuped with a stack of yellowing papers, strewn across her desk. She is so caught up")
     prints("in her study, in fact, that she hardly notices your approach. \"Uhm...Hello?\" you manage to ask meekly.")
     prints("She looks up at you in shock. You can't tell if it is your appearance, or shock at seeing another person in the library.")
+    prints("")
 
 
-librarian_dialogue_options = [
-"     Who are you? ", 
-"     What are doing right now?", 
-"     Where are we?",
-"     What can you tell me about the Hags' Curse?",
-"     *** QUEST *** Is there something I can do?",
-"     Goodbye."
-]
-
-librarian_dialogue_outcome = [
-    "   \"Regina Quillspeth, at your service. Are you here because you're actually interested in books?\" ", 
-    "   \"I was studying old magical texts until you came along. Not that I mind the company. No one ever comes here.\" Regina sighs and sits back in her chair a little bit, pouting. ",
-    "   \"Where does it look like you are? This is the hamlet library. The monks that once ran this place left behind so much knowledge.\" ",
-    "   \"Well, I know that the monks all ran away or were murdered by the Hags. Now it's just me, left to look after all of their years of hard work. Uh...they're evil?\" ",
-    "   \"Come back and visit me some time!"
-
-        ]
 
 def librarian_quest():
     prints("\"You're...what? You're looking for an amulet?,\" Regina asks as she stops shuffling papers around her desk.")
     prints("\"The AMULET!\" she cries out, \"OF COURSE!\", she exclaims.")
-    prints("    Suddenly Regina's eyes narrow and she lowers her head. With very serious intonation in her voice, she explains,")
+    prints("")
+    prints("        Suddenly Regina's eyes narrow and she lowers her head. With very serious intonation in her voice, she explains,")
     prints("    \"The monks that looked after this library wrote at length about the Amulet. During an excavation in a far off land,")
     prints("    they were able to secure what is referred to as the \"Blood of Shadows\". Pretty cool name, right? Anyway, the Monks")
     prints("    sough to protect the Blood of Shadows, this Ruby, from the prying hands of evildoers. They chose this hamlet.")
@@ -314,10 +316,38 @@ def librarian_quest():
     prints("    they'd want the Ruby unless it was somehow their weakness. The Ruby was last seen in the hands of th eHag, Mefilda Rottenbough.")
     prints("    I can't find any mention of that name anywhere though! Maybe you should talk to somoene who has been living here longerR?")
     prints("    Bring me the ruby and I think I'll be able to recreate the spell from what I have in my notes.")
+    prints("")
 
+
+def librarian_questEnd():
+    prints("")
+
+librarian_dialogue_options = [
+"     *** TRADE *** Do you have anything for sale?",
+"     Who are you? ", 
+"     What are doing right now?", 
+"     Where are we?",
+"     What can you tell me about the Hags' Curse?",
+"     *** QUEST *** Is there something I can do?",
+"     Goodbye."
+]
+
+librarian_dialogue_outcome = [
+    "   \"Of course!",
+    "   \"Regina Quillspeth, at your service. Are you here because you're actually interested in books?\" ", 
+    "   \"I was studying old magical texts until you came along. Not that I mind the company. No one ever comes here.\" Regina sighs and sits back in her chair a little bit, pouting. ",
+    "   \"Where does it look like you are? This is the hamlet library. The monks that once ran this place left behind so much knowledge.\" ",
+    "   \"Well, I know that the monks all ran away or were murdered by the Hags. Now it's just me, left to look after all of their years of hard work. Uh...they're evil?\" ",
+    "   \"Come back and visit me some time!"
+
+        ]
+
+
+blood_of_shadows = item("Blood of Shadows", "An amulet, infused with the power to take in or dispel shadows.")
 librarian_trade = [ [time_book, 25], [pamphlet, 5], [book_of_spells, 75] ]
+librarian_questTrades = [[blood_of_shadows, "The Hangman's Ruby", librarian_questEnd, 4]]
 
-librarian = npc("Librarian", librarian_ascii, librarian_intro, librarian_dialogue_options, librarian_dialogue_outcome, -1, librarian_trade, [], 4, librarian_quest)
+librarian = npc("Librarian", librarian_ascii, librarian_intro, librarian_dialogue_options, librarian_dialogue_outcome, 0, librarian_trade, librarian_questTrades, 5, librarian_quest)
 
 
 
@@ -325,6 +355,8 @@ def merchant_intro():
     prints("")
     prints("The merchant's wagon is a beautiful site, adorned with many colors. The whole area around the wagon")
     prints("smelled of the most delicious of incenses. The merchant smiles at you from behind their stand, \"Greetings, friend.\"")
+    prints("")
+
 
 
 merchant_dialogue_options = [
@@ -344,6 +376,10 @@ merchant_dialogue_outcome = [
         ]
 merchant_trade = [ [small_health_chest, 25], [medium_health_chest, 50], [large_health_chest, 100], [small_armor_chest, 25], [medium_armor_chest, 50], [large_armor_chest, 100], [small_weapon_chest, 25], [medium_weapon_chest, 50], [large_weapon_chest, 100] ]
 
+coldest_beer = item("Coldest Beer", "The stein somehow still has frost on it. Perhaps it has been magically cooled.")
+
+merchant_questTrades = []
+
 merchant = npc("Merchant", merchant_ascii, merchant_intro, merchant_dialogue_options, merchant_dialogue_outcome, 0, merchant_trade)
 
 def general_store_intro():
@@ -351,6 +387,23 @@ def general_store_intro():
     prints("The soft chime of a bell alerts the owner to your presence. They turn around, leaning")
     prints("the broom they had been sweeping with against a column. \"Greetings, traveler!\"")
     prints("the owner addresses you jovially, \"Welcome! Welcome!")
+    prints("")
+
+def gen_quest():
+    prints("")
+    prints("Barry walks around the counter, briefly pausing to look out the front window as if he")
+    prints("was afraid of being watched. He turns his back to the door as he turned the lock.")
+    prints("    \"The Thief King runs a speakeasy in the sewers below the Hamlet.")
+    prints("     I kind of got mixed up in some...irresponsible spending. I owe the")
+    prints("     King something like 5,000 gold. I don't have that kind of money!")
+    prints("     No one lives in this town!\", he says. After a pause, and a wary look")
+    prints("     around, he containues, \"You look like you're no stranger to a fight.")
+    prints("     I don't care how you handle it, but settle my debt and I'll give you the")
+    prints("     discount of a lifetime.\"")
+    prints("")
+
+def gen_questEnd():
+    prints("")
 
 general_store_owner_dialogue_options = [
 "     *** TRADE *** I'd like to see your wares.", 
@@ -369,9 +422,13 @@ general_store_dialogue_outcome = [
     "   \"See you later! \" "
         ]
 
+
 gen_trade = [ [wine, 3], [loaf_of_bread, 5], [kidney_beans, 3], [throwing_spear, 10], [sickle, 50], [artichokes, 3], [asiago_cheese, 50], [time_book2, 100] ],
 
-general_store_owner = npc("General Store Owner", general_store_owner_ascii, general_store_intro, general_store_owner_dialogue_options, general_store_dialogue_outcome, 0, gen_trade)
+permanent_discount = item("Permanent Discount", "10 percent off of everything in the General Store, forever!")
+gen_questTrades = [ [permanent_discount, "Debt Settled Papers", librarian_questEnd, 3]  ]
+
+general_store_owner = npc("General Store Owner", general_store_owner_ascii, general_store_intro, general_store_owner_dialogue_options, general_store_dialogue_outcome, 0, gen_trade, gen_questTrades, 3, gen_quest)
 
 
 
@@ -408,6 +465,24 @@ def thief_king_intro():
     prints("")
 
 
+def thief_king_quest():
+    prints("")
+    prints("    \"Get the Rat King to sign a treaty. I'm tired of losing good men to that animal.\"")
+    prints("    The Thief King spits to their left, \"Bunch of mangy rodents. Have him sign it,")
+    prints("    or kill them all. I don't care how it's done. The sewers already stink enough, so")
+    prints("    what's a few more bodies.\"")
+    prints("")
+
+
+def thief_king_questEnd():
+    prints("")
+    prints("    \"I can't believe you pulled it off. Fine. As promised,\" the Thief King")
+    prints("says, handing you a sealed envelope.")
+    prints("")
+    prints("            ----#### YOU'VE SETTLED BARRY'S DEBT! ####---- ")
+    prints("")
+
+
 
 thief_king_dialogue_options = [
 "     Are you the one they call the Thief King?", 
@@ -427,7 +502,12 @@ thief_king_dialogue_outcome = [
     "   \"I'll be here.\"."
         ]
 
-thief_king = npc("Thief King", thief_king_ascii, thief_king_intro, thief_king_dialogue_options, thief_king_dialogue_outcome)
+proof_of_debt_settled = item("Debt Settled Papers", "Proof that the debt between Barry Barrelpine and the Thief King was settled.")
+
+signed_rat_king_treaty = item("Signed Treaty", "A treaty that promises an end to the violence between the Rat King and the Thief King.")
+thief_king_questTrades = [ [proof_of_debt_settled, "Signed Treaty", thief_king_questEnd, 4 ] ]
+
+thief_king = npc("Thief King", thief_king_ascii, thief_king_intro, thief_king_dialogue_options, thief_king_dialogue_outcome, -1, [], thief_king_questTrades, thief_king_quest, 4)
 
 
 def hunter_intro():
@@ -437,6 +517,22 @@ def hunter_intro():
     prints("precluded you to believe that he was harsh man, his demeanor led you to believe otherwise.")
     prints("\"Well, I guess that one is getting away.\" He says, hanging his head, feigning disappointment.")
     prints("")
+
+def hunter_quest():
+    prints("")
+    prints("    The hunter smacks his lips, \"Have you met Aziz? That merchant is rumoured to have")
+    prints("    the coldest beer in all the land. It's mighty strong stuff, and tastes fantastic!\"")
+    prints("")
+
+def hunter_questEnd():
+    prints("")
+    prints("    \"My oh my! Thank you so much,\" the Hunter says as he takes the beer from you.")
+    prints("    \"Oh my...It's still cold...How wonderful...\" he manages to say as he sips greedily")
+    prints("    from the stein.")
+    prints("                    --- #### YOU'VE GOT THE HUNTER'S MAP #### ---")
+    prints("")
+
+
 
 
 hunter_dialogue_options = [
@@ -455,14 +551,18 @@ hunter_dialogue_outcome = [
     "   \"Happy hunting!\" "
         ]
 
-hunter = npc("Huner", hunter_ascii, hunter_intro, hunter_dialogue_options, hunter_dialogue_outcome)
+hunters_map = item("Hunter's Map", "A map given to you by the Hunter. It describes a path that leads one behind the Waterfall.")
+hunter_questTrades = [ [hunters_map, "Coldest Beer", hunter_questEnd, 3] ]
+
+hunter = npc("Hunter", hunter_ascii, hunter_intro, hunter_dialogue_options, hunter_dialogue_outcome, -1, [], hunter_questTrades, 3, hunter_quest, 3)
 
 
 def drunkard_intro():
+    prints("")
     prints("You almost feel bad for this sorry mess of a human. The bartender takes a coin")
     prints("from the pile in front of the man, placing a large bottle down in front of him.")
     prints("\"Sober up, you dolt!\", the bartender chastizes the drunkard.")
-
+    prints("")
 
 drunkard_dialogue_options = [
 "     Try to wake the drunkard."
@@ -485,9 +585,11 @@ drunkard = npc("Drunkard", drunkard_ascii, drunkard_intro, drunkard_dialogue_opt
 
 
 def dwarven_miner_intro():
+    prints("")
     prints("One of the miners approaches you, their pickaxe resting gently on their shoulders.")
     prints("\"Hail, friend,\" they call to you, \"Best not be traversing the mines!")
     prints("they say the place is just swarmin' with monsters today. Especially the deep caverns!\"")
+    prints("")
 
 
 dwarven_miner_dialogue_options = [
@@ -510,9 +612,11 @@ dwarven_miner = npc("Dwarven Miner",  dwarven_miner_ascii, dwarven_miner_intro, 
     
 
 def guard_intro():
+    prints("")
     prints("\"HALT!,\" You are commanded. A burly man with a large chest and tall spear approaches you.")
     prints("He takes off his helmet as the other members of his unit keep their weapons trained on you until")
     prints("he bid them relax. \"It's alright lads, this one just seems a bit lost.\"")
+    prints("")
 
 guard_dialogue_options = [
 "     I'm friendly! I swear!", 
@@ -528,4 +632,152 @@ guard_dialogue_outcome = [
     "   \"See you later! \" "
         ]
     
+
 guard = npc("Guard", guard_ascii, guard_intro, guard_dialogue_options, guard_dialogue_outcome)
+
+
+
+
+def rat_king_intro():
+    prints("")
+    prints("    The Rat King was an intimidating creature. You thought that for sure that you were")
+    prints("prepared for this, but find yourself speechless in his presence. The large, almost humanoid")
+    prints("shuffles towards you, waving the guards to the side. It is obvious that he does not consider")
+    prints("you a threat.")
+    prints("")
+
+
+def rat_king_quest():
+    prints("")
+
+def rat_king_questEnd():
+    prints("")
+
+rat_king_options = [
+"   *** TRADE *** Do you have anything here that might be useful to me?"
+"   You must be the Rat King.",
+"   Why do you live here?",
+"   What do you think of the Thief King?",
+"   *** QUEST *** Is there anything that troubles you?",
+"   Goodbye for now."
+]
+
+rat_king_outcomes = [ 
+"   Of...course...I save them...for you...for Us."
+"   Is....it...that....obvious?",
+"   Do...think...Hamlet...like...rats?",
+"   A...simple...evil...creature.",
+"   The...Hags...They...stronger. Rats fight. Rats losing.",
+"   ...See...you...soon."
+]
+
+rat_trades = [ ]
+rat_questTrades = []
+
+rat_king = npc("The Rat King", rat_king_ascii, rat_king_intro, rat_king_options, rat_king_outcomes, 0, rat_trades, rat_questTrades, 4, rat_king_quest, 4)
+
+
+
+
+def hag1_intro():
+    prints("")
+    prints("    As you enter the abdandoned cottage, you see a Hag sitting at the dining table. She")
+    prints("is almost too busy picking bits of gristle and bone from her teeth to notice you. the")
+    prints("bloodied remains of what look to be several children lie in a heap in the corner. She")
+    prints("motions you in, gesturing towards the pile of corpses with her hand.")
+    prints("    \"Care for a bite, dearie?\" she cackles. \"What do you think you're here to do, eh?\"")
+    prints("")
+
+hag1_options = [
+"   .....",
+"   You should leave this place.",
+"   I'm here to kill you.",
+"   You monster!"
+]
+
+hag1_outcomes = [
+"   \"Cat got your tongue? It matters not. Prepare to die!\"",
+"   \"Well you're a bold one, aren't you!\" she says, howling with laughter. Prepare yourself!\"",
+"   \"Oh? I don't see a reason I should do that. Prepare yourself, foolish mortal!",
+"   \"How original. Such a pity. You might have made a lovely cook one day."
+
+]
+
+hag1 = npc("Hag1", hag1_ascii, hag1_intro, hag1_options, hag1_outcomes )
+
+def hag2_intro():
+    prints("")
+    prints("    Shadows emanate from the Hag like creeping vines, crawling across the forest floor,")
+    prints("searching for your flesh. A sense of dread washes over you, and you find it hard to steel yourself")
+    prints("in the face of such incredible danger.")
+    prints("")
+
+hag2_options = [
+"   I HAVE THE AMULET. You cannot win this fight, you HAG!",
+"   It's over! You cannot stay in the forest!",
+"   Leave the Hamlet or die, you wretched thing!",
+"   I will send you to the Hells, Hag!"
+
+]
+
+hag2_outcomes = [
+"   \"You miserable toad. Do you really think that you can defeat me?\"",
+"   \"Pathetic! I hope you've made funerary arrangements for yourself.",
+"   \"Leave?...Why? There are so many people I haven't killed there yet,\" she says, cackling.",
+"   \"Oh child,\" she tuts,\"It's bad manners to trespass. Now you'll pay the price!\""
+
+
+]
+
+hag2 = npc("hag2", hag2_ascii, hag2_intro, hag2_options, hag2_outcomes )
+
+def hag3_intro():
+    prints("")
+
+    prints("")
+
+hag3_options = [
+"   You find yourself unable to speak, despite your best efforts."
+"   Your tongue refuses to move behind your teeth. You cannot speak.",
+"   Your mouth feels as though it has been glued shut. Something is wrong.",
+"   You open your mouth, but no sound escapes you."
+
+]
+
+hag3_outcomes = [
+"   \"What's the matter, dearest? Have you never seen such a sight?\" the Hag asks, sporting a malevolent grin."
+"   \"Oh...Now this is rich!\" she laughs at you, \"Can't even talk to a woman...pathetic.\"",
+"   \"It'll be easier killing you than it was dispatching that silly little thief's wife.\"",
+"   \"You don't have to speak, child. It'll be over soon.\""
+
+]
+
+hag3 = npc("hag3", hag3_ascii, hag3_intro, hag3_options, hag3_outcomes )
+
+def hag4_intro():
+    prints("")
+    prints("    There is chaos. Screams, blood, and death surround you. The Hag Queen has")
+    prints("come at last to cull the herd and claim the Hamlet for herself. Citizens of")
+    prints("the hamlet scramble to find cover. Some board their windows, praying desparately")
+    prints("for a miracle to change this outcome. Those closest to the well, aware of the ")
+    prints("goings on beneath the town, descend as quickly as they can manage. Storms appear,")
+    prints("the wind picks up and trees are uprooted all around you.")
+    prints("    \"SEE NOW, THIS GREAT AND TERRIBLE DEVESTATION")
+    prints("     THAT I WILL BRING UPON THEE. PREPARE NOW TO DIE,")
+    prints("                    PATHETIC HUMANS!\"")
+    prints("")
+
+hag4_options = [
+
+"   The battle for the fate of the Hamlet has begun."
+
+]
+
+hag4_outcomes = [
+
+"   \"What meager peasant plays at being a hero, hm? You shall suffer, mortal!\""
+
+]
+
+hag4 = npc("hag4", hag4_ascii, hag4_intro, hag4_options, hag4_outcomes)
+

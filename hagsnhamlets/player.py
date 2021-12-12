@@ -7,14 +7,12 @@ import weapon
 #placeholder
 class Player(object):
 
-    def __init__(self, name, desc, level, hp, mag, dex, str, inventory, equipped, location, hb = False, bloat = 0, luck = 0, gold = 999999):
+    def __init__(self, name, desc, hp, dex, str, inventory, equipped, location, hb = False, bloat = 0, luck = 0, gold = 999999):
         self.name = name
         self.desc = desc
-        self.level = level
-        self.ac = 10 + dex
+        self.ac = 5 + dex
         self.hp = hp
         self.maxHp = hp
-        self.mag = mag
         self.dex = dex
         self.str = str
         self.inventory = inventory
@@ -24,6 +22,7 @@ class Player(object):
         self.bloat = bloat
         self.luck = luck
         self.hb = hb
+        self.dead = False
     
     def inven(self):
 
@@ -100,7 +99,7 @@ class Player(object):
     def attack(self, weap, enemy):
         prints(f"You {weap.type} your {weap.name} at the {enemy.name}")
         prints(".", .5)
-        enemy.hit([randrange(1, 20) + weap.toHit + self.str,randrange(1, 6) + weap.dmg + self.str])
+        enemy.hit([randint(1, 20) + weap.toHit + self.str,randint(1, 6) + weap.dmg + self.str])
 
     def hit(self, aPack):
         roll = aPack[0]
@@ -144,7 +143,34 @@ class Player(object):
         prints("^%$&%^*%^$&$^W$#&$%*&^&(^%$#$%^#$$%@$#%^&$^%*&%^&$^#$%#$%@##", .3)
         prints("@#^%*^&*^%&$%^#%#$&%*^&$%%^$*^&&$%^#$^$%&%^*^&*^&%$^^#^#%#%@00", .3)
         input(printr("Press any key to continue:"))
-        exit()
+        self.dead = True
+    
+    def sheet(self):
+        prints("")
+        prints("")
+        prints(f"\033[1m{self.name}\033[0m")
+        prints("---------------------------------")
+        prints(f"HP:        {self.hp}/{self.maxHp}")
+        prints(f"Strength:  {self.str}")
+        prints(f"Dexterity: {self.dex}")
+        prints(f"Gold:      {self.gold}")
+        prints("---------------------------------")
+        prints("\x1B[3mEquipped Items:\x1B[0m")
+        for i in range(len(self.equipped)):
+            prints(f"{i+1}. {self.equipped[i].name}")
+        quitB = False
+        while quitB == False:
+            prints("Open Inventory? Y/N")
+            cont = input(printr("> ")).lower()
+            if cont == "y" or cont == "yes":
+                self.inven()
+                quitB = True
+            elif cont == "n" or cont == "no":
+                quitB = True
+            else:
+                prints("This is a yes or no question")
+
+
 
     def heal(self, amount):
         self.hp += amount

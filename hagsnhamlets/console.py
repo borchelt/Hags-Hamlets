@@ -18,6 +18,7 @@ global action
 class console(object):
     def __init__(self, player):
         self.player = player
+        self.quitB = False
     
     def move(self, action):
         name = nameFetch()
@@ -27,6 +28,11 @@ class console(object):
         target = target.replace("go ", "")
         target = target.replace("move ", "")
         self.turn = False
+        for i in self.player.location.interactables:
+            if type(i) == item:
+                if i.pickup == True:
+                    print("removed " + i.name)
+                    self.player.location.interactables.remove(i)
         for i in self.player.location.adj_locations:
                 if i.name.lower() == target:
                     self.player.location = i
@@ -47,8 +53,11 @@ class console(object):
         everything.append(p1.location)
         everything.append(p1)
 
-        quitB = False
-        while quitB == False:
+        self.quitB = False
+        while self.quitB == False:
+            if p1.dead == True:
+                self.quitB = True
+                continue
             action = input(printr("> ")).lower()
 
             #actions for player management
@@ -56,9 +65,13 @@ class console(object):
             #quits the program
             if action == "quit":
                 turn = False
-                quitB = True
+                exit()
             
-            if(action == "inventory" or action == "open inventory" or action == "i"):
+            elif action == "menu":
+                turn = False
+                self.quitB = True
+            
+            elif(action == "inventory" or action == "open inventory" or action == "i"):
                 turn = False
                 p1.inven()
             #save method goes here once that is implemented
@@ -66,13 +79,14 @@ class console(object):
             #actions for looking at stuff
 
             #look around the area
-            if(action == "look around"):
+            elif(action == "look around"):
                 turn = False
                 prints(p1.location.look())
             #look at yourself
-            elif(action == "look at myself" or action == "look at self"): 
+            elif(action == "look at myself" or action == "look at self" or action == "look self"): 
                 turn = False
                 prints(p1.desc)
+                p1.sheet()
 
             #look at any object in your inventory or the area 
             elif("look at" in action): 
@@ -85,7 +99,7 @@ class console(object):
 
             #actions for picking stuff up
 
-            if("pick up" in action):
+            elif("pick up" in action):
                 
                 bigList = [p1.location.interactables, p1.location.enemyArr]
                 everything = []
@@ -114,7 +128,7 @@ class console(object):
                                 prints(f"You got the {i.name}")
             
             #open containers
-            if "open" or "look in" in action:
+            elif "open" in action or "look in" in action:
                 turn = False
                 target = action
                 target = target.replace("open the ", "")
@@ -127,13 +141,13 @@ class console(object):
                             i.open(p1)
 
             #actions for combat 
-            if action == "flee" or action == "run":
+            elif "flee" in action or "run" in action:
 
                 if randint(0, 1) == 1:
                     prints("you run like the coward you are")
                     self.move(f"go to {p1.location.adj_locations[randrange(0, len(p1.location.adj_locations))].name}")
                         
-            if "attack" in action:
+            elif "attack" in action:
                 turn = True
                 target = action.replace("attack the ", '')
                 target = target.replace("attack ", '')
@@ -168,14 +182,14 @@ class console(object):
                     if(enemy and weapon):
                         self.player.attack(weapon, i)
             
-            if "go" in action or "move" in action:
+            elif "go" in action or "move" in action:
                 if(p1.location.enemyArr == []):
                     turn = False
                     self.move(action)
             
             #consumables from console
 
-            if "drink" in action or "eat" in action or "use" in action:
+            elif "drink" in action or "eat" in action or "use" in action:
                 turn = True
                 drank = False
                 target = action
@@ -204,14 +218,119 @@ class console(object):
                                 drank = True
  
             #actions for dialogue
-            if "talk" in action:
+            elif "talk" in action:
                 turn = True 
                 target = action
+                target = target.replace("talk to the ", "")
+                target = target.replace("talk with the ", "")
                 target = target.replace("talk to ", '')
                 target = target.replace("talk with ", '')
                 for i in p1.location.interactables:
                     if i.name.lower() == target and type(i) == npc:
                         i.talk(p1)
+
+            elif "help" in action:
+                turn = False
+                prints("Actions in Hags & Hamlets:")
+                prints(".")
+                prints("------------------------")
+                prints("------Meta actions------")
+                prints("------------------------")
+                prints("quit: quits the game.")
+                prints("------------------------")
+                prints("menu: quits to the") 
+                prints("main menu.")
+                prints("------------------------")
+                prints("inventory, i: opens")
+                prints("your inventory.")
+                prints("------------------------")
+                prints(".")
+                cont = input(printr("Continue? Y/N")).lower
+                if(cont == "n" or cont == "no"):
+                    break
+                prints("------------------------")
+                prints("------Information-------")
+                prints("------------------------")
+                prints("look at X: looks at") 
+                prints("something, you can look") 
+                prints("at yourself or other")
+                prints("enemeies, npcs or objects.")
+                prints("------------------------")
+                prints("look around: gives you")
+                prints("the lay of the land,")
+                prints("very important for ")
+                prints("remembering where you") 
+                prints("are and where you can go.")
+                prints("------------------------")
+                prints(".")
+                cont = input(printr("Continue? Y/N")).lower
+                if(cont == "n" or cont == "no"):
+                    break
+                prints("------------------------")
+                prints("------Interaction-------")
+                prints("------------------------")
+                prints("pick up X: pick up an")
+                prints("item, you can use pick up")
+                prints("all to pick up every item")
+                prints("near you.")
+                prints("------------------------")
+                prints("Open X, Look in X: some")
+                prints("items are containers, you")
+                prints("can look inside them with")
+                prints("this command.")
+                prints("------------------------")
+                prints("Eat X, Drink X, Use X:")
+                prints("consumable items are vital")
+                prints("to adventuring in Hags &")
+                prints("Hamlets. You can store")
+                prints("them in your inventory or")
+                prints("use any that are nearby.")
+                prints("------------------------")
+                prints("Talk to X: the denezens")
+                prints("of the hamlet are full")
+                prints("of useful information, it")
+                prints("is wise to commune with")
+                prints("them.")
+                prints("------------------------")
+                prints(".")
+                cont = input(printr("Continue? Y/N")).lower
+                if(cont == "n" or cont == "no"):
+                    break
+                prints("------------------------")
+                prints("-------Movement---------")
+                prints("------------------------")
+                prints("go to X, move to X")
+                prints("you can move between ")
+                prints("locations, but only ones")
+                prints("nearby. You might want")
+                prints("to bring a map.")
+                prints("------------------------")
+                prints(".")
+                cont = input(printr("Continue? Y/N")).lower
+                if(cont == "n" or cont == "no"):
+                    break
+                prints("------------------------")
+                prints("--------Combat----------")
+                prints("------------------------")
+                prints("Attack: attacks the first")
+                prints("enemy with you main weapon.")
+                prints("------------------------")
+                prints("Attack X: attack an enemy")
+                prints("with your main weapon.")
+                prints("------------------------")
+                prints("Attack X with Y: attack an")
+                prints("enemy with either your")
+                prints("main or off-hand weapon.")
+                prints("------------------------")
+                prints("flee, run: flees to a ")
+                prints("nearby area, leaving")
+                prints("any enemies behind.")
+                prints("------------------------")
+                prints(".")
+
+            
+            else:
+                prints("I'm not sure what you mean, type \"help\" for a list of commands")
 
             #end of turn: enemies attack
             if(turn):

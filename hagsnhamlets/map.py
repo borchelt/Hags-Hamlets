@@ -57,6 +57,8 @@ class map():
     glade = Location("The Glade", "perhaps the only truly beautiful place left, you swear you can just barely see the sun up there", "hnh_forestTheme_conceptQ.mp3", [],[],[])
 
 
+    #cottage.enemyArr[hag1]
+    
      #OLD MINES
     old_mines_entrance = Location("Old Mines: Entrance", "Once a great mine, the resources have been mostly used up. The dwarven miners that still work here must fight to keep it clear of enemies in the absence of more capable fighters.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
     old_mines_main_chamber = Location("Old Mines: First Chamber", "The Old Mine is dimly lit by torches. Several groups of dwarves are huddled. Some are tending to wounds, others eating lunch.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
@@ -97,7 +99,7 @@ class map():
     bite = weapon("Teeth", 3, 1, "bites")
     bat = enemy.enemy("Bats","A swarm of bats clouds your vision. The sound is incredible as wings fly past your face and around your head.", 1, 
                         [bite, bite, bite], 10, [item("bat's wings", "A severed bat's wing")], "Your attack connects and the bats fall harshly, splattering on the ground.", old_mines_floor1_N)
-    hatchling_spider = enemy.enemy("Spider Hatchling", "While this spider is not as big as it will eventually be, it is much larger than you are comfortable being close to.", 3, [bite, bite, bite], 5, [], "A sickly squishing noise and a hiss erupts from the spider.", old_mines_floor2_W)
+    hatchling_spider = enemy.enemy("Spider Hatchling", "While this spider is not as big as it will eventually be, it is much larger than you are comfortable being close to.", 3, [bite, bite, bite], 5, [], "", old_mines_floor2_W)
     giant_spider = enemy.enemy("Giant Spider","A hulking, fierce insect. This is no time to be act idley. Look out!", 15, 
                         [bite, bite, bite], 10, [item("venomous sac", "A foul smelling sac that you've retrieved from the spider. Probably worth keeping for a potion."), item("spider eyes", "The soft, gushy eyeballs of the spider stare back at you lifelessly."), item("giant spider mandible", "A spider's mandible."), item("An Ornate Key", "Amazing that the spider didn't digest this. You wonder what lock it might fit.")], "The spider crumples into a bent, twisted shape as it hugs its wounds. It dies, shortly after", old_mines_spider_lair)
     
@@ -151,9 +153,9 @@ class map():
     tavern = Location("The Tavern", "Perhaps the only place in the hamlet with any life still inside, you even hear the occasional chuckle coming from inside","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
     QBoard = Location("The Message Board", "A Wooden board with a few slips of parchment halfheartedly nailed to it.","hnh_forestTheme_conceptQ.mp3", [], [],[])
     blacksmith = Location("The Smithy", "the soft glow of the embers and the rythmic ringing of the hammer on metal is almost soothing.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
-    library = Location("The Library","Most of the books have been overrun by mold, but you may still be able to find something usefull", [], [],[],True)
-    wagon = Location("The Merchant Wagon", "The small covered wagon smells of incense and dust.", [], [],[],True)
-    well = Location("The Well", "you cant see the bottom of the well, but for some reason, you can hear running water below.", [], [],[],True)
+    library = Location("The Library","Most of the books have been overrun by mold, but you may still be able to find something usefull","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
+    wagon = Location("The Merchant Wagon", "The small covered wagon smells of incense and dust.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
+    well = Location("The Well", "you cant see the bottom of the well, but for some reason, you can hear running water below.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
 
     hamlet.adj_locations = [store, sundial, tavern, QBoard, blacksmith, library, wagon, well]
     hamlet.interactables = [small_weapon_chest, large_health_chest, greg]
@@ -171,7 +173,7 @@ class map():
     QBoard.interactables = []
 
     library.adj_locations = [hamlet]
-    library.interactables = [librarian, small_health_chest, small_health_chest, pamphlet, glass]
+    library.interactables = [librarian, small_health_chest, pamphlet, glass]
 
     wagon.adj_locations = [store, tavern, sundial, blacksmith, library, QBoard, well,]
     wagon.interactables = [merchant]
@@ -310,7 +312,7 @@ class map():
     skel9 = enemy.enemy("Skeleton", "A pile of bones, held together only by the will of the dead.", 5, 
                     [bone, bone, bone,], 10, [boneShard], "The Skeleton crumbles to dust.", dampCave)
     
-    wolf1 = enemy.enemy("Wolf", "A mangy beast, it eyes you hungrily", 10, 
+    wolf1 = enemy.enemy("Wolf", "A large, mangey beast eyes you hungrily as it stalks towards you.", 10, 
                     [claw, claw, bite], 13, [hide], "The wolf wimpers as it falls.", forest)
     wolf2 = enemy.enemy("Wolf", "A mangy beast, it eyes you hungrily", 10, 
                     [claw, claw, bite], 13, [hide], "The wolf wimpers as it falls.", woodsS)
@@ -357,20 +359,285 @@ class map():
 
     
     giant_spider = enemy.enemy("Spider","A hulking, fierce insect. This is no time to be act idley. Look out!", 15, 
-                        [bite, bite, bite], 10, [item("venomous sac", "A foul smelling sac that you've retrieved from the spider. Probably worth keeping for a potion."), item("spider eyes", "The soft, gushy eyeballs of the spider stare back at you lifelessly."), item("giant spider mandible", "A spider's mandible.")], "The spider crumples into a bent, twisted shape as it hugs its wounds. It dies, shortly after", sundial)
+                        [bite, bite, bite], 10, [item("venomous sac", "A foul smelling sac that you've retrieved from the spider. Probably worth keeping for a potion."), item("spider eyes", "The soft, gushy eyeballs of the spider stare back at you lifelessly."), item("giant spider mandible", "A spider's mandible.")], "", sundial)
 
     phantasmal_scream = weapon("Phantasmal Scream", 2, 3, "shrieks")
     angry_spirit = enemy.enemy("Spirit","Suddenly a spectacularly spooky spectre swiftly swims through the air towards you. Oh my!", 3, 
-                        [phantasmal_scream, phantasmal_scream, phantasmal_scream], 10, [item("ectoplasm", "Colors you can't even begin to describe seem to emanate from the goo."), weapon("ghostly blade", 5, 3, "slash", "A nasty looking blade from another realm. Best be careful handling this.")], "The spectre is spooped. They dissipate into nothingness, returning to the void.", tree)
+                        [phantasmal_scream, phantasmal_scream, phantasmal_scream], 10, [item("ectoplasm", "Colors you can't even begin to describe seem to emanate from the goo."), weapon("ghostly blade", 5, 3, "slash", "A nasty looking blade from another realm. Best be careful handling this.")], "", tree)
 
     rusted_blade = weapon("Rusted Blade", 1, 2, "slowly swings")
     grab = weapon("hands", 0, 3, "grabs")
     zombie = enemy.enemy("Zombie","A ghoulish fiend approaches. They limber towards you, flesh hanging from their bones. Gross!", 5, 
-                        [rusted_blade, rusted_blade, grab], 10, [item("rotten body parts", "You can't forsee a use for these.")], "The zombie trips towards you. As it stumbles, it catches your attack and is decapitated in an excessive display of gore.", cemetery)
+                        [rusted_blade, rusted_blade, grab], 10, [item("rotten body parts", "You can't forsee a use for these.")], "failed", cemetery)
     
- 
+    def enemy_description_flavor(what_enemy, enemy_desc):
+      rand_desc = random.randint(0, (len(enemy_desc) -1))
+      what_enemy.desc = enemy_desc[rand_desc]
 
-   
+
+    def death_flavor(what_enemy, death_desc):
+        rand_death = random.randint(0, ( len(death_desc) -1 ))
+        
+        what_enemy.death = death_desc[rand_death]
+
+    zombie_descs = [  "You wonder how the Zombie can sense your location, as it seems its eyes have been pecked out by birds.",
+                      "A jawless, one armed Zombie limbers towards you. It moans as it extends a rotting hand towards you.",
+                      "You almost didn't notice the legless Zombie crawling towards you, grabbing at your ankles."
+
+                   ]
+        
+    zombie_deaths = [ "The Zombie trips towards you. As it stumbles, it catches your attack and is decaptiated in an excessive display of gore.",
+                    "The Zombie takes the full force of your attack, its chest exploding.",
+                    "The Zombie's slow movements cost it dearly. Before it could think to react, you land a fatal blow. It collapses."
+                    ]
+
+    skel1_descs = [ "A member of the ranks of the undead. This skeleton soldier still wears armor.",
+                    "The chattering of bones alerts you to the presence of the Skeleton moving towards you."
+                    "You swear that you can almost see a small light glowing in the empty eye sockets of the Skeleton."
+                   ]
+
+
+    skel1_deaths = [ 
+                    "The Skeleton explodes into a cloud of dust and fragments of bone.",
+                    "The unmistkable sound of bones scattering to the ground informs you that the skeleton has been defeated.",
+                    "Fragments of bone fly past your face as the skeleton is obliterated."
+                    
+                    ]
+
+    skel2_descs = [
+                          "The Skeleton explodes into a cloud of dust and fragments of bone.",
+                    "The unmistkable sound of bones scattering to the ground informs you that the skeleton has been defeated.",
+                    "Fragments of bone fly past your face as the skeleton is obliterated."
+
+
+                   ]       
+
+    skel2_death =[ "The Skeleton explodes into a cloud of dust and fragments of bone.",
+                    "The unmistkable sound of bones scattering to the ground informs you that the skeleton has been defeated.",
+                    "Fragments of bone fly past your face as the skeleton is obliterated."
+                    ]
+    skel3_descs = [
+                          "The Skeleton explodes into a cloud of dust and fragments of bone.",
+                    "The unmistkable sound of bones scattering to the ground informs you that the skeleton has been defeated.",
+                    "Fragments of bone fly past your face as the skeleton is obliterated."
+
+                   ]
+    skel3_death =[ "The Skeleton explodes into a cloud of dust and fragments of bone.",
+                    "The unmistkable sound of bones scattering to the ground informs you that the skeleton has been defeated.",
+                    "Fragments of bone fly past your face as the skeleton is obliterated."
+                    ]
+    skel4_descs = [
+                          "The Skeleton explodes into a cloud of dust and fragments of bone.",
+                    "The unmistkable sound of bones scattering to the ground informs you that the skeleton has been defeated.",
+                    "Fragments of bone fly past your face as the skeleton is obliterated."
+
+                   ]
+    skel4_death =[ "The Skeleton explodes into a cloud of dust and fragments of bone.",
+                    "The unmistkable sound of bones scattering to the ground informs you that the skeleton has been defeated.",
+                    "Fragments of bone fly past your face as the skeleton is obliterated."
+                    ]
+    skel5_descs = [
+                    "The Skeleton explodes into a cloud of dust and fragments of bone.",
+                    "The unmistkable sound of bones scattering to the ground informs you that the skeleton has been defeated.",
+                    "Fragments of bone fly past your face as the skeleton is obliterated."
+                   ]
+    skel5_death = [ "The Skeleton explodes into a cloud of dust and fragments of bone.",
+                    "The unmistkable sound of bones scattering to the ground informs you that the skeleton has been defeated.",
+                    "Fragments of bone fly past your face as the skeleton is obliterated."
+                    ]
+    bat_descs = [ "A swarm of bats clouds your vision. The sound is incredible as wings fly past your face and around your head.",
+                  "Suddenly you are surrounding by a flurry of wings and shrieking sounds. Bats!",
+                  "You have disturbed a colony of bats. All at once, they begin aggressively biting at your face, neck and hands."
+                   ]
+
+    bat_deaths = [ "With a painful shriek, the bat explodes. Dark blood splatters the ground.",
+                    "Despite it being a wild swing, you catch one of the bats flying by your head. It is obliterated, and the rest fly off.",
+                    "When your attacks begin to thin their numbers, the bats flee in search of easier prey."
+    ]
+    
+    giant_spider_descs = [ "A hulking, fierce insect approaches you. This is no time to be act idley. Look out!",
+                           "With a thunderous sound, a Giant Spider erupts from the shadows. It's mandibles clack loudly as its beady eyes lock onto you.",
+                           "A Giant Spider descends from a web above you. It rears back on it's hind legs, ready to attack.",
+
+                   ]
+    giant_spider_deaths = [ "The Giant Spider crumples into a bent, twisted shape as it hugs its wounds. It dies, shortly after",
+                            "The enormous foe struggles against the inevitable. Its wounds are too great. It sways unsteadily on its legs before collapsing, dead.",
+                            "The Giant Spider had once dominated this section of the mines, but no longer. It lay still, aside from some involuntary twitching. "
+                          ]
+    hatchling_spider_descs = [ "Several Hatchling Spiders land on the ground around you, hurriedly moving towards you.",
+                              "Hundreds of tiny eyes scan you from the darkness. One by one, they start launching themselves at you.",
+                              "The presence of the webs should have been enough to prepare you. Hatchling Spiders begin to surround you!",
+                              "While this spider is not as big as it will eventually be, it is much larger than you are comfortable being close to."
+
+                   ]                          
+    hatchling_spider_deaths = [ "A sickly squishing noise and a hiss erupts from the spider.",
+                                "Your attack connects with the spider, producing an unpleasant ...CRUNCH!,",
+                                "You nearly feel ill seeing the the spider evicerated. Pieces of the arachnid's limbs and dark green blood paint the room."  
+                              ]
+    goblin_descs = [ "A nasty looking Goblin with a scar under his right eye points angrily at you. \"MEAT!\" it shrieks.",
+                    " A chubby looking Goblin stops draining its mug of grog just long enough to howl in your direction, alerting the others.",
+                    "A fairly intimidating Goblin, armed to the teeth, face covered in pustules approaches, cracking its neck.",
+                     "An angry, fiesty goblin. While not dangerous alone, goblins in numbers are problen. Where there is one, there are bound to be more."
+
+
+                   ]
+    goblin_deaths = [ "'BEAST! YOU BEAST!' the goblin screams as you, clutching its chest, aware that it was dying.",
+                      "You have proven yourself the more dangerous foe. The goblin is severed in two by your attack.",
+                      "The goblin starts to curse your name, but chokes. Your attack has pierced the goblin's lungs. It collapses and dies."
+                    ]
+
+    angry_spirit_descs = [ "Suddenly a spectacularly spooky spectre swiftly swims through the air towards you. Oh my!",
+                           "The air around you chills over, and the hair on the back of your neck stands up. A ghost appears!",
+                           "You are caught off your guard when a spectre emerges from the shadows, screaming at you."
+
+                   ]
+
+    angry_spirit_deaths = [ "The spectre is spooped. They dissipate into nothingness, returning to the void.",
+                            "'DEATH IS NOT THE END', the spirit hisses as it dissapates.",
+                            "'I WILL RETURNNNNNNNnnnnnn....', the spirit screams as it fades out of existence."
+                         ]
+    wolf_descs = [ "A large, mangey beast eyes you hungrily as it stalks towards you.",
+                   "The crunch of leaves gives the wolf's position away. It snarls, and you ready your weapons.",
+                   "A large wolf jumps out at you from behind a bush, gnashing its teeth at you."
+
+                   ]
+
+    wolf_deaths = [ "The wolf wimpers as it falls.",
+                    "Your attack catches the wolf between its ribs. It trips over itself, sliding across the ground towards you, dead.",
+                    "The wolf's powerful jaws snap at you, but your quick reflexes land an attack that strikes it through the muzzle. It collapses, dead."
+                  ]
+
+    bandit_descs = [ "\"What have we got here?\" the bandit asks, \"A lil mouse has lost its way.\" You see the bandit unsheathe their weapon.",
+                      "A thug with no conscience. It's hard to believe there are people out here acting this way, despite the Hags presence."
+                      "This bandit has chosen the wrong protagonist to mess with. While sure of themselves, they are now surely doomed to die."
+
+                   ]
+
+    bandit_deaths = [  "You can tell that the bandit realized their mistake, just as it was too late. You saw the look in their eyes as they fail to dodge your killing blow. They collapse.",
+                       "Your stomach wretches as you see the bandit disemboweled by your attack. They drops their weapons, desparately clutching their intestines to their body.",
+                       "The bandit paid the price for their profession. Your attack slices through the bandit easily, resulting in a plume of arterial spray."
+                    ]
+    bandit2_descs = ["\"What have we got here?\" the bandit asks, \"A lil mouse has lost its way.\" You see the bandit unsheathe their weapon.",
+                      "A thug with no conscience. It's hard to believe there are people out here acting this way, despite the Hags presence."
+                      "This bandit has chosen the wrong protagonist to mess with. While sure of themselves, they are now surely doomed to die."
+
+                   ]
+
+    bandit2_deaths = [  "You can tell that the bandit realized their mistake, just as it was too late. You saw the look in their eyes as they fail to dodge your killing blow. They collapse.",
+                        "Your stomach wretches as you see the bandit disemboweled by your attack. They drops their weapons, desparately clutching their intestines to their body.",
+                        "The bandit paid the price for their profession. Your attack slices through the bandit easily, resulting in a plume of arterial spray."
+                       
+                       ]
+
+    hag1_cleaver = weapon("Carriona's Cleaver", 10, 5, "slashes", "A terrible blade. The hilt looks like it was made from a child's bones.")
+    carriona_call = weapon("Carriona's Call", 15, 2, "sings", "Carionna's voice echoes in your ears, enchanting you.", pickup=False)
+    hag1_BOSS = enemy.enemy("Carriona Bramblebone ", "Carriona is a large, gluttonous being. She smacks her lips greedily, stands and grabs a knife.", 50, 
+                    [hag1_cleaver, hag1_cleaver, carriona_call], 15, [hag1_cleaver], "", cottage)
+    hag1_deaths = [ "Carriona, youngest of the Hag sisters, has fallen. Her wounds are grievous, and she slumps back into her chair, gasping for one final breath before she passes."]
+
+    hag2_shadow_strike = weapon("Shadow Strike", 12, 6, "pierces", "Shadows swell and stab at the gaps in your armor. Everything is cold.", pickup=False)
+    hag2_corruption = weapon("Corruption", 12, 10, "casts", "Enfeebling beams of darkness fly from her fingertips like daggers.", pickup=False)
+    heart_of_shadows = item("Heart of Shadows", "A companion gem to the Blood of Shadows. It stinks of evil magic.", pickup=True)
+    hag2_BOSS = enemy.enemy("Pumera Prickersnout", "Pumera's eyes peer out at you from the shadows with big, glowing orbs.", 75, [hag2_shadow_strike, hag2_corruption, hag2_corruption], 15, [heart_of_shadows], "", woodsDeadN)
+    
+    hag2_deaths = [ "The shadows have been lifted, and sunlight once again returns to this part of the wood. Pumera Prickersnout, secondborn of the Hag sisters, is defeated."]
+    
+    hag3_needle = weapon("Nefarious Needle", 13, 13, "stabs", "A vicious, sharp implement capable of piercing all but the strongest of armors.", pickup=True)
+    hag3_BOSS = enemy.enemy("Jezebella Crowseye", "She appears as a most beautiful woman, wading in the shallow pools behind the waterfall.", 85, [hag3_needle, hag3_needle, hag3_needle], 15, [hag3_needle], "", dampCave)
+    
+    hag3_deaths = ["Jezebella falls backwards, causing a terrific splash. Her blood flows out from her wounds, tinting the water a deep, awful red."]
+
+    
+    ENDING_LOCAL = Location("The Bitter End", "The Hamlet is under seige. All Hell has broken loose.", "", [], [], [])
+    hag4_scythe = weapon("Mefilda's Malice", 20, 10, "swings", "Mefilda's Malice is the physical realization of her hatred and contempt for the living.", pickup=True)
+    
+    hag4_BOSS = enemy.enemy("Mefilda Rottenbough", "Many believed Mefilda to be dead. Vengeance has come, finally, and her name is Mefilda.", 100, [], 15, [hag4_scythe], "", ENDING_LOCAL)
+    
+
+    def end_desc():
+      prints("The winds pick up, spinning at incredible speeds. A tornado forms, reaching a long tendril down towards Mefilda, who screams.")
+      prints("Try as she might, she cannot escape. With a terrible cry, she is lifted from the ground and swallowed by the sky.")
+      prints("Shortly thereafter, the sky clears and villagers begin spilling out from their hiding places. Most stare in stunned silence,")
+      prints("until a few begin to cheer. It is said that many miles away, in neighboring villages, folks could hear the triumphant")
+      prints("cries of the Hamlet. They chant your name, sing your praises, and hold a feast in your honor. You have saved the Hamlet,")
+      prints("and perhaps the world, as it were. For years to come, your name will exist as legend. For the present,")
+      prints("                                  -----##### YOU ARE A HERO #####----")
+
+            
+      prints("                    _______               _______  _______  _______   ")
+      prints("          |\     /|(  ___  )|\     /|    (  ___  )(  ____ )(  ____ \" ")
+      prints("          ( \   / )| (   ) || )   ( |    | (   ) || (    )|| (    \/  ")
+      prints("          \ (_) / | |   | || |   | |    | (___) || (____)|| (__       ")
+      prints("           \   /  | |   | || |   | |    |  ___  ||     __)|  __)      ")
+      prints("            ) (   | |   | || |   | |    | (   ) || (\ (   | (         ")
+      prints("            | |   | (___) || (___) |    | )   ( || ) \ \__| (____/\"  ")
+      prints("            \_/   (_______)(_______)    |/     \||/   \__/(_______/   ")
+      prints("                                                                      ")
+      prints("              _______                 _______  _______  _______       ")
+      prints("             (  ___  )      |\     /|(  ____ \(  ____ )(  ___  )      ")
+      prints("             | (   ) |      | )   ( || (    \/| (    )|| (   ) |      ")
+      prints("             | (___) |      | (___) || (__    | (____)|| |   | |      ")
+      prints("             |  ___  |      |  ___  ||  __)   |     __)| |   | |      ")
+      prints("             | (   ) |      | (   ) || (      | (\ (   | |   | |      ")
+      prints("             | )   ( |      | )   ( || (____/\| ) \ \__| (___) |      ")
+      prints("             |/     \|      |/     \|(_______/|/   \__/(_______)      ")
+                                                                
+
+    
+    ending = end_desc()
+    hag4_deaths = [ending]
+    
+
+    death_flavor(hag1, hag1_deaths)
+    death_flavor(hag2, hag2_deaths)
+    death_flavor(hag3, hag3_deaths)
+    death_flavor(hag4, hag4_deaths)
+    
+
+
+
+    enemy_description_flavor(zombie, zombie_descs)
+    enemy_description_flavor(skel1, skel1_descs)
+    enemy_description_flavor(skel2, skel1_descs)
+    enemy_description_flavor(skel3, skel1_descs)
+    enemy_description_flavor(skel4, skel1_descs)
+    enemy_description_flavor(skel5, skel5_descs)
+    enemy_description_flavor(bat, bat_descs)
+    enemy_description_flavor(giant_spider, giant_spider_descs)
+    enemy_description_flavor(hatchling_spider, hatchling_spider_descs)
+    enemy_description_flavor(bandit, bandit2_descs)
+    enemy_description_flavor(bandit, bandit_descs)
+    enemy_description_flavor(wolf1, wolf_descs)
+    enemy_description_flavor(wolf2, wolf_descs)
+    enemy_description_flavor(wolf3, wolf_descs)
+    enemy_description_flavor(angry_spirit, angry_spirit_descs)
+    enemy_description_flavor(goblin, goblin_descs)
+    
+    
+
+    death_flavor(zombie, zombie_deaths)
+    death_flavor(skel1, skel1_deaths)
+    death_flavor(skel2, skel2_death)
+    death_flavor(skel3, skel3_death)
+    death_flavor(skel4, skel4_death)
+    death_flavor(bat, bat_deaths)
+    death_flavor(giant_spider, giant_spider_deaths)
+    death_flavor(hatchling_spider, hatchling_spider_deaths)
+    death_flavor(bandit, bandit2_deaths)
+    death_flavor(bandit2, bandit2_deaths)
+    death_flavor(wolf1, wolf_deaths)
+    death_flavor(wolf2, wolf_deaths)
+    death_flavor(wolf3, wolf_deaths)
+    death_flavor(angry_spirit, angry_spirit_deaths)
+    death_flavor(goblin, goblin_deaths) 
+    
+
+    """ death_flavor(hag1, hag1_deaths)
+    death_flavor(hag2, hag2_deaths)
+    death_flavor(hag3, hag3_deaths)
+    death_flavor(hag4, hag4_deaths)
+     """
+
 
             
 
@@ -387,11 +654,7 @@ class map():
     dampCave.enemyArr = [skel6,skel7,skel8,skel9]
     forest.enemyArr = [wolf1]
 
+
     forest.enemyArr = [wolf1]
     woodsS.enemyArr = [wolf2]
     woodsDeadN.enemyArr = [wolf3]
-    
-
-
-    
-

@@ -32,14 +32,24 @@ class enemy():
 
 
     def attack(self, player):
-        prints(f"The {self.name} {self.weapon[0].type} at you with it's {self.weapon[0].name}")
+        prints("")
+        prints(f"The {self.name} {self.weapon[0].type} at you with it's {self.weapon[0].name}.")
+        prints("")
         player.hit([randrange(1, 21) + self.weapon[0].toHit,randrange(1, 7) + self.weapon[0].dmg])
+        prints("")
 
     def attack2(self, player):
+        prints("")
         prints(f"The {self.name} {self.weapon[1].type} at you with it's {self.weapon[1].name}")
+        prints("")
         player.hit([randrange(1, 21) + self.weapon[1].toHit, randrange(1, 7) + self.weapon[1].dmg])
+        prints("")
 
     def attack3(self, player):
+        prints("")
         prints(f"The {self.name} {self.weapon[2].type} at you with it's {self.weapon[2].name}")
+        prints("")
         player.hit([randrange(1, 21) + self.weapon[2].toHit, randrange(1, 7) + self.weapon[2].dmg])
+        prints("")
+        
 

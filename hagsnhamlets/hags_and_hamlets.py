@@ -50,7 +50,7 @@ def main():
         for i in (range(1,100)):
             print("")
 
-
+        prints("dwfgirygidwegflleiagfliudwegafeugdwaouifgowkliugfiuywderggfy iyegfioyergyfiorgfsoigdiuirwegsfiurwgifgwaiugfiuywaregfiywaergfrigwiealgfriuywergfigwsgfwiluegfiwufgilwefgi")
         player1.hp = randint(25,50)
         player1.maxHp = player1.hp
         player1.dex = randint(0, 10)

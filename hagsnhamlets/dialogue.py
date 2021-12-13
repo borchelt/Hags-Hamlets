@@ -42,7 +42,7 @@ def dialogue(dialogue_options, dialogue_outcome, npc, player):
                         npc.trade(player)
                     if(i == npc.questNum):
                         print("questcalled")
-                        npc.questFunc()
+                        npc.questFunc(npc)
                     elif(i == npc.questEndNum):
                         print("questEnd")
                         for i in player.inventory:

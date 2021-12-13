@@ -7,7 +7,7 @@ import weapon
 #placeholder
 class Player(object):
 
-    def __init__(self, name, desc, hp, dex, str, inventory, equipped, location, hb = False, bloat = 0, luck = 0, gold = 999999):
+    def __init__(self, name, desc, hp, dex, str, inventory, equipped, location, rat, hb = False, bloat = 0, luck = 0, gold = 999999):
         self.name = name
         self.desc = desc
         self.ac = 5 + dex
@@ -20,6 +20,7 @@ class Player(object):
         self.location = location
         self.gold = gold
         self.bloat = bloat
+        self.rat = rat
         self.luck = luck
         self.hb = hb
         self.dead = False
@@ -114,6 +115,16 @@ class Player(object):
             self.die()
 
     def die(self):
+        for i in range(len(self.inventory)):
+            if not [self.inventory[i-1], 100] in self.rat.tradeOptions:
+                print("gaveItem")
+                self.rat.tradeOptions.append([self.inventory[i-1], 100])
+            self.inventory.remove(self.inventory[i-1])
+        for i in range(len(self.equipped)):
+            if not [self.equipped[i-1], 100] in self.rat.tradeOptions:
+                print("gaveWeap")
+                self.rat.tradeOptions.append([self.equipped[i-1], 100])
+            self.equipped.remove(self.equipped[i-1])
         prints("                   ___________________                     ",.3)
         prints("                 / ..,.,...,. .,.,...,.\                   ",.3)
         prints("                /               #####$$ \                  ",.3)
@@ -131,8 +142,8 @@ class Player(object):
         prints("..............|___________________________|..............  ",.3)
         prints("@#$@#^$&^$%&$#%#$%#$^&$&^#$%@%@$#^@@$@@@#$@$#@#$@#$@#$@#$@@",.3)
         prints("@@$@$@#^$^%$&$%#%@#$%#&$#$@$$#^#@@@#$@##$#@#$@#$@#$#@$@#$#@",.3)
-        prints("")
-        prints("")
+        prints("",.3)
+        prints("",.3)
         prints("        Within minutes of your passing, a swarm            ", .3)
         prints("    of rats is upon your corpse. Soon there is nothing     ", .3)
         prints("    left of your mortal remains. Your weapons have been    ", .3)

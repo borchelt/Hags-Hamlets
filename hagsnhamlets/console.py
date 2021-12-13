@@ -19,6 +19,7 @@ class console(object):
     def __init__(self, player):
         self.player = player
         self.quitB = False
+        self.everything = []
     
     def move(self, action):
         name = nameFetch()
@@ -39,19 +40,19 @@ class console(object):
                     name.printName(i.name, i)
                     prints(self.player.location.look())
                     self.turn = False
+        bigList = [self.player.location.interactables, self.player.location.enemyArr]
+        for sub in bigList:
+            for i in sub:
+                self.everything.append(i)
+        self.everything.append(self.player.location)
+        self.everything.append(self.player)
                 
     #gets a player and prompts them to do things, the main controller of the game
     def start(self):
         turn = False
         p1 = self.player
         #playsound(p1.location.song, False)
-        bigList = [p1.location.interactables, p1.location.enemyArr]
-        everything = []
-        for sub in bigList:
-            for i in sub:
-                everything.append(i)
-        everything.append(p1.location)
-        everything.append(p1)
+        
 
         self.quitB = False
         while self.quitB == False:
@@ -92,7 +93,7 @@ class console(object):
             elif("look at" in action): 
                 turn = False
                 target = action.replace("look at ", '')
-                for i in everything:
+                for i in self.everything:
                     if i.name.lower() == target:
                         prints(i.desc)
             
@@ -102,16 +103,16 @@ class console(object):
             elif("pick up" in action):
                 
                 bigList = [p1.location.interactables, p1.location.enemyArr]
-                everything = []
+                self.everything = []
                 for sub in bigList:
                     for i in sub:
-                        everything.append(i)
-                everything.append(p1.location)
-                everything.append(p1)
+                        self.everything.append(i)
+                self.everything.append(p1.location)
+                self.everything.append(p1)
                 turn = True
                 target = action.replace("pick up ", '')
                 if target == "all":
-                    for i in everything:
+                    for i in self.everything:
                         if type(i) is item or issubclass(type(i), item):
                             if(i.pickup):
                                 p1.inventory.append(i)
@@ -119,7 +120,7 @@ class console(object):
                                 prints(f"You got the {i.name}")
 
 
-                for i in everything:
+                for i in self.everything:
                     if i.name.lower() == target:
                         if type(i) is item or issubclass(type(i), item):
                             if(i.pickup):
@@ -135,7 +136,7 @@ class console(object):
                 target = target.replace("open ", "")
                 target = target.replace("look in the ", "")
                 target = target.replace("look in ", "")
-                for i in everything:
+                for i in self.everything:
                     if type(i) == container:
                         if i.name.lower() == target:
                             i.open(p1)
@@ -148,11 +149,23 @@ class console(object):
                     self.move(f"go to {p1.location.adj_locations[randrange(0, len(p1.location.adj_locations))].name}")
                         
             elif "attack" in action:
+
+                if action == "attack":
+                    print(len(p1.location.enemyArr))
+                    if len(p1.location.enemyArr) >= 1:
+                        p1.attack(p1.equipped[0], p1.location.enemyArr[0])
+                    else:
+                        p1.attack(p1.equipped[0], p1)
                 turn = True
+                
                 target = action.replace("attack the ", '')
                 target = target.replace("attack ", '')
                 target = target.replace(" with", '')
-                target = target.split(" ")
+                target = target.replace("attack", "")
+                if target == "":
+                    target = []
+                else:
+                    target = target.split(" ")
                 if(len(target) > 2):
                     target[1] += " "
 
@@ -160,8 +173,8 @@ class console(object):
                     for i in p1.location.enemyArr:
                         if i.name.lower() == target[0]:
                             enemy = i
-                    self.player.attack(self.player.equipped[0], i)
-                else:
+                    self.player.attack(self.player.equipped[0], enemy)
+                elif len(target) > 0:
                     num = 1
                     while num < len(target)-1:
                         target[num] += target[num+1]

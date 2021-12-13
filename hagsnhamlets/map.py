@@ -46,7 +46,7 @@ class map():
     woodsSW = Location("The Southwestern Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
     woodsDeadN = Location("The Northeastern Woods", "A dead end, the trees grow too dense and the shadows too dark.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
     woodsDeadS = Location("The Southeastern-er Woods", "A dead end, the trees grow too dense and the shadows too dark.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    waterfall = Location("The Waterfall", "Murky water cascades over the falls and into the pool below. You stop for a moment, taking in the view, when you think you see a flash of light from behind the falls.", "hnh_forestTheme_conceptQ.mp3", [],[],[])
+    waterfall1 = Location("The Waterfall", "Murky water cascades over the falls and into the pool below. You stop for a moment, taking in the view, when you think you see a flash of light from behind the falls.", "hnh_forestTheme_conceptQ.mp3", [],[],[])
     dampCave = Location("The Cove", "The deafening roar of the waterfall falls surprisingly quiet beyond the veil of foam and murk", "hnh_forestTheme_conceptQ.mp3", [], [],[], True)
     path = Location("The Twisted Path", "A small, twisting path beckons you deeper into the woods.","hnh_forestTheme_conceptQ.mp3", [], [],[])
     camp = Location("The Hunter's Camp", "Whatever fire was once here has long since died out. A raggedy tent is haphazardly nested between two large daggerlike stones. ","hnh_forestTheme_conceptQ.mp3", [], [],[])
@@ -62,18 +62,18 @@ class map():
      #OLD MINES
     old_mines_entrance = Location("Old Mines: Entrance", "Once a great mine, the resources have been mostly used up. The dwarven miners that still work here must fight to keep it clear of enemies in the absence of more capable fighters.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
     old_mines_main_chamber = Location("Old Mines: First Chamber", "The Old Mine is dimly lit by torches. Several groups of dwarves are huddled. Some are tending to wounds, others eating lunch.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_floor1_NW = Location("Old Mines", "A dimly lit corridor. Various scraps of metal and other tools litter the area. Someone left in a hurry.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_floor1_N = Location("Old Mines", "An old mine cart lay here, toppled on its side.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_floor1_NE = Location ("Old Mines", "Following the tracks, you see that the corridor ahead leads deeper into the mines.","hnh_forestTheme_conceptQ.mp3", [], [], [], True)
-    old_mines_floor2 = Location("Old Mines", "Before you is a great Iron door. Bloody handprints have left rusty colored marks on the wood. The bar blocking the door has been bent from the force of something large hitting it.","hnh_forestTheme_conceptQ.mp3", [], [], [], True)
-    old_mines_floor2_W = Location("Old Mines", "The dwarves have warned you that the path ahead would not be easy. The way forward requires that you pass through an impressive number of cobwebs.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
+    old_mines_floor1_NW = Location("Old Mines room 1", "A dimly lit corridor. Various scraps of metal and other tools litter the area. Someone left in a hurry.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
+    old_mines_floor1_N = Location("Old Mines room 2", "An old mine cart lay here, toppled on its side.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
+    old_mines_floor1_NE = Location ("Old Mines room 3", "Following the tracks, you see that the corridor ahead leads deeper into the mines.","hnh_forestTheme_conceptQ.mp3", [], [], [], True)
+    old_mines_floor2 = Location("Old Mines room 4", "Before you is a great Iron door. Bloody handprints have left rusty colored marks on the wood. The bar blocking the door has been bent from the force of something large hitting it.","hnh_forestTheme_conceptQ.mp3", [], [], [], True)
+    old_mines_floor2_W = Location("Old Mines room 5", "The dwarves have warned you that the path ahead would not be easy. The way forward requires that you pass through an impressive number of cobwebs.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
     old_mines_floor2_W2 = Location("Old Mines: Supply Cache", "A small chamber dedicated to storing supplies.","hnh_forestTheme_conceptQ.mp3", [], [], [],True)
     old_mines_center_chamber = Location("Old Mines: Center Chamber", "A large chamber with a statue of the famous dwarf, Mozal Mon. A locked chest rests at the Statue's feet.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_floor2_W3 = Location("Old Mines", "The enormous webs grow thicker here.", [],[],[],True)
+    old_mines_floor2_W3 = Location("Old Mines room 6", "The enormous webs grow thicker here.", [],[],[],True)
     old_mines_floor2_wN = Location("Old Mines: The Forge", "This forge hasn't been operational for some time. There are bones and webs everywhere.","hnh_forestTheme_conceptQ.mp3", [],[],[],True)
     old_mines_floor2_wN2 = Location("Old Mines: The Armory", "This place was surely wondrous some time ago. Now various weapons and armor lay discarded on the stone, forgotten or abandoned by dwarves desparate to escape.","hnh_forestTheme_conceptQ.mp3", [],[],[],True)
     old_mines_floor2_wN2_W = Location("Old Mines: Webbed Path", "You're not sure you should be here. The entirety of the corridor is covered with webs. The decaying husks of the spiders' victims hang from the ceiling.", [],[],[],True)
-    old_mines_floor2_wN2_W2 = Location("Old Mines", "The webs are next to impassable here, but just ahead you can a clearer space.","hnh_forestTheme_conceptQ.mp3",[], [], [],True)
+    old_mines_floor2_wN2_W2 = Location("Old Mines room 7", "The webs are next to impassable here, but just ahead you can a clearer space.","hnh_forestTheme_conceptQ.mp3",[], [], [],True)
     old_mines_spider_lair = Location("Spiders' Lair", "A large cavern littered with bodies, bones and webs. Hundreds of spider eggs cling to the floor, walls and ceiling of the cavern.","hnh_forestTheme_conceptQ.mp3", [],[],[],True)
     
     #OLD MINES FLOOR 1 DIRECTIONAL 
@@ -127,8 +127,8 @@ class map():
     old_mines_floor2_W2.interactables = [medium_armor_chest, large_weapon_chest]
 
     #SILVER ORE NEEDS TO GO HERE 
-
-    old_mines_center_chamber.interactables = [large_health_chest]
+    silOre = item("Silver Ore", "it glitters with potential")
+    old_mines_center_chamber.interactables = [large_health_chest,silOre]
     old_mines_floor2_W3.interactables = []
     old_mines_floor2_wN.interactables = []
     old_mines_floor2_wN2.interactables = [small_health_chest]
@@ -138,6 +138,21 @@ class map():
     
     
 
+    deepwoods_mid = Location("The Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
+    deepwoods_branch_1 = Location("The Northern(?) Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
+    deepwoods_branch_2 = Location("The Southern(?) Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
+    deepwoods_branch_3 = Location("The Western(?) Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
+    deepwoods_branch_4 = Location("The Western(?) Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
+    deepwoods_HagLair = Location("The Core of the Deepwoods", "This is deeper than you've ever been before. you can barely see your hand infront of your face.", [],[],[])
+
+    
+
+    dwList = [deepwoods_mid, deepwoods_branch_1, deepwoods_branch_2, deepwoods_branch_3,deepwoods_branch_4, woodsDeadN]
+
+    shadowyGrasp = weapon("Shadowy Grasp", 5, 5, "claws")
+    scream = weapon("Wretched Scream", 10, -3, "howls")
+    stare = weapon("Empty Stare", -3, 10, "looks")
+    shade = enemy.enemy("Shade", "a formless thing of hate and rage, it shimmers as if underwater", 15, [shadowyGrasp, scream, stare], 16,[], "It hisses like a forged sword in oil as it evaporates before you", deepwoods_mid)
     #CURRENTLY NOT IN USE 
     """ 
     
@@ -157,37 +172,38 @@ class map():
     wagon = Location("The Merchant Wagon", "The small covered wagon smells of incense and dust.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
     well = Location("The Well", "you cant see the bottom of the well, but for some reason, you can hear running water below.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
 
-    hamlet.adj_locations = [store, sundial, tavern, QBoard, blacksmith, library, wagon, well]
-    hamlet.interactables = [small_weapon_chest, large_health_chest, greg]
+    hamlet.adj_locations = [store, tavern, blacksmith, library, wagon, well, forest]
+    hamlet.interactables = [small_weapon_chest, large_health_chest, townGreg]
 
     store.adj_locations = [hamlet]
     store.interactables = [general_store_owner]
 
-    sundial.adj_locations = [store, tavern, QBoard, blacksmith, library, wagon, well,]
+    sundial.adj_locations = [store, tavern, QBoard, blacksmith, library, wagon, well]
     sundial.interactables = []
 
-    tavern.adj_locations = [hamlet]
+    tavern.adj_locations = [hamlet, forest]
     tavern.interactables = [innkeeper, small_health_chest, beer, beer, beer, chicken, beef, plate, plate, silver_fork, wine, wine_glass]
 
-    QBoard.adj_locations = [store, tavern, sundial, blacksmith, library, wagon, well]
+    QBoard.adj_locations = [store, tavern, sundial, blacksmith, library, wagon, well, forest]
     QBoard.interactables = []
 
     library.adj_locations = [hamlet]
-    library.interactables = [librarian, small_health_chest, pamphlet, glass]
+    library.interactables = [librarian, small_health_chest, pamphlet, glass, ]
 
     wagon.adj_locations = [store, tavern, sundial, blacksmith, library, QBoard, well,]
     wagon.interactables = [merchant]
 
-    well.adj_locations = [store, sundial, tavern, QBoard, blacksmith, library, wagon]
-    well.interactables = [small_health_chest, small_weapon_chest]
+   
 
      #SEWERS 
-    sewers = Location("Sewer Entrance", "It definitely smells like a sewer. With some effort, you would be able to move the cover and enter. It seems dark.", [],[],[])
-    sewer_tunnels = Location("Sewer Tunnels", "A disgusting smell assaults your senses every second that you spend here.", [],[],[],True)
-    sewer_tunnelsN = Location("Sewer Tunnels", "The path widens. This looks like a maintenance tunnel.", [],[],[],True)
-    sewer_tunnelsE = Location("Sewer Tunnels", "The path opens into a large room. There are two doors here. You can hear the sounds of clinking glasses. One door is guarded by a large, hooded man.", [],[],[],True)
-    sewer_tunnelsW = Location("Sewer Tunnels", "Faint chittering sounds echo down the tunnel towards you.", [],[],[],True)
+    sewers = Location("Sewer Entrance", "It definitely smells like a sewer. With some effort, you would be able to move the cover and enter. It seems dark.", "", [],[],[])
+    sewer_tunnels = Location("Sewer Tunnels", "A disgusting smell assaults your senses every second that you spend here.", "", [],[],[],True)
+    sewer_tunnelsN = Location("North Sewer Tunnels", "The path widens. This looks like a maintenance tunnel.", "", [],[],[],True)
+    sewer_tunnelsE = Location("East Sewer Tunnels", "The path opens into a large room. There are two doors here. "", You can hear the sounds of clinking glasses. One door is guarded by a large, hooded man.", [],[],[],True)
+    sewer_tunnelsW = Location("West Sewer Tunnels", "Faint chittering sounds echo down the tunnel towards you.", "", [],[],[],True)
     
+    well.adj_locations = [hamlet, sewers]
+    well.interactables = [small_health_chest, small_weapon_chest]
 
     sewer_tunnels.enemyArr = []
     sewer_tunnelsN.enemyArr = []
@@ -200,20 +216,20 @@ class map():
     sewer_tunnelsW.interactables = [small_health_chest]
 
 
-    speakeasy = Location("The Speakeasy", "A place for seedier types to relax and try to forget about the Hags' Curse.", [],[],[], True)
+    speakeasy = Location("The Speakeasy", "A place for seedier types to relax and try to forget about the Hags' Curse.", "placeholder", [],[],[], True)
     speakeasy.interactables = [drunkard, beer, beer, beer, beer, wine, plate, small_weapon_chest, bottle]
 
-    thieves_den = Location("Thieves' Den", "This place is well hidden beneath the Hamlet. It seems odd that such a remote space in the world would be home to such a place.", [],[],[],True)
-    thieves_den.interactables = [thief_king]
+    thieves_den = Location("Thieves' Den", "This place is well hidden beneath the Hamlet. It seems odd that such a remote space in the world would be home to such a place.", "placeholder", [],[],[],True)
+    thieves_den.interactables = [thief_king, drunkard]
 
-    rat_kings_nest = Location("The Rat King's Nest", "This place is a mess of trinkets, weapons, armor and scraps of paper. You're not sure which smells worse- the sewers or the nest.", [],[],[], True)
-    rat_kings_nest.interactables = []
+    rat_kings_nest = Location("The Rat King's Nest", "This place is a mess of trinkets, weapons, armor and scraps of paper. You're not sure which smells worse- the sewers or the nest.", "placeholder", [],[],[], True)
+    rat_kings_nest.interactables = [rat_king]
     
     sewers.adj_locations = [sewer_tunnels]
     sewer_tunnels.adj_locations = [sewers, sewer_tunnelsN, sewer_tunnelsW]
     sewer_tunnelsN.adj_locations = [sewer_tunnels, sewer_tunnelsE]
     sewer_tunnelsE.adj_locations =[sewer_tunnelsN, speakeasy, thieves_den]
-    sewer_tunnelsW.adj_locations = [sewer_tunnels, rat_kings_nest],
+    sewer_tunnelsW.adj_locations = [sewer_tunnels, rat_kings_nest]
     thieves_den.adj_locations = [sewer_tunnelsE]
     speakeasy.adj_locations = [sewer_tunnelsE]
     
@@ -225,13 +241,13 @@ class map():
     clearing.adj_locations = [gates, woodsN, woodsS, path]
     woodsN.adj_locations = [woodsNW, clearing, woodsDeadN, old_mines_entrance] #old mines once they start
     woodsNW.adj_locations = [woodsN, path]
-    woodsDeadN.adj_locations = [woodsN]
+    woodsDeadN.adj_locations = [woodsN, deepwoods_mid]
     woodsS.adj_locations = [woodsSE, woodsSW, clearing]
-    woodsSW.adj_locations = [path, woodsSE, woodsS, waterfall]
+    woodsSW.adj_locations = [path, woodsSE, woodsS, waterfall1]
     woodsSE.adj_locations = [woodsSW, woodsS, woodsDeadS]
     woodsDeadS.adj_locations = [woodsSE]
-    waterfall.adj_locations = [dampCave, woodsSW]
-    dampCave.adj_locations = [waterfall]
+    waterfall1.adj_locations = [woodsSW]
+    dampCave.adj_locations = [waterfall1]
     path.adj_locations = [woodsSW, woodsNW, clearing, forest, camp]
     camp.adj_locations = [path]
 
@@ -284,7 +300,6 @@ class map():
     woodsNW.interactables = [deathcap]
     woodsDeadS.interactables = [oldSword]
     waterfall.interactables = [riverGlass]
-    cottage.interactables = [doll, toadEye, small_weapon_chest]
     gates.interactables = [guard, small_health_chest]
 
     claw = weapon("Claws", 1, 4, "swipes")
@@ -329,7 +344,7 @@ class map():
     squirrel_dag = weapon("Squirrel Dagger", 1, 1, "stabs")
 
     #should always be able to run from, but always take 1 damage getting away and be forced out unless they leave the squirrel king a treat
-    squirrels = enemy.enemy("A number of ferocious looking squirrels approach you in miniature armor.","You have unwittingly stepped into the glade of the Squirrel King, ChitterScritch the 4th, blessings upon them. You should leave an offering or run.", 666, 
+    squirrels = enemy.enemy("The Squirrel king", "A number of ferocious looking squirrels approach you in miniature armor.", 666,
                         [squirrel_bow, squirrel_spear, squirrel_dag], 10, [item("King ChitterScritch's Crown", "A beautiful crown made with bits of acorn shells."), item("Strange Gem","Looks valuable.")], "The unspeakable has happened. The squirrels have all died. How have wrought such death?", glade)
     king_chitterscritch = enemy.enemy("King ChitterScritch the 4th", "The other squirrels obviously revere this most impressive Squirrel.", 100, [squirrel_bow, squirrel_spear, squirrel_dag], 10, item("King ChitterScritch's Wand", "An ornate wand covered in small bits of shell, vine and precious stones.", pickup=True), "The mighty King lay fallen. Are you content now, murderer?", glade),
 
@@ -538,7 +553,7 @@ class map():
     hag2_shadow_strike = weapon("Shadow Strike", 12, 6, "pierces", "Shadows swell and stab at the gaps in your armor. Everything is cold.", pickup=False)
     hag2_corruption = weapon("Corruption", 12, 10, "casts", "Enfeebling beams of darkness fly from her fingertips like daggers.", pickup=False)
     heart_of_shadows = item("Heart of Shadows", "A companion gem to the Blood of Shadows. It stinks of evil magic.", pickup=True)
-    hag2_BOSS = enemy.enemy("Pumera Prickersnout", "Pumera's eyes peer out at you from the shadows with big, glowing orbs.", 75, [hag2_shadow_strike, hag2_corruption, hag2_corruption], 15, [heart_of_shadows], "", woodsDeadN)
+    hag2_BOSS = enemy.enemy("Pumera Prickersnout", "Pumera's eyes peer out at you from the shadows: big, glowing orbs full of hate.", 75, [hag2_shadow_strike, hag2_corruption, hag2_corruption], 15, [heart_of_shadows], "", deepwoods_HagLair)
     
     hag2_deaths = [ "The shadows have been lifted, and sunlight once again returns to this part of the wood. Pumera Prickersnout, secondborn of the Hag sisters, is defeated."]
     
@@ -554,44 +569,41 @@ class map():
     hag4_BOSS = enemy.enemy("Mefilda Rottenbough", "Many believed Mefilda to be dead. Vengeance has come, finally, and her name is Mefilda.", 100, [], 15, [hag4_scythe], "", ENDING_LOCAL)
     
 
-    def end_desc():
-      prints("The winds pick up, spinning at incredible speeds. A tornado forms, reaching a long tendril down towards Mefilda, who screams.")
-      prints("Try as she might, she cannot escape. With a terrible cry, she is lifted from the ground and swallowed by the sky.")
-      prints("Shortly thereafter, the sky clears and villagers begin spilling out from their hiding places. Most stare in stunned silence,")
-      prints("until a few begin to cheer. It is said that many miles away, in neighboring villages, folks could hear the triumphant")
-      prints("cries of the Hamlet. They chant your name, sing your praises, and hold a feast in your honor. You have saved the Hamlet,")
-      prints("and perhaps the world, as it were. For years to come, your name will exist as legend. For the present,")
-      prints("                                  -----##### YOU ARE A HERO #####----")
+    # def end_desc():
+    #   prints("The winds pick up, spinning at incredible speeds. A tornado forms, reaching a long tendril down towards Mefilda, who screams.")
+    #   prints("Try as she might, she cannot escape. With a terrible cry, she is lifted from the ground and swallowed by the sky.")
+    #   prints("Shortly thereafter, the sky clears and villagers begin spilling out from their hiding places. Most stare in stunned silence,")
+    #   prints("until a few begin to cheer. It is said that many miles away, in neighboring villages, folks could hear the triumphant")
+    #   prints("cries of the Hamlet. They chant your name, sing your praises, and hold a feast in your honor. You have saved the Hamlet,")
+    #   prints("and perhaps the world, as it were. For years to come, your name will exist as legend. For the present,")
+    #   prints("                                  -----##### YOU ARE A HERO #####----")
 
             
-      prints("                    _______               _______  _______  _______   ")
-      prints("          |\     /|(  ___  )|\     /|    (  ___  )(  ____ )(  ____ \" ")
-      prints("          ( \   / )| (   ) || )   ( |    | (   ) || (    )|| (    \/  ")
-      prints("          \ (_) / | |   | || |   | |    | (___) || (____)|| (__       ")
-      prints("           \   /  | |   | || |   | |    |  ___  ||     __)|  __)      ")
-      prints("            ) (   | |   | || |   | |    | (   ) || (\ (   | (         ")
-      prints("            | |   | (___) || (___) |    | )   ( || ) \ \__| (____/\"  ")
-      prints("            \_/   (_______)(_______)    |/     \||/   \__/(_______/   ")
-      prints("                                                                      ")
-      prints("              _______                 _______  _______  _______       ")
-      prints("             (  ___  )      |\     /|(  ____ \(  ____ )(  ___  )      ")
-      prints("             | (   ) |      | )   ( || (    \/| (    )|| (   ) |      ")
-      prints("             | (___) |      | (___) || (__    | (____)|| |   | |      ")
-      prints("             |  ___  |      |  ___  ||  __)   |     __)| |   | |      ")
-      prints("             | (   ) |      | (   ) || (      | (\ (   | |   | |      ")
-      prints("             | )   ( |      | )   ( || (____/\| ) \ \__| (___) |      ")
-      prints("             |/     \|      |/     \|(_______/|/   \__/(_______)      ")
+    #   prints("                    _______               _______  _______  _______   ")
+    #   prints("          |\     /|(  ___  )|\     /|    (  ___  )(  ____ )(  ____ \" ")
+    #   prints("          ( \   / )| (   ) || )   ( |    | (   ) || (    )|| (    \/  ")
+    #   prints("          \ (_) / | |   | || |   | |    | (___) || (____)|| (__       ")
+    #   prints("           \   /  | |   | || |   | |    |  ___  ||     __)|  __)      ")
+    #   prints("            ) (   | |   | || |   | |    | (   ) || (\ (   | (         ")
+    #   prints("            | |   | (___) || (___) |    | )   ( || ) \ \__| (____/\"  ")
+    #   prints("            \_/   (_______)(_______)    |/     \||/   \__/(_______/   ")
+    #   prints("                                                                      ")
+    #   prints("              _______                 _______  _______  _______       ")
+    #   prints("             (  ___  )      |\     /|(  ____ \(  ____ )(  ___  )      ")
+    #   prints("             | (   ) |      | )   ( || (    \/| (    )|| (   ) |      ")
+    #   prints("             | (___) |      | (___) || (__    | (____)|| |   | |      ")
+    #   prints("             |  ___  |      |  ___  ||  __)   |     __)| |   | |      ")
+    #   prints("             | (   ) |      | (   ) || (      | (\ (   | |   | |      ")
+    #   prints("             | )   ( |      | )   ( || (____/\| ) \ \__| (___) |      ")
+    #   prints("             |/     \|      |/     \|(_______/|/   \__/(_______)      ")
                                                                 
 
     
-    ending = end_desc()
-    hag4_deaths = [ending]
+    # ending = end_desc()
+    # hag4_deaths = [end_desc()]
     
 
-    death_flavor(hag1, hag1_deaths)
-    death_flavor(hag2, hag2_deaths)
-    death_flavor(hag3, hag3_deaths)
-    death_flavor(hag4, hag4_deaths)
+    
     
 
 
@@ -646,7 +658,7 @@ class map():
     outskirts.enemyArr = [bandit, bandit2]
     cemetery.enemyArr = [zombie]
     tree.enemyArr = [angry_spirit]
-    glade.enemyArr = [squirrels]
+    glade.enemyArr = [squirrels, king_chitterscritch]
     woodsNW.enemyArr = [skel1, skel2]
     woodsSW.enemyArr = [skel3]
     woodsSE.enemyArr = [skel4]
@@ -658,3 +670,186 @@ class map():
     forest.enemyArr = [wolf1]
     woodsS.enemyArr = [wolf2]
     woodsDeadN.enemyArr = [wolf3]
+
+
+    def hunter_intro():
+      prints("")
+      prints("The hunter is a very large person. As soon as they turn to greet you,")
+      prints("you realize how small you are in comparison. Though his stature")
+      prints("precluded you to believe that he was harsh man, his demeanor led you to believe otherwise.")
+      prints("\"Well, I guess that one is getting away.\" He says, hanging his head, feigning disappointment.")
+      prints("")
+
+    def hunter_quest(self):
+        prints("")
+        prints("    The hunter smacks his lips, \"Have you met Aziz? That merchant is rumoured to have")
+        prints("    the coldest beer in all the land. It's mighty strong stuff, and tastes fantastic!\"")
+        self.setQuest("     **    Hand him the beer**", "\"he looks at it in awe.\"", 3, 0)
+        prints("")
+
+    def hunter_questEnd():
+        prints("")
+        prints("    \"My oh my! Thank you so much,\" the Hunter says as he takes the beer from you.")
+        prints("    \"Oh my...It's still cold...How wonderful...\" he manages to say as he sips greedily")
+        prints("    from the stein.")
+        prints("                    --- #### YOU'VE GOT THE HUNTER'S MAP #### ---")
+        prints("")
+        map.waterfall1.adj_locations.append(map.dampCave)
+
+
+
+
+    hunter_dialogue_options = [
+    "     Who are you?", 
+    "     What are you doing out here?", 
+    "     What do you know about the Hags' Curse?",
+    "     *** QUEST *** You look troubled. Can I help you in some way?",
+    "     Goodbye."
+    ]
+
+    hunter_dialogue_outcome = [
+        "   \"The name is Arthur. Arthur Edenbough. \" ", 
+        "   \"I thought I was going to finally fell that buck. Now you're here.\" ",
+        "   \"I've never seen one of them personally, but these woods are teeming with monsters. I don't past the brambles. It's too dark.\" ",
+        "   \"I'm so terribly thirsty. If you could bring me a cold beer, I'd be more than happy to share my map with you.\" ", 
+        "   \"Happy hunting!\" "
+            ]
+
+    hunters_map = item("Hunter's Map", "A map given to you by the Hunter. It describes a path that leads one behind the Waterfall.")
+    hunter_questTrades = [ [hunters_map, "Coldest Beer", hunter_questEnd, 3] ]
+
+    hunter = npc("Hunter", hunter_ascii, hunter_intro, hunter_dialogue_options, hunter_dialogue_outcome, -1, [], hunter_questTrades, 3, hunter_quest, 3)
+
+    def hag1_intro():
+      prints("")
+      prints("    As you enter the abdandoned cottage, you see a Hag sitting at the dining table. She")
+      prints("is almost too busy picking bits of gristle and bone from her teeth to notice you. the")
+      prints("bloodied remains of what look to be several children lie in a heap in the corner. She")
+      prints("motions you in, gesturing towards the pile of corpses with her hand.")
+      prints("    \"Care for a bite, dearie?\" she cackles. \"What do you think you're here to do, eh?\"")
+      prints("")
+
+    hag1_options = [
+    "   .....",
+    "   You should leave this place.",
+    "   I'm here to kill you.",
+    "   **Fight** You monster!"
+    ]
+
+    hag1_outcomes = [
+    "   \"Cat got your tongue? It matters not.\"",
+    "   \"Well you're a bold one, aren't you!\" she says, howling with laughter. Prepare yourself!\"",
+    "   \"Oh? I don't see a reason I should do that. Prepare yourself, foolish mortal!",
+    "   \"How original. Such a pity. You might have made a lovely cook one day."
+
+    ]
+
+    def hagFight(self):
+        prints("   The hag seems to grow too big for the room as she stands, looming over you.")
+        self.local.enemyArr.append(map.hag1_BOSS)
+        self.local.interactables.remove(self)
+
+    hag1 = npc("Hag1", hag1_ascii, hag1_intro, hag1_options, hag1_outcomes, -1, [], [],3, hagFight, -1, -1, cottage)
+
+    def hag2_intro():
+        prints("")
+        prints("    Shadows emanate from the Hag like creeping vines, crawling across the forest floor,")
+        prints("searching for your flesh. A sense of dread washes over you, and you find it hard to steel yourself")
+        prints("in the face of such incredible danger.")
+        prints("")
+
+    hag2_options = [
+    "   I HAVE THE AMULET. You cannot win this fight, you HAG!",
+    "   It's over! You cannot stay in the forest!",
+    "   Leave the Hamlet or die, you wretched thing!",
+    "   **Fight** I will send you to the Hells, Hag!"
+
+    ]
+
+    hag2_outcomes = [
+    "   \"You miserable toad. Do you really think that you can defeat me?\"",
+    "   \"Pathetic! I hope you've made funerary arrangements for yourself.",
+    "   \"Leave?...Why? There are so many people I haven't killed there yet,\" she says, cackling.",
+    "   \"Oh child,\" she tuts,\"It's bad manners to trespass. Now you'll pay the price!\""
+
+
+    ]
+    def hag2fight(self):
+      prints("  You feel the shadows around you begin to close in, dancing as if possesed")
+      self.local.enemyArr.append(map.hag2_BOSS)
+      self.local.interactables.remove(self)
+
+    hag2 = npc("hag2", hag2_ascii, hag2_intro, hag2_options, hag2_outcomes, -1, [], [], 3, hag2fight, -1, -1, deepwoods_HagLair)
+
+    def hag3_intro():
+        prints("")
+
+        prints("")
+
+    hag3_options = [
+    "   You find yourself unable to speak, despite your best efforts.",
+    "   Your tongue refuses to move behind your teeth. You cannot speak.",
+    "   Your mouth feels as though it has been glued shut. Something is wrong.",
+    "   **Fight** You open your mouth, but no sound escapes you."
+
+    ]
+
+    hag3_outcomes = [
+    "   \"What's the matter, dearest? Have you never seen such a sight?\" the Hag asks, sporting a malevolent grin.",
+    "   \"Oh...Now this is rich!\" she laughs at you, \"Can't even talk to a woman...pathetic.\"",
+    "   \"It'll be easier killing you than it was dispatching that silly little thief's wife.\"",
+    "   \"You don't have to speak, child. It'll be over soon.\""
+
+    ]
+
+    def hag3fight(self):
+      prints("You had no idea something could be this terrifying.")
+      prints("she stands.",3) 
+      self.local.enemyArr.append(map.hag3_BOSS)
+      self.local.interactables.remove(self)
+
+
+    hag3 = npc("hag3", hag3_ascii, hag3_intro, hag3_options, hag3_outcomes , -1, [], [], 3, hag3fight, -1, -1, dampCave) 
+
+    def hag4_intro():
+        prints("")
+        prints("    There is chaos. Screams, blood, and death surround you. The Hag Queen has")
+        prints("come at last to cull the herd and claim the Hamlet for herself. Citizens of")
+        prints("the hamlet scramble to find cover. Some board their windows, praying desparately")
+        prints("for a miracle to change this outcome. Those closest to the well, aware of the ")
+        prints("goings on beneath the town, descend as quickly as they can manage. Storms appear,")
+        prints("the wind picks up and trees are uprooted all around you.")
+        prints("    \"SEE NOW, THIS GREAT AND TERRIBLE DEVESTATION")
+        prints("     THAT I WILL BRING UPON THEE. PREPARE NOW TO DIE,")
+        prints("                    PATHETIC HUMANS!\"")
+        prints("")
+
+    hag4_options = [
+
+    "   The battle for the fate of the Hamlet has begun."
+
+    ]
+
+    hag4_outcomes = [
+
+    "   \"What meager peasant plays at being a hero, hm? You shall suffer, mortal!\""
+
+    ]
+
+    def hag4fight(self):
+      "she stands before you..."
+      self.local.enemyArr.append(map.hag4_BOSS)
+      self.local.interactables.remove(self)
+      
+      
+
+    hag4 = npc("hag4", hag4_ascii, hag4_intro, hag4_options, hag4_outcomes)
+
+    cottage.interactables = [doll, toadEye, small_weapon_chest, hag1]
+    dampCave.interactables = [hag3]
+    deepwoods_HagLair.interactables.append(hag2)
+
+    death_flavor(hag1_BOSS, hag1_deaths)
+    death_flavor(hag2_BOSS, hag2_deaths)
+    death_flavor(hag3_BOSS, hag3_deaths)
+    #death_flavor(hag4_BOSS, hag4_deaths)

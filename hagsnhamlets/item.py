@@ -12,7 +12,7 @@ class item:
         self.pickup = pickup
         
 class consumable(item):
-    def __init__(self, name, desc, affectArr, pickup=True):
+    def __init__(self, name, desc, affectArr, pickup=True, isFood = False):
         super().__init__(name, desc, pickup=pickup)
         self.arr = affectArr
     
@@ -40,6 +40,7 @@ class consumable(item):
             #name.printName(amount.name,amount)
             amount.look()
         elif type == "hagsBane":
+            prints("you gulp it down. It tastes horrible, but you dont feel dead yet.")
             player.hb = True
         
         player.bloat += 1

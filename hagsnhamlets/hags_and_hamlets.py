@@ -37,13 +37,12 @@ shield = weapon("old shield", -1, 0, "swing")
 silOre = item("Silver Ore", "it glitters with potential")
                             
 local = location.Location("","","",[],[map.cemetery],[])
-player1 = player.Player("", "It's you", 50, 10, 10, [item("Dread", "It festers.")], [sword, shield], local)
+player1 = player.Player("", "It's you", 50, 10, 10, [item("Dread", "It festers.")], [sword, shield], local, rat_king)
 
 
 
 
 def main():
-
     gameEnd = False
 
     while gameEnd == False:
@@ -55,14 +54,15 @@ def main():
         player1.hp = randint(25,50)
         player1.maxHp = player1.hp
         player1.dex = randint(0, 10)
-        player1.ac = 5 + player1.dex
-        player1.str = 10 - player1.dex + randint(3, 5) 
+        player1.ac = 50 + player1.dex
+        player1.str = 100 - player1.dex + randint(3, 5) 
         player1.dead = False
         player1.location = local
+        player1.equipped = [sword, shield]
         #runtime1
 
         #clear the console
-
+        
         
         #all this is for show
         prints("Hags & Hamlets is a dark world full of danger. are you sure you want to continue?", 1)

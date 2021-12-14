@@ -14,6 +14,7 @@ import enemy
 import weapon
 import combat
 from npcs import *
+from random import *
 
 from map import *
 #setup
@@ -33,111 +34,144 @@ sword = weapon("sword", 1, 0, "slash")
 
 shield = weapon("old shield", -1, 0, "swing") 
 
+silOre = item("Silver Ore", "it glitters with potential")
+hf = item("Coldest Beer", "")
                             
-startLocal = location.Location("Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", 
-[item("old stump", "a stump", False), spear, item("dread", "A horrible feeling"), greg], ["The Tavern", "More Woods", "More Woods"], [])
-player1 = player.Player("", "It's you", 1, 50, 10, 0, 10, [item("nothing", "Zip. Zero. Zilch!")], [sword, shield], map.cemetery)
+local = location.Location("","","",[],[map.cemetery],[])
+telePotion = consumable("p", "it has a bluish, milky glow about it", ["tp", map.hamlet])
+telePotion2 = consumable("p1", "it has a bluish, milky glow about it", ["tp", map.cottage])
+telePotion3 = consumable("p2", "it has a bluish, milky glow about it", ["tp", map.dampCave])
+armr = armor("armor", 10, 3, "amro")
+t = item("Debt Settled Papers", "")
+player1 = player.Player("", "It's you", 50, 10, 10, [item("Dread", "It festers."), telePotion, silOre, hf, t, telePotion3, telePotion2, armr], [sword, shield], map.cemetery, rat_king)
 
-#skele = enemy.enemy("Skeleton","A pile of bones, held together only by the will of the dead.", 5, 
-                   #[weap,weap,weap], 10, [item("bone shard")], "The Skeleton crumbles to dust.", startLocal)
-#strange_spirit = enemy.enemy("Strange Spirit", "A frightening spectre.", 666, [], 666, [item("Hag's Soul")], "The Hag Queen screeches as she disintegrates into thousdands of dark particles.", startLocal)
-#startLocal.enemyArr = [skele, strange_spirit]
-#startLocal.enemyArr = [skele]
+
 
 
 def main():
-    #runtime
+    gameEnd = False
 
-    #clear the console
-    for i in (range(1,100)):
-        print("")
-    
-    #all this is for show
-    
-    player1.name = input("Hello ADVENTURER! What is your name? >>> ")
+    while gameEnd == False:
+        map.ref(map)
+        for i in (range(1,100)):
+            print("")
 
-    if player1.name == "debug":
+        #prints("dwfgirygidwegflleiagfliudwegafeugdwaouifgowkliugfiuywderggfy iyegfioyergyfiorgfsoigdiuirwegsfiurwgifgwaiugfiuywaregfiywaergfrigwiealgfriuywergfigwsgfwiluegfiwufgilwefgi")
+        player1.hp = randint(25,50)
+        player1.maxHp = player1.hp
+        player1.dex = randint(0, 10)
+        player1.ac = 50 + player1.dex
+        player1.str = 100 - player1.dex + randint(3, 5) 
+        player1.dead = False
+        player1.location = local
+        player1.equipped = [sword, shield]
+        #runtime1
+
+        #clear the console
+        
+        
+        #all this is for show
+        #prints("Hags & Hamlets is a dark world full of danger. are you sure you want to continue?", 1)
+        #prints("1. Yes, I'm ready.",1)
+        #prints("2. No, let me out!",1)
+        quitCheck = True
+        while quitCheck == False:
+            quitVal = input((printr("> "))).lower()
+            
+            if quitVal == "1" or quitVal == "y" or quitVal == "yes":
+                pass
+                quitCheck = True
+            elif quitVal == "2" or quitVal == "n" or quitVal == "no":
+                exit()
+            else:
+                prints("This is a yes or no question")
+        player1.name = input(printr("Hello ADVENTURER! What is your name? >>> "))
+
+        if player1.name == "debug":
+            con = console.console(player1)
+            con.move("go to the graveyard")
+            con.start()
+            continue
+
+        prints(f"OH! So you're {player1.name}, huh? Well, it's great to meet you.")
+        
+        #border_left = ["#|.  ||     ", "#| . ||     ", "#|.  ||     ", "#| . ||     "]
+        border_right = ["        ||  .|#", "        || . |#", "        ||  .|#", "        || . |#"] 
+
+
+
+        """ 
+        print(f"\nWell {player1.name}, I can't promise this world will be incredibly kind to you. Regardless, WELCOME TO")
+        prints("---------------------------------------------------------------------------------------------------------------         ||  .|#", .5)
+        prints("        -------------------------------------------------------------------------------------------------------         || . |#", .5)
+        prints("              _______  _______  _______      __               _______  _______  _        _______ _________ _______      ||  .|#", .5)
+        prints("    |\     /|(  ___  )(  ____ \(  ____ \    /__\    |\     /|(  ___  )(       )( \      (  ____ \\__   __/(  ____ \\    || . |#", .5)
+        prints("    | )   ( || (   ) || (    \/| (    \/   ( \/ )   | )   ( || (   ) || () () || (      | (    \/   ) (   | (    \/     ||  .|#", .5)
+        prints("    | (___) || (___) || |      | (_____     \  /    | (___) || (___) || || || || |      | (__       | |   | (_____      ||  .|#", .3)
+        prints("    |  ___  ||  ___  || | ____ (_____  )    /  \/\  |  ___  ||  ___  || |(_)| || |      |  __)      | |   (_____  )     || . |#", .3)
+        prints("    | (   ) || (   ) || | \_  )      ) |   / /\  /  | (   ) || (   ) || |   | || |      | (         | |         ) |     ||  .|#", .3)
+        prints("    | )   ( || )   ( || (___) |/\____) |  (  \/  \  | )   ( || )   ( || )   ( || (____/\| (____/\   | |   /\____) |     || . |#", .3)
+        prints("    |/     \||/     \|(_______)\_______)   \___/\/  |/     \||/     \||/     \|(_______/(_______/   )_(   \_______)     ||  .|#", .2)
+        prints("                                                                                                                        || . |#", .2)
+        prints("                       #######################################################################################          ||  .|#", .2)
+        prints("                       ########################################################################################         || . |#", .2)
+        prints("Darkness overcomes you ##########################################################################                       ||  .|#", .1)
+        prints("          .            ########################################################                                         || . |#", .5)
+        prints("                       ########################################################  A Text Adventure                       ||  .|#", .5)
+        prints("and you feel yourself  ############################################                      by                             || . |#", .3)
+        prints("          .            ###################################                       Wolfgang Borchelt                      ||  .|#", .3)
+        prints("begin                  ########################                                          &                              || . |#", .2)
+        prints("          .            #########                                                    Bryan Exley                         ||  .|#", .2)
+        prints("                       ########                                                                                         ||  .|#", .2)
+        prints("              to fall. ######            . - .                  . - .                       . - .                       || . |#", .3)
+        prints("          .            ###             /      \               /        \                  /       \                     ||  .|#", .5)
+        prints("                       ##             |  RIP   |             |   RIP    |                |   RIP   |                    || . |#", .3)
+        prints("Deeper    .            #              |        |             |          |                |         |                    ||  .|#", .2)
+        prints("      ....and deeper...#              |        |             |          |                |         |                    || . |#", .2)
+        prints("#.....................#               |        |             |          |                |         |                    ||  .|#",  2)
+        prints("##$%K#:$%K#LK%#:L%K#L:$K%.......#:K%$:.........$%K#$%K:LK#...............K#L$JK%#LKJ%LK%J............#K%L:#:L$%K$#:%K#% || . |#",  2)
+        prints("#####$%#$%#$%#$#@@$", .2)
+        prints("@$@$@$$%^$%^#@%#$@" , .2)
+        prints("#$%$%^#@$@#       " , .2)
+        prints("@$#@$             " , .2)
+        prints("@@                " , .2)
+        prints(".") """
+
+        press_anything = input(printr("Press anything to continue >>>> "))
+        
+        skip_intro = input(printr("Would you like to skip the intro? Y/N >>>> " )).lower()
+        if skip_intro == "yes" or skip_intro == "y":
+            intro = False 
+        else:
+            intro = True  
+
+        need_tutorial = input(printr("Would you like to play through the tutorial? Y/N >>>> " )).lower()
+        if need_tutorial == "yes" or need_tutorial == "y":
+            prints(" --- ### You will play through the tutorial. ### --- ") 
+            tutorial_needed = True 
+        else:
+            prints("You don't need the tutorial, huh? Tough guy. Good luck!")
+            tutorial_needed = False 
+        
+        if intro == True:
+            play_intro()
+
+        if tutorial_needed == True: 
+            tutorial()  
+            combat_tutorial_zone()
+            dialogue_tutorial()
+
+        
+    
+
+
+        #start up the console
+        
+        
         con = console.console(player1)
+        con.quitB = False
+        con.move("go to the graveyard")
         con.start()
-        exit()
-
-    print(f"\nOH! So you're {player1.name}, huh? Well, it's great to meet you.")
-    
-    #border_left = ["#|.  ||     ", "#| . ||     ", "#|.  ||     ", "#| . ||     "]
-    border_right = ["        ||  .|#", "        || . |#", "        ||  .|#", "        || . |#"] 
-
-
-
-    """ 
-    print(f"\nWell {player1.name}, I can't promise this world will be incredibly kind to you. Regardless, WELCOME TO")
-    prints("---------------------------------------------------------------------------------------------------------------         ||  .|#", .5)
-    prints("        -------------------------------------------------------------------------------------------------------         || . |#", .5)
-    prints("          _______  _______  _______      __               _______  _______  _        _______ _________ _______          ||  .|#", .5)
-    prints("    |\     /|(  ___  )(  ____ \(  ____ \    /__\    |\     /|(  ___  )(       )( \      (  ____ \\__   __/(  ____ \\      || . |#", .5)
-    prints("    | )   ( || (   ) || (    \/| (    \/   ( \/ )   | )   ( || (   ) || () () || (      | (    \/   ) (   | (    \/     ||  .|#", .5)
-    prints("    | (___) || (___) || |      | (_____     \  /    | (___) || (___) || || || || |      | (__       | |   | (_____      ||  .|#", .3)
-    prints("    |  ___  ||  ___  || | ____ (_____  )    /  \/\  |  ___  ||  ___  || |(_)| || |      |  __)      | |   (_____  )     || . |#", .3)
-    prints("    | (   ) || (   ) || | \_  )      ) |   / /\  /  | (   ) || (   ) || |   | || |      | (         | |         ) |     ||  .|#", .3)
-    prints("    | )   ( || )   ( || (___) |/\____) |  (  \/  \  | )   ( || )   ( || )   ( || (____/\| (____/\   | |   /\____) |     || . |#", .3)
-    prints("    |/     \||/     \|(_______)\_______)   \___/\/  |/     \||/     \||/     \|(_______/(_______/   )_(   \_______)     ||  .|#", .2)
-    prints("                                                                                                                        || . |#", .2)
-    prints("                       #######################################################################################          ||  .|#", .2)
-    prints("                       ########################################################################################         || . |#", .2)
-    prints("Darkness overcomes you ##########################################################################                       ||  .|#", .1)
-    prints("          .            ########################################################                                         || . |#", .5)
-    prints("                       ########################################################  A Text Adventure                       ||  .|#", .5)
-    prints("and you feel yourself  ############################################                      by                             || . |#", .3)
-    prints("          .            ###################################                       Wolfgang Borchelt                      ||  .|#", .3)
-    prints("begin                  ########################                                          &                              || . |#", .2)
-    prints("          .            #########                                                    Bryan Exley                         ||  .|#", .2)
-    prints("                       ########                                                                                         ||  .|#", .2)
-    prints("              to fall. ######            . - .                  . - .                       . - .                       || . |#", .3)
-    prints("          .            ###             /      \               /        \                  /       \                     ||  .|#", .5)
-    prints("                       ##             |  RIP   |             |   RIP    |                |   RIP   |                    || . |#", .3)
-    prints("Deeper    .            #              |        |             |          |                |         |                    ||  .|#", .2)
-    prints("      ....and deeper...#              |        |             |          |                |         |                    || . |#", .2)
-    prints("#.....................#               |        |             |          |                |         |                    ||  .|#",  2)
-    prints("##$%K#:$%K#LK%#:L%K#L:$K%.......#:K%$:.........$%K#$%K:LK#...............K#L$JK%#LKJ%LK%J............#K%L:#:L$%K$#:%K#% || . |#",  2)
-    prints("#####$%#$%#$%#$#@@$", .2)
-    prints("@$@$@$$%^$%^#@%#$@" , .2)
-    prints("#$%$%^#@$@#       " , .2)
-    prints("@$#@$             " , .2)
-    prints("@@                " , .2)
-    prints(".") """
-
-    press_anything = input("Press anything to continue >>>> ")
-    
-    skip_intro = input("Would you like to skip the intro? Y/N >>>> " ).lower()
-    if skip_intro == "yes" or skip_intro == "y":
-        intro = False 
-    else:
-        intro = True  
-
-    need_tutorial = input("Would you like to play through the tutorial? Y/N >>>> " ).lower()
-    if need_tutorial == "yes" or need_tutorial == "y":
-        prints(" --- ### You will play through the tutorial. ### --- ") 
-        tutorial_needed = True 
-    else:
-        prints("You don't need the tutorial, huh? Tough guy. Good luck!")
-        tutorial_needed = False 
-    
-    if intro == True:
-        play_intro()
-
-    if tutorial_needed == True: 
-        tutorial()  
-        combat_tutorial_zone()
-        dialogue_tutorial()
-
-    
-   
-
-
-    #start up the console
-    
-    
-    con = console.console(player1)
-    con.start()
     
     
 

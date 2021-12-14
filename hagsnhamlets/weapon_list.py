@@ -48,4 +48,4 @@ whip = weapon("Whip", 1, 1, "Weapon", "A Whip")
 maul = weapon("Maul", 1, 1, "Weapon", "A Maul")
 lance = weapon("Lance", 1, 1, "Weapon", "A Lance")
 
-weapon_list = ['Battle axe', 'bludgeon', 'club', 'flail', 'flanged mace', 'pick', 'mace', 'morning star', 'quarterstaff', 'war hammer', 'arming sword', 'dagger', 'estoc', 'falchion', 'katana', 'knife', 'longsword', 'rapier', 'sabre', 'shortsword', 'glaive', 'lance', 'halberd', 'axe', 'pike', 'war scythe', 'bow', 'longbow', 'recurve bow', 'crossbow', 'arbalest', 'repeating crossbow', 'sling', 'throwing knife', 'throwing spear', 'javelin', 'club', 'dagger', 'greatclub', 'handaxe', 'javelin', 'mace', 'sickle', 'dart', 'scimitar', 'rapier', 'trident', 'whip', 'maul', 'lance']
+weapon_list = [Battle_axe, bludgeon, club, flail, flanged_mace, pick, mace, morning_star, quarterstaff, war_hammer, arming_sword, dagger, rapier, shortsword, lance, war_scythe, bow, longbow, recurve_bow, crossbow, arbalest, repeating_crossbow, sling, throwing_knife, throwing_spear, javelin, club, dagger, greatclub, handaxe, javelin, mace, sickle, dart, scimitar, rapier, trident, whip, maul, lance]

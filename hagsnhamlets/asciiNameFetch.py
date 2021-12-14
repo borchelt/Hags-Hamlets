@@ -231,8 +231,21 @@ class nameFetch():
                 map.populate_enemies(2, local, map.bat)
             else:
                 map.populate_enemies(2, local, map.goblin)
-        elif name ==  "Old Mines: Webbed Path" or "Spiders' Lair":
+        elif name ==  "Old Mines: Webbed Path" or name == "Spiders' Lair":
             self.old_mine_title_ascii()
             map.populate_enemies(3, local, map.hatchling_spider)
+        elif name == "The Core of the Deepwoods":
+            self.deep_woods_title_ascii()
+            local.adj_locations = [map.deepwoods_mid, map.woodsDeadN, map.cottage]
+        elif "Deepwoods" in name:
+            self.deep_woods_title_ascii()
+            map.populate_enemies(3, local, map.shade)
+            hagBool = random.randint(1,5)
+            local.adj_locations = []
+            if hagBool == 5:
+                local.adj_locations.append(map.deepwoods_HagLair)
+            adj = [map.dwList[random.randint(0, 5)], map.dwList[random.randint(0, 5)]]
+            local.adj_locations.append(adj[0])
+            local.adj_locations.append(adj[1])
         else:
             self.hamlet_title_ascii

@@ -25,9 +25,10 @@ def dialogue(dialogue_options, dialogue_outcome, npc, player):
     
 
     for i in range(len(valid_response)):
+            
         if dialogue_option_chosen != valid_response[i]:
             failed = True 
-            
+        
         else:
             for i in range(len(valid_response)):
                 if dialogue_option_chosen == valid_response[i]:
@@ -40,7 +41,21 @@ def dialogue(dialogue_options, dialogue_outcome, npc, player):
                     if(i == npc.tradeNum):
                         npc.trade(player)
                     if(i == npc.questNum):
-                        npc.questFunc()
+                        print("questcalled")
+                        npc.questFunc(npc)
+                    elif(i == npc.questEndNum):
+                        print("questEnd")
+                        for i in player.inventory:
+                            if i.name == npc.questTrades[npc.questIndex][1]:
+                                npc.questTrades[npc.questIndex][2](npc)
+                                player.inventory.remove(i)
+                                player.inventory.append(npc.questTrades[npc.questIndex][0])
+                                npc.options.remove(npc.options[npc.questEndNum])
+                                npc.outcomes.remove(npc.outcomes[npc.questEndNum])
+                                npc.options.remove(npc.options[npc.questTrades[npc.questIndex][3]])
+                                npc.outcomes.remove(npc.outcomes[npc.questTrades[npc.questIndex][3]])
+                                npc.questNum = -1
+                                break
 
     
     dialogue_option_chosen = int(dialogue_option_chosen)

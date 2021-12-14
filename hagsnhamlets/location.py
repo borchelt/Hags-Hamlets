@@ -6,7 +6,7 @@ from item_list import *
 
 class Location(object):
 
-    def __init__(self, name, desc, song, interactables, adj_locations, enemyArr = [], indoors = False):
+    def __init__(self, name, desc, song, interactables, adj_locations, enemyArr = [], indoors = False, hag = False):
 
         self.name = name
         self.desc = desc
@@ -15,6 +15,7 @@ class Location(object):
         self.adj_locations = adj_locations
         self.enemyArr = enemyArr
         self.indoors = indoors
+        self.hag = hag
 
     
     #formatted info about the location

@@ -54,4 +54,4 @@ def play_intro():
     prints("",.3)
 
 
-    old_greg_dialogue()
+    #old_greg_dialogue()

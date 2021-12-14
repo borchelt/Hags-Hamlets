@@ -1,25 +1,30 @@
 #!/usr/bin/env python3
 
-from os import name
+from os import name, read
 from prints import printr
 from prints import prints
 from random import *
-from math import degrees, floor
+from math import degrees, floor, trunc
 #from playsound import playsound
 from item import *
 from ascii_art import * 
 from npcs import *
 from asciiNameFetch import *
 from new_container import container
+import re
 
 
-global action 
+
+
 
 class console(object):
+
     def __init__(self, player):
         self.player = player
         self.quitB = False
         self.everything = []
+        self.hags = 0
+        self.hagWarn = False
     
     def move(self, action):
         name = nameFetch()
@@ -28,30 +33,50 @@ class console(object):
         target = target.replace("move to ", '')
         target = target.replace("go ", "")
         target = target.replace("move ", "")
-        self.turn = False
-        for i in self.player.location.interactables:
-            if type(i) == item:
-                if i.pickup == True:
-                    print("removed " + i.name)
-                    self.player.location.interactables.remove(i)
-        for i in self.player.location.adj_locations:
-                if i.name.lower() == target:
-                    self.player.location = i
-                    name.printName(i.name, i)
-                    prints(self.player.location.look())
-                    self.turn = False
-        bigList = [self.player.location.interactables, self.player.location.enemyArr]
-        for sub in bigList:
-            for i in sub:
-                self.everything.append(i)
-        self.everything.append(self.player.location)
-        self.everything.append(self.player)
+        target = re.sub(r'[^\w\s]', '', target)
+        try:
+            target = int(target)
+            for y in self.player.location.interactables:
+                if type(y) == item:
+                    if y.pickup == True:
+                        self.player.location.interactables.remove(y)
+            
+            name.printName(self.player.location.adj_locations[target-1].name, self.player.location.adj_locations[target-1])
+            self.player.location = self.player.location.adj_locations[target-1]
+            prints(self.player.location.look())
+            self.turn = False
+
+
+        
+        except ValueError:
+
+            for i in self.player.location.adj_locations:
+                    tar = re.sub(r'[^\w\s]', '', i.name).lower()
+                    if tar == target:
+                        for y in self.player.location.interactables:
+                            if type(y) == item:
+                                if y.pickup == True:
+                                    self.player.location.interactables.remove(y)
+                        self.player.location = i
+                        name.printName(i.name, i)
+                        prints(self.player.location.look())
+                        self.turn = False
+            bigList = [self.player.location.interactables, self.player.location.enemyArr]
+            for sub in bigList:
+                for i in sub:
+                    self.everything.append(i)
+            self.everything.append(self.player.location)
+            self.everything.append(self.player)
                 
     #gets a player and prompts them to do things, the main controller of the game
     def start(self):
         turn = False
         p1 = self.player
         #playsound(p1.location.song, False)
+        ready = False
+        readyWeap = ""
+        readyTurn = 0
+        blocking = False
         
 
         self.quitB = False
@@ -59,7 +84,8 @@ class console(object):
             if p1.dead == True:
                 self.quitB = True
                 continue
-            action = input(printr("> ")).lower()
+            prints("")
+            action = input(printr(">> ")).lower()
 
             #actions for player management
 
@@ -82,19 +108,26 @@ class console(object):
             #look around the area
             elif(action == "look around"):
                 turn = False
+                prints("")
                 prints(p1.location.look())
+                prints("")
+
             #look at yourself
             elif(action == "look at myself" or action == "look at self" or action == "look self"): 
                 turn = False
+                prints("")
                 prints(p1.desc)
+                prints("")
                 p1.sheet()
 
             #look at any object in your inventory or the area 
             elif("look at" in action): 
                 turn = False
                 target = action.replace("look at ", '')
+                target = re.sub(r'[^\w\s]', '', target).lower()
                 for i in self.everything:
-                    if i.name.lower() == target:
+                    name = re.sub(r'[^\w\s]', '', i.name).lower()
+                    if name == target:
                         prints(i.desc)
             
 
@@ -111,6 +144,7 @@ class console(object):
                 self.everything.append(p1)
                 turn = True
                 target = action.replace("pick up ", '')
+                target = re.sub(r'[^\w\s]', '', target).lower()
                 if target == "all":
                     for i in self.everything:
                         if type(i) is item or issubclass(type(i), item):
@@ -121,7 +155,8 @@ class console(object):
 
 
                 for i in self.everything:
-                    if i.name.lower() == target:
+                    name = re.sub(r'[^\w\s]', '', i.name).lower()
+                    if name == target:
                         if type(i) is item or issubclass(type(i), item):
                             if(i.pickup):
                                 p1.inventory.append(i)
@@ -140,60 +175,88 @@ class console(object):
                     if type(i) == container:
                         if i.name.lower() == target:
                             i.open(p1)
+                            break 
 
             #actions for combat 
             elif "flee" in action or "run" in action:
 
                 if randint(0, 1) == 1:
-                    prints("you run like the coward you are")
+                    prints("You find yourself running away from the fight. Whether you were scared or in a hurry, who is to say.")
                     self.move(f"go to {p1.location.adj_locations[randrange(0, len(p1.location.adj_locations))].name}")
+            
+            elif "block" in action:
+                turn = True
+                p1.ac += p1.str
+                blocking = True
+                prints("You brace for impact")
+            elif "ready" in action or "charge" in action:
+                turn = True
+
+                
+
+                if action == "ready" or action == "charge":
+                    prints("you wind up for a larger attack")
+                    p1.ac /= 2
+                    ready = True
+                    readyWeap = p1.equipped[0]
+                target = action.replace("ready my ", "")
+                target = target.replace("ready ", "")
+                target = target.replace("charge ", "")
+                target = target.replace("charge my ", "")
+                print(target)
+
+                if "main" in target:
+                    prints("you wind up for a larger attack")
+                    p1.ac /= 2
+                    ready = True
+                    readyWeap = p1.equipped[0]
+
+                if "offhand" in target:
+                    prints("you wind up for a larger attack")
+                    p1.ac /= 2
+                    ready = True
+                    readyWeap = p1.equipped[1]
+                
+                for i in p1.equipped:
+                    if target == i.name:
+                        print("ready" + i.name)
+                        p1.ac /= 2
+                        ready = True
+                        readyWeap = i
                         
             elif "attack" in action:
-
-                if action == "attack":
-                    print(len(p1.location.enemyArr))
-                    if len(p1.location.enemyArr) >= 1:
-                        p1.attack(p1.equipped[0], p1.location.enemyArr[0])
-                    else:
-                        p1.attack(p1.equipped[0], p1)
                 turn = True
-                
                 target = action.replace("attack the ", '')
                 target = target.replace("attack ", '')
-                target = target.replace(" with", '')
                 target = target.replace("attack", "")
-                if target == "":
-                    target = []
+
+                if ready:
+                    if action == "attack":
+                        if len(p1.location.enemyArr) >= 1:
+                            p1.attack(readyWeap, p1.location.enemyArr[0], p1, ready)
+                        else:
+                            p1.attack(readyWeap, p1, p1, ready)
+
+                    else:
+                        for i in p1.location.enemyArr:
+                            if i.name.lower() == target: 
+                                self.player.attack(readyWeap, i, p1, ready)
+                    
+                    ready = False
+                    p1.ac *= 2
+                    readyTurn = 0
+
+                elif action == "attack":
+                    if len(p1.location.enemyArr) >= 1:
+                        p1.attack(p1.equipped[0], p1.location.enemyArr[0], p1)
+                    else:
+                        p1.attack(p1.equipped[0], p1, p1)
+
                 else:
-                    target = target.split(" ")
-                if(len(target) > 2):
-                    target[1] += " "
-
-                if(len(target) == 1):
                     for i in p1.location.enemyArr:
-                        if i.name.lower() == target[0]:
-                            enemy = i
-                    self.player.attack(self.player.equipped[0], enemy)
-                elif len(target) > 0:
-                    num = 1
-                    while num < len(target)-1:
-                        target[num] += target[num+1]
-                        del target[num+1]
-                        num += 1
-                        
-                    enemy = False
-                    weapon = False
-
-                    for i in p1.location.enemyArr:
-                        if i.name.lower() == target[0]:
-                            enemy = i
-
-                            for y in self.player.equipped:
-                                print(target)
-                                if y.name.lower() == target[1]:
-                                    weapon = y
-                    if(enemy and weapon):
-                        self.player.attack(weapon, i)
+                        if i.name.lower() == target: 
+                            self.player.attack(self.player.equipped[0], i, p1)
+               
             
             elif "go" in action or "move" in action:
                 if(p1.location.enemyArr == []):
@@ -326,14 +389,29 @@ class console(object):
                 prints("--------Combat----------")
                 prints("------------------------")
                 prints("Attack: attacks the first")
-                prints("enemy with you main weapon.")
+                prints("enemy with you main weapon")
+                prints("or your readied weapon.")
                 prints("------------------------")
                 prints("Attack X: attack an enemy")
-                prints("with your main weapon.")
+                prints("with your main weapon")
+                prints("or your readied weapon.")
                 prints("------------------------")
-                prints("Attack X with Y: attack an")
-                prints("enemy with either your")
-                prints("main or off-hand weapon.")
+                prints("ready, charge: ready your")
+                prints("main weapon. While readied")
+                prints("your AC is cut in half.")
+                prints("However, you deal 3x")
+                prints("Damage if you hit your")
+                prints("next attack")
+                prints("------------------------")
+                prints("ready X, charge X: ready")
+                prints("either your offhand or")
+                prints("mainhand weapon. you can")
+                prints("call a weapon by name or")
+                prints("use \"main\" and \"offhand\"")
+                prints("------------------------")
+                prints("block")
+                prints("adds your strength to your")
+                prints("AC.")
                 prints("------------------------")
                 prints("flee, run: flees to a ")
                 prints("nearby area, leaving")
@@ -345,8 +423,18 @@ class console(object):
             else:
                 prints("I'm not sure what you mean, type \"help\" for a list of commands")
 
+            
             #end of turn: enemies attack
             if(turn):
+                if ready:
+                    if readyTurn > 0:
+                        ready = False
+                        readyTurn = 0
+                        p1.ac *=2
+                        prints("You drop your readied stance")
+                    else:
+                        readyTurn += 1
+
                 for i in self.player.location.enemyArr:
                     att = randint(0,2)
                     if att == 0:
@@ -355,6 +443,17 @@ class console(object):
                         i.attack2(self.player)
                     if att == 2:
                         i.attack3(self.player)
+                
+                if blocking:
+                    p1.ac -= p1.str
+                    blocking = False
+            if(map.cottage.hag == True and map.deepwoods_HagLair.hag == True and map.dampCave.hag == True):
+
+                prints("As the last hag falls, you feel your stomach drop. Something isnt right.", 1)
+                map.hamlet.adj_locations = []
+                map.hamlet.interactables = [map.hag4]
+                map.hag4.local = map.hamlet
+                map.hamlet.desc = "  A defeaning scream fills the air and chills your blood. You can hardly resist covering your ears. The Hag Queen has come at last to avenge her fallen sisters. In the distance before you, you spot her, cloaked in shadows. In what seems like milliseconds she blips out of existence and reappears before you, a wild look in her eyes. \"I'll KILL YOU, CHILD! You cannot stop me!\" she screams at you. The world shakes beneath your feet."
             
             
             
@@ -391,6 +490,3 @@ class console(object):
 
                        
                 
-
-
-

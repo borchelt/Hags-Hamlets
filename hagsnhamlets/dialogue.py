@@ -47,7 +47,7 @@ def dialogue(dialogue_options, dialogue_outcome, npc, player):
                         print("questEnd")
                         for i in player.inventory:
                             if i.name == npc.questTrades[npc.questIndex][1]:
-                                npc.questTrades[npc.questIndex][2]()
+                                npc.questTrades[npc.questIndex][2](npc)
                                 player.inventory.remove(i)
                                 player.inventory.append(npc.questTrades[npc.questIndex][0])
                                 npc.options.remove(npc.options[npc.questEndNum])
@@ -55,6 +55,7 @@ def dialogue(dialogue_options, dialogue_outcome, npc, player):
                                 npc.options.remove(npc.options[npc.questTrades[npc.questIndex][3]])
                                 npc.outcomes.remove(npc.outcomes[npc.questTrades[npc.questIndex][3]])
                                 npc.questNum = -1
+                                break
 
     
     dialogue_option_chosen = int(dialogue_option_chosen)

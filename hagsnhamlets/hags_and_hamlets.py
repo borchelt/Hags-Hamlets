@@ -35,9 +35,15 @@ sword = weapon("sword", 1, 0, "slash")
 shield = weapon("old shield", -1, 0, "swing") 
 
 silOre = item("Silver Ore", "it glitters with potential")
+hf = item("Coldest Beer", "")
                             
 local = location.Location("","","",[],[map.cemetery],[])
-player1 = player.Player("", "It's you", 50, 10, 10, [item("Dread", "It festers.")], [sword, shield], local, rat_king)
+telePotion = consumable("p", "it has a bluish, milky glow about it", ["tp", map.hamlet])
+telePotion2 = consumable("p1", "it has a bluish, milky glow about it", ["tp", map.cottage])
+telePotion3 = consumable("p2", "it has a bluish, milky glow about it", ["tp", map.dampCave])
+armr = armor("armor", 10, 3, "amro")
+t = item("Debt Settled Papers", "")
+player1 = player.Player("", "It's you", 50, 10, 10, [item("Dread", "It festers."), telePotion, silOre, hf, t, telePotion3, telePotion2, armr], [sword, shield], map.cemetery, rat_king)
 
 
 
@@ -46,11 +52,11 @@ def main():
     gameEnd = False
 
     while gameEnd == False:
-
+        map.ref(map)
         for i in (range(1,100)):
             print("")
 
-        prints("dwfgirygidwegflleiagfliudwegafeugdwaouifgowkliugfiuywderggfy iyegfioyergyfiorgfsoigdiuirwegsfiurwgifgwaiugfiuywaregfiywaergfrigwiealgfriuywergfigwsgfwiluegfiwufgilwefgi")
+        #prints("dwfgirygidwegflleiagfliudwegafeugdwaouifgowkliugfiuywderggfy iyegfioyergyfiorgfsoigdiuirwegsfiurwgifgwaiugfiuywaregfiywaergfrigwiealgfriuywergfigwsgfwiluegfiwufgilwefgi")
         player1.hp = randint(25,50)
         player1.maxHp = player1.hp
         player1.dex = randint(0, 10)
@@ -65,10 +71,10 @@ def main():
         
         
         #all this is for show
-        prints("Hags & Hamlets is a dark world full of danger. are you sure you want to continue?", 1)
-        prints("1. Yes, I'm ready.",1)
-        prints("2. No, let me out!",1)
-        quitCheck = False
+        #prints("Hags & Hamlets is a dark world full of danger. are you sure you want to continue?", 1)
+        #prints("1. Yes, I'm ready.",1)
+        #prints("2. No, let me out!",1)
+        quitCheck = True
         while quitCheck == False:
             quitVal = input((printr("> "))).lower()
             
@@ -98,8 +104,8 @@ def main():
         print(f"\nWell {player1.name}, I can't promise this world will be incredibly kind to you. Regardless, WELCOME TO")
         prints("---------------------------------------------------------------------------------------------------------------         ||  .|#", .5)
         prints("        -------------------------------------------------------------------------------------------------------         || . |#", .5)
-        prints("          _______  _______  _______      __               _______  _______  _        _______ _________ _______          ||  .|#", .5)
-        prints("    |\     /|(  ___  )(  ____ \(  ____ \    /__\    |\     /|(  ___  )(       )( \      (  ____ \\__   __/(  ____ \\      || . |#", .5)
+        prints("              _______  _______  _______      __               _______  _______  _        _______ _________ _______      ||  .|#", .5)
+        prints("    |\     /|(  ___  )(  ____ \(  ____ \    /__\    |\     /|(  ___  )(       )( \      (  ____ \\__   __/(  ____ \\    || . |#", .5)
         prints("    | )   ( || (   ) || (    \/| (    \/   ( \/ )   | )   ( || (   ) || () () || (      | (    \/   ) (   | (    \/     ||  .|#", .5)
         prints("    | (___) || (___) || |      | (_____     \  /    | (___) || (___) || || || || |      | (__       | |   | (_____      ||  .|#", .3)
         prints("    |  ___  ||  ___  || | ____ (_____  )    /  \/\  |  ___  ||  ___  || |(_)| || |      |  __)      | |   (_____  )     || . |#", .3)

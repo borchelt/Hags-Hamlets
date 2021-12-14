@@ -1,5 +1,6 @@
 from prints import *
 from weapon import weapon
+from item import armor, consumable
 class container():
     
     def __init__(self, name, desc, contents = [], unlocked = True):
@@ -23,7 +24,7 @@ class container():
             num = input(printr("enter the appropriate number to select an item, or enter \"q\" to quit: "))
 
             if num == "q" or "quit" in num:
-                prints(f"You look up the {self.name}")
+                prints(f"You look up from the {self.name}")
                 break
 
             try:
@@ -44,34 +45,54 @@ class container():
 
                     try:
                         index = int(inp)
-                        if(index-1 < len(player.inventory)):
+                        if index-1 > len(self.contents):
+                            index = len(self.contents)-1
+                        if type(player.inventory[index-1]) == weapon:
+                            prints("--------------")
+                            prints(f"\033[1m{player.inventory[index-1].name}\033[0m")
+                            prints("~~~~~~~~~~~~~~")
+                            prints(f"\x1B[3m{player.inventory[index-1].desc}\x1B[0m")
+                            prints("~~~~~~~~~~~~~~")
+                            prints(f"[+{player.inventory[index-1].toHit} | {player.inventory[index-1].dmg} Damage]")
+                            prints("~~~~~~~~~~~~~~")
+                            prints("--------------")
+                        elif type(player.inventory[index-1]) == armor:
+                            prints("--------------")
+                            prints(f"\033[1m{player.inventory[index-1].name}\033[0m")
+                            prints("~~~~~~~~~~~~~~")
+                            prints(f"\x1B[3m{player.inventory[index-1].desc}\x1B[0m")
+                            prints("~~~~~~~~~~~~~~")
+                            prints(f"[+{player.inventory[index-1].toHP} HP | +{player.inventory[index-1].toAC} AC]")
+                            prints("~~~~~~~~~~~~~~")
+                            prints("--------------")
+                        else:
                             prints("--------------")
                             prints(f"\033[1m{player.inventory[index-1].name}\033[0m")
                             prints("~~~~~~~~~~~~~~")
                             prints(f"\x1B[3m{player.inventory[index-1].desc}\x1B[0m")
                             prints("~~~~~~~~~~~~~~")
                             prints("--------------")
-                            quitC = False
-                            while(not quitC):
-                                num = input(printr("Do you want to store this item? Y/N: ")).lower()
+                        quitC = False
+                        while(not quitC):
+                            num = input(printr("Do you want to store this item? Y/N: ")).lower()
 
-                                if num == "y" or "yes" in num:
-                                    self.contents.append(player.inventory[index-1])
-                                    player.inventory.remove(player.inventory[index-1])
-                                    if len(self.contents) == 0:
-                                        prints("It's Empty")
-                                    for i in range(len(self.contents)):
-                                        prints(f"{i+1}. {self.contents[i].name}")
-                                    prints(f"{len(self.contents)+1}. Store items in this container")
-                                    break
-                                   
-                                elif num == "n" or "no" in num:
-                                    if len(self.contents) == 0:
-                                        prints("It's Empty")
-                                    for i in range(len(self.contents)):
-                                        prints(f"{i+1}. {self.contents[i].name}")
-                                    prints(f"{len(self.contents)+1}. Store items in this container")
-                                    break
+                            if num == "y" or "yes" in num:
+                                self.contents.append(player.inventory[index-1])
+                                player.inventory.remove(player.inventory[index-1])
+                                if len(self.contents) == 0:
+                                    prints("It's Empty")
+                                for i in range(len(self.contents)):
+                                    prints(f"{i+1}. {self.contents[i].name}")
+                                prints(f"{len(self.contents)+1}. Store items in this container")
+                                break
+                                
+                            elif num == "n" or "no" in num:
+                                if len(self.contents) == 0:
+                                    prints("It's Empty")
+                                for i in range(len(self.contents)):
+                                    prints(f"{i+1}. {self.contents[i].name}")
+                                prints(f"{len(self.contents)+1}. Store items in this container")
+                                break
 
                                     
 
@@ -79,15 +100,32 @@ class container():
                     
                     except ValueError:
                         continue
-                
-
-                if(add-1 < len(self.contents)):
-                    prints("--------------")
-                    prints(f"\033[1m{self.contents[add-1].name}\033[0m")
-                    prints("~~~~~~~~~~~~~~")
-                    prints(f"\x1B[3m{self.contents[add-1].desc}\x1B[0m")
-                    prints("~~~~~~~~~~~~~~")
-                    prints("--------------")
+                if add-1 < len(self.contents):
+                    if type(self.contents[add-1]) == weapon:
+                        prints("--------------")
+                        prints(f"\033[1m{self.contents[add-1].name}\033[0m")
+                        prints("~~~~~~~~~~~~~~")
+                        prints(f"\x1B[3m{self.contents[add-1].desc}\x1B[0m")
+                        prints("~~~~~~~~~~~~~~")
+                        prints(f"[+{self.contents[add-1].toHit} | {self.contents[add-1].dmg} Damage]")
+                        prints("~~~~~~~~~~~~~~")
+                        prints("--------------")
+                    elif type(self.contents[add-1]) == armor:
+                        prints("--------------")
+                        prints(f"\033[1m{self.contents[add-1].name}\033[0m")
+                        prints("~~~~~~~~~~~~~~")
+                        prints(f"\x1B[3m{self.contents[add-1].desc}\x1B[0m")
+                        prints("~~~~~~~~~~~~~~")
+                        prints(f"[+{self.contents[add-1].toHP} HP | +{self.contents[add-1].toAC} AC]")
+                        prints("~~~~~~~~~~~~~~")
+                        prints("--------------")
+                    else:
+                        prints("--------------")
+                        prints(f"\033[1m{self.contents[add-1].name}\033[0m")
+                        prints("~~~~~~~~~~~~~~")
+                        prints(f"\x1B[3m{self.contents[add-1].desc}\x1B[0m")
+                        prints("~~~~~~~~~~~~~~")
+                        prints("--------------")
                     quitC = False
                     while(not quitC):
                         num = input(printr("what will you do with this? ")).lower()
@@ -107,11 +145,17 @@ class container():
                             for i in range(len(self.contents)):
                                 prints(f"{i+1}. {self.contents[i].name}")
                             break
+                        
+                        if "drink" in num or "eat" in num or "use" in num or num == "u":
+                            if type(self.contents[add-1]) == consumable:
+                                self.contents[add-1].consume(player)
+                                quitC = True
+                                quitB = True
 
                         if "equip" in num or num == "e":
                             
                             if len(player.equipped) >= 2:
-                                if type(self.contents[add-1]) == weapon.weapon:
+                                if type(self.contents[add-1]) == weapon:
                                     prints(f"1. {player.equipped[0].name}")
                                     prints(f"2. {player.equipped[1].name}")
                                     acc = int(input(printr("Which item do you want to unequip first? ")))-1
@@ -124,7 +168,7 @@ class container():
                                     quitC = True
 
                             else:
-                                if type(self.contents[add-1]) == weapon.weapon:
+                                if type(self.contents[add-1]) == weapon:
                                     player.equipped.append(self.contents[add-1])
                                     self.contents.remove(self.contents[add-1])
                                     prints("equipped!")

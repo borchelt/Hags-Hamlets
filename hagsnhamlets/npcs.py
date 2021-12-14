@@ -18,7 +18,7 @@ def nullOption():
 
 class npc():
 
-    def __init__(self, name, imageFunc, introFunc, options, outcomes, tradeNum = -1, tradeOptions = [], questTrades = [], questNum = -1, questFunc = nullOption, questEndNum = -1, questIndex = -1, local = "default", ):
+    def __init__(self, name, imageFunc, introFunc, options, outcomes, tradeNum = -1, tradeOptions = [], questTrades = [], questNum = -1, questFunc = nullOption, questEndNum = -1, questIndex = 0, local = "default", ):
         self.name = name
         self.imageFunc = imageFunc
         self.introFunc = introFunc
@@ -32,6 +32,7 @@ class npc():
         self.questEndNum = questEndNum
         self.questIndex = questIndex
         self.local = local
+        
         
 
     
@@ -65,6 +66,8 @@ class npc():
         if(self.questEndNum != -1):
             self.options.remove(self.options[self.questEndNum])
             self.outcomes.remove(self.outcomes[self.questEndNum])
+
+        self.questNum = -1
 
         self.options.insert(index, option)
         self.outcomes.insert(index, outcome)
@@ -108,6 +111,7 @@ def old_greg_image():
 common_qs = ["Who are you?", "Where are you from?", "What are you doing here?"]
 
 def old_greg_intro():
+    prints("")
     prints("Forgive me for not recognizing you at first... You look like one of them! " ,2)
     prints("",.3)
     prints("The stranger points to your clothing. You're not wearing much. Your body is barely covered by some tattered robes.  ",2)
@@ -115,6 +119,7 @@ def old_greg_intro():
     prints("You start to wonder why it seems like this stranger isn't afraid of you. More importantly, you're wondering what in the" , 2)
     prints("seven hells is going on! ", 2)
     prints("", .3)
+    prints("")
 
 #greg options
 greg_dialogue_options = [
@@ -134,10 +139,12 @@ greg_dialogue_outcomes = [
 greg = npc("Old Greg", old_greg_ascii, old_greg_intro, greg_dialogue_options, greg_dialogue_outcomes)
 
 def town_Greg_intro():
+    prints("")
     prints("Having safely arrived in town, Old Greg has taken to his usual practice of")
     prints("sitting in the town square, watching the goings on from his favorite bench.")
     prints("He sees you and beckons you over with a lazy wave")
     prints("\"So, how's Mr. Monster fighter doing?\"")
+    prints("")
 
 town_Greg_Options = [
     "    What's... going on?",
@@ -160,17 +167,17 @@ def town_Greg_Quest(self):
     prints("    \"The youngest hag has a weakness, I'm not sure why, but she's powerless against\"")
     prints("    \"anyone that has partaken of her cooking, and one o' my ghastly friends gave me a recipe.\"")
     prints("    \"I would mix it up for you, but im missing one key ingredient: A Deathcap Mushroom.\"")
-    self.setQuest("** Turn in Deathcap **", "oh ho ho, this hag aint gonna know what hit her",2, 0)
+    self.setQuest("    ** Turn in Deathcap **", "oh ho ho, this hag aint gonna know what hit her",3, 0)
 
-def town_Greg_endQuest():
+def town_Greg_endQuest(self):
     prints("    Greg takes the mushroom carefully from your hands, and drops it into his water skin along with some assorted herbs and... items...")
     prints("    He gives it a good shake and hands it over to you. \"I'm sad to see betsy go, but its for a good cause.\"")
-    prints("              ----####  YOU GOT THE HAG'S BANE SOUP #####----", 1)
+    prints("              ----####  YOU GOT THE HAG'S BANE SOUP #####----", 2)
 
 hagsBane = consumable("Hag's Bane Soup", "you're not sure if drinking this will kill you, but greg didnt seem worried", ["hagsBane", 0])
-greg_QuestTrades = [[hagsBane, "Deathcap Mushroom", town_Greg_endQuest]]
+greg_QuestTrades = [[hagsBane, "Deathcap Mushroom", town_Greg_endQuest, 2]]
 
-townGreg = npc("Old Greg", old_greg_ascii, town_Greg_intro, town_Greg_Options, town_Greg_Outcomes, -1, [], [greg_QuestTrades], 2, town_Greg_Quest)
+townGreg = npc("Old Greg", old_greg_ascii, town_Greg_intro, town_Greg_Options, town_Greg_Outcomes, -1, [], greg_QuestTrades, 2, town_Greg_Quest)
 def innkeeper_image():
     prints("................................................................................")
     prints(".......................... . . . . . . . . . . .................................")
@@ -194,10 +201,14 @@ def innkeeper_image():
     prints("///////////////&&&&&&&&&&&&&&&&&&(////***/********,,,,,,,/(%&&%%%(///////(/(((((")
     prints("((((/////////#&&&&&&&&&&&&&&&&&&&&&(***********,,,,,,,,,,*&&&&&&&&#(((((((((((((")
     prints("((((((((((((/&&&&&&&&&&&&&&&&&&&&&&&&&******,,,,,,,,,,,,/&&&&&&&&&&#((((((((((((")
+    prints("")
+
 
 def inkeeper_intro():
+    prints("")
     prints("She smiles somewhat uncomfortably at you as you step over to the bar", 1)
     prints("\"well, stranger, what can I get for ya? You saved my Pa. You can have damn well whatever you please!\"", 2)
+    prints("")
 
 
 keep_dialogue_options = [
@@ -262,9 +273,11 @@ def blacksmith_ascii():
     prints("                              ..            *(                   .     ")  
 
 def blacksmith_intro():
-    prints("the man is engrossed in his work, continuing to hammer away as you step inside the small forge area")
-    prints("you make yourself known and he quickly looks up, obviously annoyed by this interuption")
-    prints("\"What?\"")
+    prints("")
+    prints("    The large man is engrossed in his work. He continues hammering away, even as you step into the room.",.3)
+    prints("You make yourself known with a slight cough. He makes a face like he smells something off.",.3)
+    prints("\"Er...What are you wanting, then?\"")
+    prints("")
 
 def blacksmith_quest(self):
     prints("\"Work?, im afraid to say I aint got much ta pay with, run along now,\" the smith says, turning back to his work.")
@@ -277,13 +290,13 @@ def blacksmith_quest(self):
     prints("      than any of the lousy guard around these parts. Bring me the SILVER ORE and I'll")
     prints("      a forge you a mighty weapon indeed.\"")
 
-    self.setQuest("     **Turn in Silver ore**", "\"You got it? hand it over son!\"", 4, 0)
+    self.setQuest("     **Turn in Silver ore**", "\"You really have the Silver Ore? I thought you'da been dead o'course! Hand it over son!\"", 4, 0)
     prints("")
 
 
     
 
-def blacksmith_questEnd():
+def blacksmith_questEnd(self):
     prints("He looks over the ore you hand him, inspecting it carefully.")
     prints("    \"Well now,\" the Blacksmith says, obviously impressed, \"It must have been")
     prints("     quite the feat for you to get this out of that Mine. I hope it wasn't too")
@@ -322,9 +335,9 @@ smith_dialogue_outcomes = [
 axe = weapon("Woodsman's Axe", 4, 0, "cleave", "a fine axe, heavy but balanced well")
 sword = weapon("Steel Sword", 2, 2, "slash", "why would a small town blacksmith have such practice making weapons of war?")
 hammer = weapon("Spare Hammer", 3, 1, "swing", "It's worn from use, but no less effective")
-
+spear = weapon("Spear", 2, 15, "stab", "A long, pointy boi. Watch out!")
 silSword = weapon("Silver Sword", 3, 3, "expertly slash", "a masterwork weapon, it gleams in even the darkest corner")
-smith_trades = [[axe, 35], [sword, 50], [hammer, 25]]
+smith_trades = [[axe, 35], [sword, 50], [hammer, 25], [spear, 30]]
 smith_questTrades = [[silSword, "Silver Ore", blacksmith_questEnd, 3]]
 
 
@@ -360,7 +373,37 @@ def librarian_quest(self):
     prints("")
 
 
-def librarian_questEnd():
+def librarian_questEnd(self):
+    prints("")
+    prints("    Regina practically snatches the Ruby from your hands, due to excitement. Like a whirlwind she runs back")
+    prints("to her desk and begins unfurling a large scroll. \"Yes...it's right here...,\" she mutters to herself.")
+    prints("Before long she is chanting in strange, ancient languages that you can't begin to comprehend. The room dims,")
+    prints("your heart begins to pound within your chest, and the shadows all around you seem to come alive.")
+    prints("Her voice rises, growing stronger and louder as she continues the spell. She looks to you with a satisfied eye,")
+    prints("obviously proud of her work.")
+    prints("....")
+    prints(".........",.3)
+    prints("                                    SUDDENLY THE WINDOWS BURST INWARDS",.3)
+    prints("CRASH!!! BANG!!!!! ooooOOOOOOOOOOooooooOOOOOOOOOOoooooOOOOOOOOOOOOooooo.....")
+    prints("")
+    prints("oooooOOOOOOOOOOoooooOOOOOOOOOOoooooooo.....")
+    prints("")
+    prints("                        AND SHADOWS SEEM TO BLOT OUT THE SUN",.3)
+    prints("                                              oooooOOOooooooOOOOOOOOOOOOOooooo")
+    prints("")
+    prints("THE WIND WHIPS AROUND YOU")
+    prints("                                AND ALL BECOMES DARKNESS.")
+    prints("")
+    prints("",.3)
+    prints("",.3)
+    prints("    The wind calms itself. Broken glass is scattered everywhere. The sunlight glints off the glass dust")
+    prints("that remains on the various books, scroll and papers lying about. Regina is doubled over, holding herself")
+    prints("up on the table with a single arm. \"We did it,\" she grins, \"I made the Blood of Shadows.\"")
+    prints("")
+    prints("\"Here,\" she says, \"You take this...You'll need it to defeat the Hags.\"")
+    prints("")
+    prints("")
+    prints("              ----####  YOU GOT THE BLOOD OF SHADOWS #####----", 1)
     prints("")
 
 librarian_dialogue_options = [
@@ -384,7 +427,7 @@ librarian_dialogue_outcome = [
         ]
 
 
-blood_of_shadows = item("Ruby Amulet", "An amulet, infused with the power to take in or dispel shadows.")
+blood_of_shadows = qItem("Ruby Amulet", "An amulet, infused with the power to take in or dispel shadows.")
 librarian_trade = [ [time_book, 25], [pamphlet, 5], [book_of_spells, 75] ]
 librarian_questTrades = [[blood_of_shadows, "The Hangman's Ruby", librarian_questEnd, 4]]
 
@@ -416,7 +459,7 @@ merchant_dialogue_outcome = [
     "   \"Come back anytime, friend. \" "
         ]
 
-coldest_beer = item("Coldest Beer", "The stein somehow still has frost on it. Perhaps it has been magically cooled.")
+coldest_beer = qItem("Coldest Beer", "The stein somehow still has frost on it. Perhaps it has been magically cooled.")
 merchant_trade = [ [small_health_chest, 25], [medium_health_chest, 50], [large_health_chest, 100], [small_armor_chest, 25], [medium_armor_chest, 50], [large_armor_chest, 100], [small_weapon_chest, 25], [medium_weapon_chest, 50], [large_weapon_chest, 100], [coldest_beer, 150]]
 
 
@@ -446,8 +489,25 @@ def gen_quest(self):
     self.setQuest("     **Hand over the papers**", "\"You.. you actually did it!\"", 3, 0)
     prints("")
 
-def gen_questEnd():
+gen_trade = [ [wine, 3], [loaf_of_bread, 5], [kidney_beans, 3], [throwing_spear, 10], [sickle, 50], [artichokes, 3], [asiago_cheese, 50], [time_book2, 100] ]
+
+def gen_questEnd(self):
+    self.tradeOptions = [ [wine, 1], [loaf_of_bread, 2], [kidney_beans, 1], [throwing_spear, 5], [sickle, 25], [artichokes, 1], [asiago_cheese, 25], [time_book2, 50] ]
     prints("")
+    prints("    From the moment the bell chimes, the Barry is staring you down.")
+    prints("\"Well? Have you done it? Is he finally going to stop harassing me?\" Barry asked,")
+    prints("looking around nervously. You respond and tell him of your adventures down in the sewers.")
+    prints("He pauses, scratching his chin and listening to you. \"So you're sure, that's it?\"")
+    prints("You motion for him to calm down, setting his mind at ease.")
+    prints("")
+    prints("\"Thank you so very much, stranger! Thank you! I swear I'll stop gambling.\"")
+    prints("...Barry looks around abashedly. \"Ah...I almost forgot. Here you go!\" he says")
+    prints("as he pulls out a large certificate. \"Your reward!\"")
+    prints("")
+    prints("")
+    prints("  ----#### YOU'VE RECIEVED A PERMANENT DISCOUNT FOR THE GENERAL STORE! ####---- ")
+    prints("") 
+
 
 general_store_owner_dialogue_options = [
 "     *** TRADE *** I'd like to see your wares.", 
@@ -467,10 +527,10 @@ general_store_dialogue_outcome = [
         ]
 
 
-gen_trade = [ [wine, 3], [loaf_of_bread, 5], [kidney_beans, 3], [throwing_spear, 10], [sickle, 50], [artichokes, 3], [asiago_cheese, 50], [time_book2, 100] ],
+gen_trade = [ [wine, 3], [loaf_of_bread, 5], [kidney_beans, 3], [throwing_spear, 10], [sickle, 50], [artichokes, 3], [asiago_cheese, 50], [time_book2, 100] ]
 
-permanent_discount = item("Permanent Discount", "10 percent off of everything in the General Store, forever!")
-gen_questTrades = [ [permanent_discount, "Debt Settled Papers", librarian_questEnd, 3]  ]
+permanent_discount = qItem("Permanent Discount", "10 percent off of everything in the General Store, forever!")
+gen_questTrades = [ [permanent_discount, "Debt Settled Papers", gen_questEnd, 3]  ]
 
 general_store_owner = npc("General Store Owner", general_store_owner_ascii, general_store_intro, general_store_owner_dialogue_options, general_store_dialogue_outcome, 0, gen_trade, gen_questTrades, 3, gen_quest)
 
@@ -519,7 +579,7 @@ def thief_king_quest(self):
     prints("")
 
 
-def thief_king_questEnd():
+def thief_king_questEnd(self):
     prints("")
     prints("    \"I can't believe you pulled it off. Fine. As promised,\" the Thief King")
     prints("says, handing you a sealed envelope.")
@@ -547,12 +607,12 @@ thief_king_dialogue_outcome = [
     "   \"I'll be here.\"."
         ]
 
-proof_of_debt_settled = item("Debt Settled Papers", "Proof that the debt between Barry Barrelpine and the Thief King was settled.")
+proof_of_debt_settled = qItem("Debt Settled Papers", "Proof that the debt between Barry Barrelpine and the Thief King was settled.")
 
-signed_rat_king_treaty = item("Signed Treaty", "A treaty that promises an end to the violence between the Rat King and the Thief King.")
+signed_rat_king_treaty = qItem("Signed Treaty", "A treaty that promises an end to the violence between the Rat King and the Thief King.")
 thief_king_questTrades = [ [proof_of_debt_settled, "Signed Treaty", thief_king_questEnd, 4 ] ]
 
-thief_king = npc("Thief King", thief_king_ascii, thief_king_intro, thief_king_dialogue_options, thief_king_dialogue_outcome, -1, [], thief_king_questTrades, thief_king_quest, 4)
+thief_king = npc("Thief King", thief_king_ascii, thief_king_intro, thief_king_dialogue_options, thief_king_dialogue_outcome, -1, [], thief_king_questTrades, 4, thief_king_quest)
 
 
 
@@ -650,7 +710,7 @@ def rat_king_intro():
 
 def rat_king_quest(self):
     prints("Kill... One... Of.. Them")
-    self.setQuest("     **    Hand it the finger**", "\"...\"", 4, 0)
+    self.setQuest("     **Hand it the finger**", "\"...\"", 4, 0)
 
 def rat_king_questEnd():
     prints("    A treaty is haned to you by one of it's retainers, signed by the rat king.")
@@ -676,10 +736,10 @@ rat_king_outcomes = [
 ]
 
 rat_trades = [ ]
-treaty = item("Signed Treaty", "The handwriting is surprisingly eligant")
-rat_questTrades = [treaty, "Hag's Finger", rat_king_questEnd]
+treaty = qItem("Signed Treaty", "The handwriting is surprisingly eligant")
+rat_questTrades = [[treaty, "Hag's Finger", rat_king_questEnd, 4]]
 
-rat_king = npc("The Rat King", rat_king_ascii, rat_king_intro, rat_king_options, rat_king_outcomes, 0, rat_trades, rat_questTrades, 4, rat_king_quest, 4)
+rat_king = npc("Rat King", rat_king_ascii, rat_king_intro, rat_king_options, rat_king_outcomes, 0, rat_trades, rat_questTrades, 4, rat_king_quest)
 
 
 

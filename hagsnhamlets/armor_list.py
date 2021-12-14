@@ -1,6 +1,9 @@
-from item import item
+from item import armor, item
 
+import random
 #ARMOR 
+
+
 
 chainmail = item("Chainmail", "Chainmail")
 lamellar = item("Lamellar", "Lamellar")
@@ -28,5 +31,25 @@ armor_list = []
 for i in range(len(armor_listProto)):
     for y in range(len(armor_listProto2)):
         armor_list.append(item(f"{armor_listProto[i]} {armor_listProto2[y]}",f"{armor_listProto[i]} {armor_listProto2[y]}" ))
+
+for i in range(len(armor_list)):
+    print(f"{i}. {armor_list[i].name}")
+
+
+new_armor_list = []
+
+def armorsmith(item):
+    print("running armorsmith")
+    rand_stat = random.randint(0, 5)
+    new_armor = armor(item.name, rand_stat, rand_stat,f"a {item.name}")
+    return new_armor
+
+for i in range(len(armor_list)):
+    new_armor_list.append(armorsmith(armor_list[i]))
+
+armor_list = new_armor_list
+
+# for i in range(len(armor_list)):
+#     print(f"{i}. {armor_list[i].name}")
 
  

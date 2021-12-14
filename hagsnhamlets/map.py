@@ -20,13 +20,13 @@ from item_list import *
 class map():
 
     def populate_enemies(max_enemies, where, who):
-        
-        for i in range(0, max_enemies):
-            enemy_chance = random.randint(0,10)
-            if enemy_chance % 2 == 0:
-                enemy = copy.deepcopy(who)
-                enemy.local = where
-                where.enemyArr.append(enemy)
+      
+      for i in range(0, max_enemies):
+          enemy_chance = random.randint(0,10)
+          if enemy_chance % 2 == 0:
+              enemy = copy.deepcopy(who)
+              enemy.local = where
+              where.enemyArr.append(enemy)
 
 
 
@@ -127,7 +127,7 @@ class map():
     old_mines_floor2_W2.interactables = [medium_armor_chest, large_weapon_chest]
 
     #SILVER ORE NEEDS TO GO HERE 
-    silOre = item("Silver Ore", "it glitters with potential")
+    silOre = qItem("Silver Ore", "it glitters with potential")
     old_mines_center_chamber.interactables = [large_health_chest,silOre]
     old_mines_floor2_W3.interactables = []
     old_mines_floor2_wN.interactables = []
@@ -146,7 +146,7 @@ class map():
     deepwoods_HagLair = Location("The Core of the Deepwoods", "This is deeper than you've ever been before. you can barely see your hand infront of your face.", [],[],[])
 
     
-
+    deepwoods_HagLair.adj_locations = [deepwoods_mid, woodsDeadN]
     dwList = [deepwoods_mid, deepwoods_branch_1, deepwoods_branch_2, deepwoods_branch_3,deepwoods_branch_4, woodsDeadN]
 
     shadowyGrasp = weapon("Shadowy Grasp", 5, 5, "claws")
@@ -164,9 +164,9 @@ class map():
 
     hamlet = Location("The Hamlet", "The center of this once bustling hamlet now lies quiet and defeated", "hnh_forestTheme_conceptQ.mp3", [], [],[])
     store = Location("The General Store", "A dusty counter sits at the back of this one room shop, the only other furnature being a small shelf laden with baubles","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
-    sundial = Location("The Sundial", "A stone slab marked with anchient runes sits inbetween two small houses, nobody but you seems to even relize its there.","hnh_forestTheme_conceptQ.mp3", [], [],[])
+    #sundial = Location("The Sundial", "A stone slab marked with anchient runes sits inbetween two small houses, nobody but you seems to even relize its there.","hnh_forestTheme_conceptQ.mp3", [], [],[])
     tavern = Location("The Tavern", "Perhaps the only place in the hamlet with any life still inside, you even hear the occasional chuckle coming from inside","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
-    QBoard = Location("The Message Board", "A Wooden board with a few slips of parchment halfheartedly nailed to it.","hnh_forestTheme_conceptQ.mp3", [], [],[])
+    #QBoard = Location("The Message Board", "A Wooden board with a few slips of parchment halfheartedly nailed to it.","hnh_forestTheme_conceptQ.mp3", [], [],[])
     blacksmith = Location("The Smithy", "the soft glow of the embers and the rythmic ringing of the hammer on metal is almost soothing.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
     library = Location("The Library","Most of the books have been overrun by mold, but you may still be able to find something usefull","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
     wagon = Location("The Merchant Wagon", "The small covered wagon smells of incense and dust.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
@@ -178,19 +178,19 @@ class map():
     store.adj_locations = [hamlet]
     store.interactables = [general_store_owner]
 
-    sundial.adj_locations = [store, tavern, QBoard, blacksmith, library, wagon, well]
-    sundial.interactables = []
+    #sundial.adj_locations = [store, tavern, QBoard, blacksmith, library, wagon, well]
+    #sundial.interactables = []
 
     tavern.adj_locations = [hamlet, forest]
     tavern.interactables = [innkeeper, small_health_chest, beer, beer, beer, chicken, beef, plate, plate, silver_fork, wine, wine_glass]
 
-    QBoard.adj_locations = [store, tavern, sundial, blacksmith, library, wagon, well, forest]
-    QBoard.interactables = []
+    #QBoard.adj_locations = [store, tavern, sundial, blacksmith, library, wagon, well, forest]
+    #QBoard.interactables = []
 
     library.adj_locations = [hamlet]
     library.interactables = [librarian, small_health_chest, pamphlet, glass, ]
 
-    wagon.adj_locations = [store, tavern, sundial, blacksmith, library, QBoard, well,]
+    wagon.adj_locations = [store, tavern, blacksmith, library, well,]
     wagon.interactables = [merchant]
 
    
@@ -202,10 +202,12 @@ class map():
     sewer_tunnelsE = Location("East Sewer Tunnels", "The path opens into a large room. There are two doors here. "", You can hear the sounds of clinking glasses. One door is guarded by a large, hooded man.", [],[],[],True)
     sewer_tunnelsW = Location("West Sewer Tunnels", "Faint chittering sounds echo down the tunnel towards you.", "", [],[],[],True)
     
+    ratman = enemy.enemy("Ratman", "", 15, [throwing_knife, sword, throwing_knife], 10, [cheddar_cheese], "", sewer_tunnels)
+    tk_henchman = enemy.enemy("Henchman", "", 11, [shortsword, throwing_knife, sword], 12, [bananas], "", sewer_tunnels)
     well.adj_locations = [hamlet, sewers]
     well.interactables = [small_health_chest, small_weapon_chest]
 
-    sewer_tunnels.enemyArr = []
+    sewer_tunnels.enemyArr = [ratman, tk_henchman]
     sewer_tunnelsN.enemyArr = []
     sewer_tunnelsE.enemyArr = []
     sewer_tunnelsW.enemyArr = []
@@ -220,12 +222,15 @@ class map():
     speakeasy.interactables = [drunkard, beer, beer, beer, beer, wine, plate, small_weapon_chest, bottle]
 
     thieves_den = Location("Thieves' Den", "This place is well hidden beneath the Hamlet. It seems odd that such a remote space in the world would be home to such a place.", "placeholder", [],[],[],True)
-    thieves_den.interactables = [thief_king, drunkard]
+    thieves_den.interactables = [thief_king]
 
     rat_kings_nest = Location("The Rat King's Nest", "This place is a mess of trinkets, weapons, armor and scraps of paper. You're not sure which smells worse- the sewers or the nest.", "placeholder", [],[],[], True)
     rat_kings_nest.interactables = [rat_king]
+    rat_kings_nest.adj_locations = [sewer_tunnels, sewer_tunnelsW]
     
-    sewers.adj_locations = [sewer_tunnels]
+
+
+    sewers.adj_locations = [sewer_tunnels, well]
     sewer_tunnels.adj_locations = [sewers, sewer_tunnelsN, sewer_tunnelsW]
     sewer_tunnelsN.adj_locations = [sewer_tunnels, sewer_tunnelsE]
     sewer_tunnelsE.adj_locations =[sewer_tunnelsN, speakeasy, thieves_den]
@@ -253,10 +258,10 @@ class map():
 
     forest.adj_locations = [path, farm, cottage, hamlet] #town when its done
     farm.adj_locations = [forest]
-    cottage.adj_locations = [forest, glade]
+    cottage.adj_locations = [forest, glade, rat_kings_nest, dampCave]
     glade.adj_locations = [cottage]
 
-    deathcap = item("Deathcap Mushroom", "Such a small vessel for such enourmous destructive ability.")
+    deathcap = qItem("Deathcap Mushroom", "Such a small vessel for such enourmous destructive ability.")
     ruby = item("The Hangman's Ruby", "It glimmers with more than just light.")
     toadEye = item("Eye of Toad", "A Jar With the eye of a toad inside, it seems to look past you.")
     herbs = item("Bitter Herbs", "They never knew what they were supposed to taste like.")
@@ -299,7 +304,7 @@ class map():
     woodsSE.interactables = [herbs]
     woodsNW.interactables = [deathcap]
     woodsDeadS.interactables = [oldSword]
-    waterfall.interactables = [riverGlass]
+    waterfall1.interactables = [riverGlass]
     gates.interactables = [guard, small_health_chest]
 
     claw = weapon("Claws", 1, 4, "swipes")
@@ -346,7 +351,7 @@ class map():
     #should always be able to run from, but always take 1 damage getting away and be forced out unless they leave the squirrel king a treat
     squirrels = enemy.enemy("The Squirrel king", "A number of ferocious looking squirrels approach you in miniature armor.", 666,
                         [squirrel_bow, squirrel_spear, squirrel_dag], 10, [item("King ChitterScritch's Crown", "A beautiful crown made with bits of acorn shells."), item("Strange Gem","Looks valuable.")], "The unspeakable has happened. The squirrels have all died. How have wrought such death?", glade)
-    king_chitterscritch = enemy.enemy("King ChitterScritch the 4th", "The other squirrels obviously revere this most impressive Squirrel.", 100, [squirrel_bow, squirrel_spear, squirrel_dag], 10, item("King ChitterScritch's Wand", "An ornate wand covered in small bits of shell, vine and precious stones.", pickup=True), "The mighty King lay fallen. Are you content now, murderer?", glade),
+    king_chitterscritch = enemy.enemy("King ChitterScritch the 4th", "The other squirrels obviously revere this most impressive Squirrel.", 100, [squirrel_bow, squirrel_spear, squirrel_dag], 10, item("King ChitterScritch's Wand", "An ornate wand covered in small bits of shell, vine and precious stones.", pickup=True), "The mighty King lay fallen. Are you content now, murderer?", glade)
 
     dagger = weapon("Common Dagger", 2, 3, "stabs")
     shortsword = weapon("Shortsword", 3, 3, "lunges")
@@ -366,15 +371,15 @@ class map():
     goblin_bow = weapon("Goblin Bow", 2, 3, "fires")
     goblin_axe = weapon("Goblin Axe", 3, 2, "swings")
     goblin = enemy.enemy("goblin","An angry, fiesty goblin. While not dangerous alone, goblins in numbers are problen. Where there is one, there are bound to be more.", 3, 
-                        [goblin_pike, goblin_bow, goblin_axe], 10, [item("Grog", "A skin full of a foul smelling, dark drink.")], "The goblin howls in pain before going limp, collapsing to the ground and twitching.", sundial)
+                        [goblin_pike, goblin_bow, goblin_axe], 10, [item("Grog", "A skin full of a foul smelling, dark drink.")], "The goblin howls in pain before going limp, collapsing to the ground and twitching.", old_mines_entrance)
 
     
     bat = enemy.enemy("Bats","A swarm of bats clouds your vision. The sound is incredible as wings fly past your face and around your head.", 1, 
-                        [bite, bite, bite], 10, [item("bat's wings", "A severed bat's wing")], "Your attack connects and the bats fall harshly, splattering on the ground.", sundial)
+                        [bite, bite, bite], 10, [item("bat's wings", "A severed bat's wing")], "Your attack connects and the bats fall harshly, splattering on the ground.", old_mines_entrance)
 
     
     giant_spider = enemy.enemy("Spider","A hulking, fierce insect. This is no time to be act idley. Look out!", 15, 
-                        [bite, bite, bite], 10, [item("venomous sac", "A foul smelling sac that you've retrieved from the spider. Probably worth keeping for a potion."), item("spider eyes", "The soft, gushy eyeballs of the spider stare back at you lifelessly."), item("giant spider mandible", "A spider's mandible.")], "", sundial)
+                        [bite, bite, bite], 10, [item("venomous sac", "A foul smelling sac that you've retrieved from the spider. Probably worth keeping for a potion."), item("spider eyes", "The soft, gushy eyeballs of the spider stare back at you lifelessly."), item("giant spider mandible", "A spider's mandible.")], "", old_mines_floor2_W3)
 
     phantasmal_scream = weapon("Phantasmal Scream", 2, 3, "shrieks")
     angry_spirit = enemy.enemy("Spirit","Suddenly a spectacularly spooky spectre swiftly swims through the air towards you. Oh my!", 3, 
@@ -544,29 +549,56 @@ class map():
                        
                        ]
 
+    tk_henchman_descs = [ "A stout man in all black, wearing a hood. He looks like your average thief.",
+                        "A full bellied being with rosy cheeks, obviously fond of the drink. His weapon looks sharp, though.",
+                        "A stern looking giant with dark, beady eyes. This one won't go down easily."
+
+    ]
+
+    tk_henchman_deaths = [ "With expert precision, you use the Henchman's momentum against them. Your attack sneaks into their armpit with a dreadful noise.",
+                        "One swift motion, and the Henchman's leg is sent sailing down the tunnel. They collapse.",
+                        "You parry their attack, driving your own weapon forward into their eye socket."
+    ]
+
+  
+
+    ratman_descs = [ "A hulking figure. This ratman stands at about 6'4\" easily. They eye you angrily for intruding.",
+                    "Large patches of fur are missing from where this Ratman was in previous fights. It looks incredibly angry.",
+                    "This Ratman has a scar running from the top of it's skull down it's chest. It looks terrifying."
+
+    ]
+
+    ratman_deaths = [ "The Ratman's size makes it difficult to duck. It catches your attack square in its chest.",
+                      "Though the Ratman nimbly dodges your first swing, you follow it up by lopping off its tail. It runs away, howling.",
+                      "----#### CENSORED ####---- It will be a closed casket funeral. "
+
+    ]
     hag1_cleaver = weapon("Carriona's Cleaver", 10, 5, "slashes", "A terrible blade. The hilt looks like it was made from a child's bones.")
     carriona_call = weapon("Carriona's Call", 15, 2, "sings", "Carionna's voice echoes in your ears, enchanting you.", pickup=False)
-    hag1_BOSS = enemy.enemy("Carriona Bramblebone ", "Carriona is a large, gluttonous being. She smacks her lips greedily, stands and grabs a knife.", 50, 
-                    [hag1_cleaver, hag1_cleaver, carriona_call], 15, [hag1_cleaver], "", cottage)
+    hagsFinger = item("Hag's Finger", "A wretched thing, it sickens you just to  look at it.")
+    hag1_BOSS = enemy.hag("Carriona Bramblebone ", "Carriona is a large, gluttonous being. She smacks her lips greedily, stands and grabs a knife.", 50, 
+                    [hag1_cleaver, hag1_cleaver, carriona_call], 15, [hag1_cleaver,hagsFinger], "", cottage)
     hag1_deaths = [ "Carriona, youngest of the Hag sisters, has fallen. Her wounds are grievous, and she slumps back into her chair, gasping for one final breath before she passes."]
 
     hag2_shadow_strike = weapon("Shadow Strike", 12, 6, "pierces", "Shadows swell and stab at the gaps in your armor. Everything is cold.", pickup=False)
     hag2_corruption = weapon("Corruption", 12, 10, "casts", "Enfeebling beams of darkness fly from her fingertips like daggers.", pickup=False)
     heart_of_shadows = item("Heart of Shadows", "A companion gem to the Blood of Shadows. It stinks of evil magic.", pickup=True)
-    hag2_BOSS = enemy.enemy("Pumera Prickersnout", "Pumera's eyes peer out at you from the shadows: big, glowing orbs full of hate.", 75, [hag2_shadow_strike, hag2_corruption, hag2_corruption], 15, [heart_of_shadows], "", deepwoods_HagLair)
+    hag2_BOSS = enemy.hag("Pumera Prickersnout", "Pumera's eyes peer out at you from the shadows: big, glowing orbs full of hate.", 75, [hag2_shadow_strike, hag2_corruption, hag2_corruption], 15, [heart_of_shadows], "", deepwoods_HagLair)
     
     hag2_deaths = [ "The shadows have been lifted, and sunlight once again returns to this part of the wood. Pumera Prickersnout, secondborn of the Hag sisters, is defeated."]
     
     hag3_needle = weapon("Nefarious Needle", 13, 13, "stabs", "A vicious, sharp implement capable of piercing all but the strongest of armors.", pickup=True)
-    hag3_BOSS = enemy.enemy("Jezebella Crowseye", "She appears as a most beautiful woman, wading in the shallow pools behind the waterfall.", 85, [hag3_needle, hag3_needle, hag3_needle], 15, [hag3_needle], "", dampCave)
+    hag3_BOSS = enemy.hag("Jezebella Crowseye", "She appears as a most beautiful woman, wading in the shallow pools behind the waterfall.", 85, [hag3_needle, hag3_needle, hag3_needle], 15, [hag3_needle], "", dampCave)
     
     hag3_deaths = ["Jezebella falls backwards, causing a terrific splash. Her blood flows out from her wounds, tinting the water a deep, awful red."]
 
     
     ENDING_LOCAL = Location("The Bitter End", "The Hamlet is under seige. All Hell has broken loose.", "", [], [], [])
-    hag4_scythe = weapon("Mefilda's Malice", 20, 10, "swings", "Mefilda's Malice is the physical realization of her hatred and contempt for the living.", pickup=True)
+    hag4_scythe = weapon("Malice Scythe", 20, 10, "cuts", "Mefilda's Malice is the physical realization of her hatred and contempt for the living.", pickup=True)
+    hag4_knife = weapon("Hate Knife", 5, 999, "tears")
+    hag4_claws = weapon("Putrid Claws, ", 10, 20, "rips")
     
-    hag4_BOSS = enemy.enemy("Mefilda Rottenbough", "Many believed Mefilda to be dead. Vengeance has come, finally, and her name is Mefilda.", 100, [], 15, [hag4_scythe], "", ENDING_LOCAL)
+    hag4_BOSS = enemy.hag4("Mefilda Rottenbough", "Many believed Mefilda to be dead. Vengeance has come, finally, and her name is Mefilda.", 100, [hag4_scythe,hag4_claws,hag4_knife], 15, [], "", hamlet)
     
 
     # def end_desc():
@@ -624,8 +656,8 @@ class map():
     enemy_description_flavor(wolf3, wolf_descs)
     enemy_description_flavor(angry_spirit, angry_spirit_descs)
     enemy_description_flavor(goblin, goblin_descs)
-    
-    
+    enemy_description_flavor(tk_henchman, tk_henchman_descs)
+    enemy_description_flavor(ratman, ratman_descs)
 
     death_flavor(zombie, zombie_deaths)
     death_flavor(skel1, skel1_deaths)
@@ -641,7 +673,10 @@ class map():
     death_flavor(wolf2, wolf_deaths)
     death_flavor(wolf3, wolf_deaths)
     death_flavor(angry_spirit, angry_spirit_deaths)
-    death_flavor(goblin, goblin_deaths) 
+    death_flavor(goblin, goblin_deaths)
+    death_flavor(tk_henchman, tk_henchman_deaths)
+    death_flavor(ratman, ratman_deaths)
+
     
 
     """ death_flavor(hag1, hag1_deaths)
@@ -687,7 +722,7 @@ class map():
         self.setQuest("     **    Hand him the beer**", "\"he looks at it in awe.\"", 3, 0)
         prints("")
 
-    def hunter_questEnd():
+    def hunter_questEnd(self):
         prints("")
         prints("    \"My oh my! Thank you so much,\" the Hunter says as he takes the beer from you.")
         prints("    \"Oh my...It's still cold...How wonderful...\" he manages to say as he sips greedily")
@@ -718,7 +753,7 @@ class map():
     hunters_map = item("Hunter's Map", "A map given to you by the Hunter. It describes a path that leads one behind the Waterfall.")
     hunter_questTrades = [ [hunters_map, "Coldest Beer", hunter_questEnd, 3] ]
 
-    hunter = npc("Hunter", hunter_ascii, hunter_intro, hunter_dialogue_options, hunter_dialogue_outcome, -1, [], hunter_questTrades, 3, hunter_quest, 3)
+    hunter = npc("Hunter", hunter_ascii, hunter_intro, hunter_dialogue_options, hunter_dialogue_outcome, -1, [], hunter_questTrades, 3, hunter_quest)
 
     def hag1_intro():
       prints("")
@@ -843,13 +878,33 @@ class map():
       
       
 
-    hag4 = npc("hag4", hag4_ascii, hag4_intro, hag4_options, hag4_outcomes)
+    hag4 = npc("hag4", hag4_ascii, hag4_intro, hag4_options, hag4_outcomes, -1, [], [], 0, hag4fight, -1, -1)
 
     cottage.interactables = [doll, toadEye, small_weapon_chest, hag1]
     dampCave.interactables = [hag3]
     deepwoods_HagLair.interactables.append(hag2)
+    camp.interactables = [hunter]
 
     death_flavor(hag1_BOSS, hag1_deaths)
     death_flavor(hag2_BOSS, hag2_deaths)
     death_flavor(hag3_BOSS, hag3_deaths)
     #death_flavor(hag4_BOSS, hag4_deaths)
+
+    def ref(self):
+      
+      if self.hag1_BOSS in self.cottage.enemyArr:
+        self.cottage.enemyArr.remove(self.hag1_BOSS)
+        self.cottage.interactables.append(self.hag1)
+      
+      if self.hag2_BOSS in self.deepwoods_HagLair.enemyArr:
+        self.cottage.enemyArr.remove(self.hag2_BOSS)
+        self.cottage.interactables.append(self.hag2)
+      
+      if self.hag3_BOSS in self.dampCave.enemyArr:
+        self.cottage.enemyArr.remove(self.hag3_BOSS)
+        self.cottage.interactables.append(self.hag3)
+      
+      if self.hag4_BOSS in self.hamlet.enemyArr:
+        self.cottage.enemyArr.remove(self.hag4_BOSS)
+        self.cottage.interactables.append(self.hag4)
+

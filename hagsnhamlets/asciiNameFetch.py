@@ -236,7 +236,7 @@ class nameFetch():
             map.populate_enemies(3, local, map.hatchling_spider)
         elif name == "The Core of the Deepwoods":
             self.deep_woods_title_ascii()
-            local.adj_locations = [map.deepwoods_mid]
+            local.adj_locations = [map.deepwoods_mid, map.woodsDeadN, map.cottage]
         elif "Deepwoods" in name:
             self.deep_woods_title_ascii()
             map.populate_enemies(3, local, map.shade)

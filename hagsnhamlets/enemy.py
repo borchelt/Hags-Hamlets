@@ -2,6 +2,7 @@
 from prints import *
 from random import *
 from math import floor, trunc
+import musicPlayer
 
 hags = 0
 class enemy():
@@ -21,30 +22,37 @@ class enemy():
         roll = aPack[0]
         damage = aPack[1]
         if roll > self.ac:
-            prints(f"It connects! You deal {damage} damage")
+            prints(f"...It connects! You deal {damage} damage",.3)
+            prints("")
             self.hp -= damage
         else:
-            prints("You miss!")
+            prints("...You miss!",.3)
+            prints("")
         if self.hp <= 0:
             if(drop):
-                prints(self.death)
+                prints(self.death,.3)
+                prints("")
                 player.gold += self.gold
                 for i in self.drops:
                     self.local.interactables.append(i)
-                    prints(f"It drops a {i.name}!")
+                    prints(f"It drops a {i.name}!",.3)
                 prints("You feel your coin purse grow a bit heavier")
+                prints("")
                 self.local.enemyArr.remove(self)
 
 
     def attack(self, player):
+        prints("")
         prints(f"The {self.name} {self.weapon[0].type} at you with it's {self.weapon[0].name}")
         player.hit([randrange(1, 21) + self.weapon[0].toHit,randrange(1, 7) + self.weapon[0].dmg], "")
 
     def attack2(self, player):
+        prints("")
         prints(f"The {self.name} {self.weapon[1].type} at you with it's {self.weapon[1].name}")
         player.hit([randrange(1, 21) + self.weapon[1].toHit, randrange(1, 7) + self.weapon[1].dmg], "")
 
     def attack3(self, player):
+        prints("")
         prints(f"The {self.name} {self.weapon[2].type} at you with it's {self.weapon[2].name}")
         player.hit([randrange(1, 21) + self.weapon[2].toHit, randrange(1, 7) + self.weapon[2].dmg], "")
 
@@ -58,28 +66,34 @@ class hag(enemy):
         roll = aPack[0]
         damage = aPack[1]
         if roll > self.ac:
-            prints(f"It connects! You deal {damage} damage")
+            prints(f"...It connects! You deal {damage} damage",.3)
+            prints("")
             self.hp -= damage
         else:
-            prints("You miss!")
+            prints("...You miss!",.3)
+            prints("")
         if self.hp <= 0:
             if(drop):
-                prints(self.death)
+                prints(self.death,.3)
                 for i in self.drops:
                     self.local.interactables.append(i)
-                    prints(f"She drops a {i.name}!")
+                    prints(f"She drops a {i.name}!",.2)
                 self.local.hag = True
                 self.local.enemyArr.remove(self)
+                musicPlayer.playSound(self.local.song)
     
     def attack(self, player):
+        prints("")
         prints(f"{self.name} {self.weapon[0].type} at you with her {self.weapon[0].name}")
         player.hit([randrange(1, 21) + self.weapon[0].toHit,randrange(1, 7) + self.weapon[0].dmg], "")
 
     def attack2(self, player):
+        prints("")
         prints(f"{self.name} {self.weapon[1].type} at you with her {self.weapon[1].name}")
         player.hit([randrange(1, 21) + self.weapon[1].toHit, randrange(1, 7) + self.weapon[1].dmg], "")
 
     def attack3(self, player):
+        prints("")
         prints(f"{self.name} {self.weapon[2].type} at you with her {self.weapon[2].name}")
         player.hit([randrange(1, 21) + self.weapon[2].toHit, randrange(1, 7) + self.weapon[2].dmg], "")
 
@@ -92,19 +106,21 @@ class hag4(hag):
         roll = aPack[0]
         damage = aPack[1]
         if roll > self.ac:
-            prints(f"It connects! You deal {damage} damage")
+            prints(f"...It connects! You deal {damage} damage",.3)
+            prints("")
             self.hp -= damage
         else:
-            prints("You miss!")
+            prints("...You miss!",.3)
+            prints("")
         if self.hp <= 0:
             if(drop):
-                prints(self.death)
+                prints(self.death,.3)
                 for i in self.drops:
                     self.local.interactables.append(i)
                     prints(f"She drops a {i.name}!")
                 self.local.hag = True
                 self.local.enemyArr.remove(self)
-
+                prints("")
                 prints("The winds pick up, spinning at incredible speeds. A tornado forms, reaching a long tendril down towards Mefilda, who screams.", 2)
                 prints("Try as she might, she cannot escape. With a terrible cry, she is lifted from the ground and swallowed by the sky.", 2)
                 prints("Shortly thereafter, the sky clears and villagers begin spilling out from their hiding places. Most stare in stunned silence,", 2)

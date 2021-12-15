@@ -36,6 +36,7 @@ def dialogue(dialogue_options, dialogue_outcome, npc, player):
 
             for i in range(len(dialogue_outcome)):
                 if choice_made == valid_response[i]:
+                    prints("")
                     prints(f"{dialogue_outcome[i]}")
                     prints("")
                     if(i == npc.tradeNum):
@@ -58,12 +59,15 @@ def dialogue(dialogue_options, dialogue_outcome, npc, player):
                                 break
 
     
-    dialogue_option_chosen = int(dialogue_option_chosen)
+    try:
+        dialogue_option_chosen = int(dialogue_option_chosen)
 
-    for i in range(1, len(dialogue_options)):
-            
-        if dialogue_option_chosen != len(dialogue_options):
-            dialogue(dialogue_options,dialogue_outcome, npc, player)
+        for i in range(1, len(dialogue_options)):
+                
+            if dialogue_option_chosen != len(dialogue_options):
+                dialogue(dialogue_options,dialogue_outcome, npc, player)
+    except ValueError:
+        dialogue(dialogue_options,dialogue_outcome, npc, player)
         
 
 

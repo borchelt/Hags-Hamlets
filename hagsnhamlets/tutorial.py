@@ -8,7 +8,7 @@ from item import item
 from you_have_died import *
 
 from dialogue import *
-from npcs import * 
+from npcs import npc
 from ascii_art import * 
 import enemy
 #from console import * 
@@ -16,11 +16,25 @@ import enemy
 
 
 def tutorial():
+    prints(f"Suddenly, you are awake. You feel your head thump against the ground as you are being dragged. ", 3)
+    prints("",.3)
+
+
+    prints("\"You're awake! Oh! That's incredible. Just incredible...\" ",3)
+    prints("",.3)
+    prints("...The voice pauses, coughing and grunting as he lets go of your leg. ", 3)
+    prints("",.3)
+    prints("\"Forgive me friend, I thought you were dead! You understand...\" ", 2)
+    prints("",.3)
+    prints("You feel a hand reach down and hoist you two your feet. You're a little caught off guard! ", 3)
+    prints("",.3)
+    prints(f"\"Wait...no...it can't be! Are you?...????? " , 4)
+    prints("",.3)
     prints(" \"In all my years, I've never see anything like— \"", .3)
     prints(".....", 1)
     prints(".........", 1)
-    prints(" \"AHHHHHHHHHHHHHH!!!!!,\" Old Greg screams as several corpses start writhing in the pile behind you. \n ", .3)
-    prints("")
+    prints(" \"AHHHHHHHHHHHHHH!!!!!,\" Old Greg screams as several corpses start writhing in the pile behind you.", .3)
+    prints(" ")
 
 def combat_tutorial_zone():
         
@@ -37,7 +51,7 @@ def combat_tutorial_zone():
         
         def examine_enemy():
 
-            look_skeleton = input()
+            look_skeleton = input(printr(">> "))
 
             if look_skeleton == "look skeleton" or "look at skeleton": 
                 for i in range(0,20):
@@ -46,7 +60,8 @@ def combat_tutorial_zone():
                 
                 #HOW TO READ INFO ABOUT ENEMIES
                 prints("Here you can learn all you need to know about the skeleton.")
-                prints("ALL THESE THINGS ABOUT SKELETONS")
+                prints("1. it doesn't bleed")
+                prints("2. you can still kill it")
 
             else:
                 prints("Type \"look skeleton\" to learn more about this enemy.",.3)
@@ -56,24 +71,24 @@ def combat_tutorial_zone():
 
         prints("You'll need a weapon to defeat the skeleton. You see a spear sticking into an old stump.",.3)
         prints("Try to take the Old Spear.",.3)
-        prints("    #### Type \'take the spear\' to take it.",.3)
+        prints("    #### Type \'take the old spear\' to take it.",.3)
 
         def take_spear():
-            take_the_spear = input()
-            if take_the_spear == "take the spear":
+            take_the_spear = input(printr(">> "))
+            if take_the_spear == "take the old spear":
                 print("You've taken the spear.")
         take_spear()
         prints("",.3)
         prints("Now you'll want to equip the spear.")
-        prints("    #### Type \'equip spear\' to equip it.")
+        prints("    #### Type \'equip old spear\' to equip it.")
         prints("",.3)
 
         def babys_first_weapon():
-            equip_spear = input()
-            if equip_spear == "equip spear":
+            equip_spear = input(printr(">> "))
+            if equip_spear == "equip old spear":
                 print("You have equipped the spear.")
             else:
-                print("Equip the weapon to fight the skeleton. Type \'equip spear' to equip it.")
+                print("Equip the weapon to fight the skeleton. Type \'equip old spear' to equip it.")
                 babys_first_weapon()
         
         babys_first_weapon()
@@ -83,9 +98,9 @@ def combat_tutorial_zone():
         prints("    #### Type, \"attack skeleton\" to do battle!",.3)
 
         def first_attack():
-            first_swing = input()
+            first_swing = input(printr(">> "))
             if first_swing == "attack skeleton":
-                prints("You thrust the spear at the skeleton.")
+                prints("You thrust your old spear at the skeleton.")
                 prints("...",.3)
                 prints("...It hits! You deal 4 damage.",.3)
             else:
@@ -105,29 +120,31 @@ def combat_tutorial_zone():
                 #player gets hit
                 #player instructed to block
         prints("Quick! Defend yourself! ",.3)
-        prints("    #### Type, \"block skeleton\" to try to block its next attack.", .3) 
+        prints("    #### Type, \"block\" to try to block its next attack.", .3) 
+        def first_block():
+            block = input(printr(">> "))
+            if block == "block":
+                prints("you focus on blocking this next attack")            
+            else:
+                prints("Type \"block\" to block the incoming attack")
+                first_block()
+        first_block()
         prints("",.3)
-        prints("The skeleton lunges at you with the bone shard.",.3)
+        prints("The skeleton lunges at you with it's bone shard.",.3)
+        prints("...")
+        prints("...You successfully blocked the attack!",.3)
         prints("",.3)
 
-        def first_block():
-            block = input()
-            if block == "block skeleton":
-                prints("You try to block the incoming attack.",.3)
-                prints("...")
-                prints("...You successfully blocked the attack!",.3)
+
         
-        first_block()
+        
 
         prints("",.3)
                 #end the fight
         
         def lose_the_fight():
-            prints("    ##### Finish the skeleton off. Keep attacking!")
-            
-            #attack 3 more times
-            #miss and get hit
-            prints("Try as you might, the Skeleton overpowers you. You try to block its swing, to no avail.",.3)
+
+            prints("Try as you might, the Skeleton overpowers you.",.3)
             prints("...The skeleton delivers a powerful swing to the side of your temple. \n " , 3)
             
             prints("",.3)
@@ -155,11 +172,11 @@ def combat_tutorial_zone():
         prints("",.3)
 
         prints("Old Greg screams, \"Oh my Gods! Run lad, run!!!\" No sooner, Old Greg is sprinting down the path out of the graveyard.",.3)
-        prints("      #### Type 'run away' to escape the skeleton horde.")
+        prints("      #### Type 'flee' to escape the skeleton horde.")
 
         def first_runaway():
-            run = input()
-            if run == "run away":
+            run = input(printr(">> "))
+            if run == "flee":
                 prints("The skeletons swipe at you, but miss. You follow Old Greg down the path.")
             else:
                 prints("Escape with Old Greg. Type \"run away\" to flee the skeleton horde.",.3)
@@ -174,16 +191,69 @@ def combat_tutorial_zone():
         #go to tavern
 
 
-def dialogue_tutorial():
-    from npcs import innkeeper_dialogue
+def dialogue_tutorial(player):
+    
+    def innkeeper_image():
+        prints("................................................................................")
+        prints(".......................... . . . . . . . . . . .................................")
+        prints("............... ..                ##%%%&&%%%##(.          ......................")
+        prints("***//(///*,,....   ... . .     /%%%#%&%%&&&%(####/,      . . ...................")
+        prints("(((((((((((((/**,....         ,%&%%##((((#%&%(###(#/.      .....,,***//(/((/////")
+        prints("((((((((((((((((((//*,,...    #%##((//******#%#*(#(#((,,,,,**/(((((#############")
+        prints("((((((((((((((((//////((/*,,*#&%%((///*****,*(%((#((#((((((((((((((#############")
+        prints("((((((((((((((/(((((/(//////#%&%%((//******,*/####/###/(((((((((((##############")
+        prints("((((((((((//////////////(((#%&&&%#(///(#/**/((#%(#/##%(#(((((((((((#############")
+        prints("///////////***************#&&&@&#((##((((**/(#&&(##%%&&%#**/////((((((((((((((((")
+        prints("////////////*************(#&&&@&%(/***/(/*,**/#%#(#(%@%&%/*******///////////////")
+        prints("///////////********,,,,,*(%%&@@@@((/*/(#((//**/#%((%&&&&%%(,,**************/*///")
+        prints("***************,,,,,,,,,*(%&&@@@@((/////(//***/#&&%%&&%&%&/,,*******************")
+        prints("****************,,,,,,,,,*#%&@@@@@(((//(///***(%&&&&&%%%&#*******************///")
+        prints("******************,,,,,,,,,,(#(//(((#((//*,*/(@@@@&&&%%%%%****************//////")
+        prints("********************,,,,,,,,,,,,,,(#(######%&&@@&&%&%%%%***************/////////")
+        prints("///////*****************,,,,,,,,*(((((((###%%&&&&%%&@%***************///////////")
+        prints("////////////*************&&&&&#((((((((((((#((//(/**************////////////////")
+        prints("////////////////**%&&&&&&&&&&&&&(((((((//////************(@%%%(///////////////((")
+        prints("///////////////&&&&&&&&&&&&&&&&&&(////***/********,,,,,,,/(%&&%%%(///////(/(((((")
+        prints("((((/////////#&&&&&&&&&&&&&&&&&&&&&(***********,,,,,,,,,,*&&&&&&&&#(((((((((((((")
+        prints("((((((((((((/&&&&&&&&&&&&&&&&&&&&&&&&&******,,,,,,,,,,,,/&&&&&&&&&&#((((((((((((")
+        prints("")
 
+
+    def inkeeper_intro():
+        prints("")
+        prints("She smiles somewhat uncomfortably at you as you step over to the bar", 1)
+        prints("\"well, stranger, what can I get for ya? You saved my Pa. You can have damn well whatever you please!\"", 2)
+        prints("")
+
+
+    keep_dialogue_options = [
+    "   What is your name?",
+    "   What do you do here?",
+    "   Is something wrong with my face?",
+    "   Old Greg mentioned I might be able to help you.",
+    "   I have another question...",
+    "   Goodbye."
+
+    ]
+
+    keep_dialogue_outcomes = [
+        "   \"My name is Bremilda Aleheart, stranger. Please to...er...meet you.\" ",
+        "   \"What does it look like I do here! I run this inn. It's a lot of work.\" ",
+        "   \"Well I didn't want to be the one to tell you! You don't look...great...\" ",
+        "   \"There have been plenty of things gone wrong around here lately. Where to even start? \" ",
+        "   \"I might have another answer...\" ",
+        "   \"Please enjoy your stay! No loitering. Order or get out! \" "
+
+    ]
+
+    innkeeper = npc("Innkeeper", innkeeper_image, inkeeper_intro, keep_dialogue_options, keep_dialogue_outcomes)
 
     prints("Old Greg leads you back to the Hamlet and the nearby Tavern.",.3)
     prints("You can't help but to take in some of the sights on your path.")
     prints("####Type \'look at the hamlet\' to get your first glimpse of your surroundings.")
 
     def look_hamlet():
-        look_at_hamlet = input()    
+        look_at_hamlet = input(printr(">> "))   
         if "look" in look_at_hamlet and "hamlet" in look_at_hamlet:
             prints("The hamlet is a quaint place. There are a few things around you.")
             #full description of hamlet, and teach to examine
@@ -214,39 +284,26 @@ def dialogue_tutorial():
     prints("The innkeeper turns around to face you. \"Good heavens stranger! You look a little beat up, don't ya?\" ",.3)
     prints("",.3)
     prints("You should try to talk to the innkeeper.")
-    prints("    ### Type \"talk to innkeeper\" to speak with them.",.3)
+    prints("    ### Type \"talk to the innkeeper\" to speak with them.",.3)
     
     #player should try to talk to innkeeper
     
     def babys_first_words():
-        talk = input()
+        talk1 = input(printr(">> ")).lower()
             
-        if talk == "talk to innkeeper":
+        if talk1 == "talk to the inkeeper":
             prints("You start talking to the innkeeper.")
-            innkeeper_dialogue()
+            innkeeper.talk(player)
+            
         else: 
             prints("Try talking to the innkeeper. Type \"talk to innkeepeer\" to speak with them.",.3)
             babys_first_words()
 
 
+
     babys_first_words()
 
-    print("####     There are some NPCs that you can Trade with. ")
-
-    def trade_tutorial():
-        from npcs import trade
-        prints("Inititate a trade with the innkeeper.")
-        prints("    ### Type \"trade innkeeper\" to start trading with them.")
-        init_trade = input()
-
-        if init_trade == "trade innkeeper":
-            trade("innkeeper")
-        else:
-            trade_tutorial()
-            
-    trade_tutorial()
-
-
-    #the_tavern = location.Location("The Tavern", "A warm and inviting location.", "hnh_forestTheme_conceptQ.mp3",[item("barstool")], ["Upstairs", "Cellar", "The Hamlet"], [])
+ 
+    
 
     

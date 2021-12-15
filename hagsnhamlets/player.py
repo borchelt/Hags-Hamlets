@@ -150,7 +150,7 @@ class Player(object):
                 continue
     def attack(self, weap, enemy, player, ready = False):
         prints(f"You {weap.type} your {weap.name} at the {enemy.name}")
-        prints(".", .5)
+        prints("...", .3)
         if ready:
             enemy.hit([randint(1, 20) + weap.toHit + self.str , (randint(1, 6) + weap.dmg + self.str) *3], player)
         else:
@@ -159,12 +159,13 @@ class Player(object):
     def hit(self, aPack, player):
         roll = aPack[0]
         damage = aPack[1]
+        prints("...",.3)
         if roll > self.ac:
             self.hp -= damage
-            prints(f"It connects! You take {damage} damage.")
-            prints(f"You have {self.hp}/{self.maxHp} HP remaining.")
+            prints(f"It connects! You take {damage} damage.",.3)
+            prints(f"You have {self.hp}/{self.maxHp} HP remaining.",.3)
         else:
-            prints("It misses!")
+            prints("...It misses!",.3)
         if self.hp <= 0:
             self.die()
 

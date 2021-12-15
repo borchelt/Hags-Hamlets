@@ -13,6 +13,7 @@ import random
 import copy
 
 from item_list import *
+import musicPlayer
 
 
 
@@ -31,50 +32,49 @@ class map():
 
 
     
-    cemetery = Location("The Graveyard", "A cold and unfeeling feild of stone.", "hnh_forestTheme_conceptQ.mp3",[], [], [])
-    outskirts = Location("The Outskirts", "Rollng hills of what might once have been grass", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    gates = Location("The Old Gate", "The two humaniod statues tower above any tree in the forest, they seem to watch as you as you pass by."
+    cemetery = Location("The Graveyard", "A cold and unfeeling field of stone. Some of the markers are adorned with flowers, while others are left alone. There were no auspicious, grand markers. This is a simple, quiet, somber place...that reeks of dark magic and sadness.", "hnh_forestTheme_conceptQ.mp3",[], [], [])
+    outskirts = Location("The Outskirts", "The Outskirts are just far enough from the Hamlet to be wild. Fog creeps over hills of what might've once been grass. It's hard to say after all this time. All that's left is barren.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
+    gates = Location("The Old Gate", "Two humaniod statues tower above any tree in the forest, seemingly watching as you as you pass. The last great sentinels. Legend has it they once came to life and squashed an entire army of goblins for the far North. Perhaps those were just old wives' tales."
                     ,"hnh_forestTheme_conceptQ.mp3", [],[],[])
-    tree = Location("The Hangman's Tree", "A solitary tree stands in defiance of the both the feilds and the woods.", [],[],[])
+    tree = Location("The Hangman's Tree", "A solitary tree stands in defiance of the both the feilds and the woods. Mefilda Rottenbough was executed at this very spot, many years ago. When the people of the hamlet discovered why all of their children, friends and family members were going missing, they were none to kind to Mefilda.", [],[],[])
 
-    clearing = Location("The Clearing", "a small pocket of open air, constantly assulted by the opressive weight of the forest surrounding it."
-                    ,"hnh_forestTheme_conceptQ.mp3", [],[],[])
+    clearing = Location("The Clearing", "The Clearing feels like it's the only pocket of open air for miles. Sunlight trickles in through open canpoy, smiling on you. There's a few boulders here, and some flowers. What looks like the remains of old campfires lay around the base. You are so thankful for this respite,  as you are constantly assaulted by the opressive weight of the forest surrounding it.","hnh_forestTheme_conceptQ.mp3", [],[],[])
     woodsN = Location("The Northern Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    woodsNW = Location("The Northwestern Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    woodsS = Location("The Southern Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    woodsSE = Location("The Southeastern Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    woodsSW = Location("The Southwestern Woods", "They are dark, and run deep.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    woodsDeadN = Location("The Northeastern Woods", "A dead end, the trees grow too dense and the shadows too dark.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    woodsDeadS = Location("The Southeastern-er Woods", "A dead end, the trees grow too dense and the shadows too dark.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
-    waterfall1 = Location("The Waterfall", "Murky water cascades over the falls and into the pool below. You stop for a moment, taking in the view, when you think you see a flash of light from behind the falls.", "hnh_forestTheme_conceptQ.mp3", [],[],[])
-    dampCave = Location("The Cove", "The deafening roar of the waterfall falls surprisingly quiet beyond the veil of foam and murk", "hnh_forestTheme_conceptQ.mp3", [], [],[], True)
-    path = Location("The Twisted Path", "A small, twisting path beckons you deeper into the woods.","hnh_forestTheme_conceptQ.mp3", [], [],[])
-    camp = Location("The Hunter's Camp", "Whatever fire was once here has long since died out. A raggedy tent is haphazardly nested between two large daggerlike stones. ","hnh_forestTheme_conceptQ.mp3", [], [],[])
+    woodsNW = Location("The Northwestern Woods", "They are dark, and run deep..deep..The air here makes you feel like you can't take a deep breath, as if there is a weight on your chest.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
+    woodsS = Location("The Southern Woods", "They are dark, and run deeeep....deeeeeeep.......You are struggling to breathe.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
+    woodsSE = Location("The Southeastern Woods", "Th D ey  E are E dark, P and E run R deep...You feel yourself suffocating.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
+    woodsSW = Location("The Southwestern Woods", "They DE are EP dark, ER  and DE run EP deep. ER...Eyes stare out at you from all angles. You can only faintly make them out in the dim light.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
+    woodsDeadN = Location("The Northeastern Woods", "A dead end, the trees grow too dense and the shadows too dark for you to pass. You swear you can hear snickering sounds, mocking you. You spin around when you hear a voice from o'er your shoulder, \"Sleep, child. It is night here...\"", "hnh_forestTheme_conceptQ.mp3", [], [], [])
+    woodsDeadS = Location("The Southeastern-er Woods", "A dead end, the trees grow too dense and the shadows too dark for your to pass. An innocent, feminine giggle echoes. You can hear it as if it is both right in front of you and all around you simultaneously.", "hnh_forestTheme_conceptQ.mp3", [], [], [])
+    waterfall1 = Location("The Waterfall", "Murky water cascades over the falls and into the pool below.  You stop for a moment, taking in the view, when you think you see a flash of light from behind the falls.", "hnh_forestTheme_conceptQ.mp3", [],[],[])
+    dampCave = Location("The Cove", "The deafening roar of the waterfall falls surprisingly quiet beyond the veil of foam and murk. You try to imagine it in a time where it may have been more beautiful, but struggle to recall any.", "hnh_tunnelsTheme_conceptQ.WAV", [], [],[], True)
+    path = Location("The Twisted Path", "A small, twisting path beckons you deeper into the woods. Through the vines and brambles is cut such a clear path that you're suspicious. Still, your curiosity beckons you forward.","hnh_forestTheme_conceptQ.mp3", [], [],[])
+    camp = Location("The Hunter's Camp", "Whatever fire was once here has long since died out. A raggedy tent is haphazardly nested between two large daggerlike stones. Around it are signs of life. The earth is trampled down here, and you suspect that whoever stays here is nearby. Just then, you notice a hunter, crouched incredibly still nearby.","hnh_forestTheme_conceptQ.mp3", [], [],[])
 
-    forest = Location("The Forest", "The Hamlet eventually gives way to the forest, the trees press close, and the fog closer.","hnh_forestTheme_conceptQ.mp3", [], [],[])
-    cottage = Location("The Old Cottage", "a small stream cuts directly through the sagging cottage, you swear you can hear faint music from inside.", "hnh_forestTheme_conceptQ.mp3", [], [],[])
-    farm = Location("The Barn", "a faded barn stands amidst the trees","hnh_forestTheme_conceptQ.mp3", [], [],[])
-    glade = Location("The Glade", "perhaps the only truly beautiful place left, you swear you can just barely see the sun up there", "hnh_forestTheme_conceptQ.mp3", [],[],[])
+    forest = Location("The Forest", "The Hamlet eventually gives way to the forest, the trees press close, and the fog closer. The way would be difficult to navigate if you had never made the journey before. The fog is so thick as to be misleading. Many who have traveled to the Hamlet or tried to escape it have been lost to the fog. Perhaps it were just the wolves.","hnh_forestTheme_conceptQ.mp3", [], [],[])
+    cottage = Location("The Old Cottage", "You recognize this place as what would be the farmers house. A delicate stream leads you towards the sagging cottage. A small mill turns depressingly slow in the water. As you approach, you begin to hear the faint sound of music coming from within.", "hnh_forestTheme_conceptQ.mp3", [], [],[])
+    farm = Location("The Barn", "A modest barn stands in defiance of the gloom. This proud place has stood at the edge of the woods for time imemorial. The crops have barely managed to survive the Hag's curse. So long as the Spirits of the Earth didn't give up on them, the people of the Hamlet would be able to stay there, albeit miserably.","hnh_forestTheme_conceptQ.mp3", [], [],[])
+    glade = Location("The Glade", "Perhaps the only truly beautiful place left in such a desolate place. The sun shines more kindly here than in the Clearing you passed. You're thankful for it, and pause to enjoy the warmth. You close your eyes, and try to smell the air, but are met with disappointment. It seems whatever curse that has been put on you has also affected your sense of smell. It has not, however, hindered your hearing...The sounds of chittering approaches you rapidly.", "hnh_forestTheme_conceptQ.mp3", [],[],[])
 
 
     #cottage.enemyArr[hag1]
     
      #OLD MINES
-    old_mines_entrance = Location("Old Mines: Entrance", "Once a great mine, the resources have been mostly used up. The dwarven miners that still work here must fight to keep it clear of enemies in the absence of more capable fighters.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_main_chamber = Location("Old Mines: First Chamber", "The Old Mine is dimly lit by torches. Several groups of dwarves are huddled. Some are tending to wounds, others eating lunch.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_floor1_NW = Location("Old Mines room 1", "A dimly lit corridor. Various scraps of metal and other tools litter the area. Someone left in a hurry.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_floor1_N = Location("Old Mines room 2", "An old mine cart lay here, toppled on its side.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_floor1_NE = Location ("Old Mines room 3", "Following the tracks, you see that the corridor ahead leads deeper into the mines.","hnh_forestTheme_conceptQ.mp3", [], [], [], True)
-    old_mines_floor2 = Location("Old Mines room 4", "Before you is a great Iron door. Bloody handprints have left rusty colored marks on the wood. The bar blocking the door has been bent from the force of something large hitting it.","hnh_forestTheme_conceptQ.mp3", [], [], [], True)
-    old_mines_floor2_W = Location("Old Mines room 5", "The dwarves have warned you that the path ahead would not be easy. The way forward requires that you pass through an impressive number of cobwebs.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_floor2_W2 = Location("Old Mines: Supply Cache", "A small chamber dedicated to storing supplies.","hnh_forestTheme_conceptQ.mp3", [], [], [],True)
-    old_mines_center_chamber = Location("Old Mines: Center Chamber", "A large chamber with a statue of the famous dwarf, Mozal Mon. A locked chest rests at the Statue's feet.","hnh_forestTheme_conceptQ.mp3", [],[],[], True)
-    old_mines_floor2_W3 = Location("Old Mines room 6", "The enormous webs grow thicker here.", [],[],[],True)
-    old_mines_floor2_wN = Location("Old Mines: The Forge", "This forge hasn't been operational for some time. There are bones and webs everywhere.","hnh_forestTheme_conceptQ.mp3", [],[],[],True)
-    old_mines_floor2_wN2 = Location("Old Mines: The Armory", "This place was surely wondrous some time ago. Now various weapons and armor lay discarded on the stone, forgotten or abandoned by dwarves desparate to escape.","hnh_forestTheme_conceptQ.mp3", [],[],[],True)
+    old_mines_entrance = Location("Old Mines: Entrance", "Once a great mine, the resources have been mostly used up. The dwarven miners that still work here must fight to keep it clear of enemies in the absence of more capable fighters.","hnh_tunnelsTheme_conceptQ.WAV", [],[],[], True)
+    old_mines_main_chamber = Location("Old Mines: First Chamber", "The Old Mine is dimly lit by strange green lanterns. Aside from their odd green glow, they look just like normal lanterns one might see. You wonder how they work, and what causes the green glow...but you were never incredibly studious. Several groups of dwarves are huddled. Some are tending to wounds, others eating lunch. Others still stand guard for the less capable, ready to spring into action should the worst occur.","hnh_tunnelsTheme_conceptQ.WAV", [],[],[], True)
+    old_mines_floor1_NW = Location("Old Mines room 1", "A corridor, dimly let by the strange green lantern. Various scraps of metal and other tools litter the area. Someone left in a hurry.","hnh_tunnelsTheme_conceptQ.WAV", [],[],[], True)
+    old_mines_floor1_N = Location("Old Mines room 2", "An old mine cart lay here, toppled on its side. The remains of other tools, abandoned in the wake of some attack lie scattered about.","hnh_tunnelsTheme_conceptQ.WAV", [],[],[], True)
+    old_mines_floor1_NE = Location ("Old Mines room 3", "Following the tracks, you see that the corridor ahead leads deeper into the mines. You are thankful for the soft green glow of the lanterns, regardless of the eerie atmosphere they provide.","hnh_tunnelsTheme_conceptQ.WAV", [], [], [], True)
+    old_mines_floor2 = Location("Old Mines room 4", "Before you is a great Iron door. Bloody handprints have left rusty colored marks on the wood. The bar blocking the door has been bent from the force of something large hitting it.","hnh_tunnelsTheme_conceptQ.WAV", [], [], [], True)
+    old_mines_floor2_W = Location("Old Mines room 5", "The dwarves have warned you that the path ahead would not be easy. The way forward requires that you pass through an impressive number of cobwebs.","hnh_tunnelsTheme_conceptQ.WAV", [],[],[], True)
+    old_mines_floor2_W2 = Location("Old Mines: Supply Cache", "A small chamber dedicated to storing supplies.","hnh_tunnelsTheme_conceptQ.WAV", [], [], [],True)
+    old_mines_center_chamber = Location("Old Mines: Center Chamber", "A large chamber with a statue of the famous dwarf, Mozal Mon. A locked chest rests at the Statue's feet.","hnh_tunnelsTheme_conceptQ.WAV", [],[],[], True)
+    old_mines_floor2_W3 = Location("Old Mines room 6", "The enormous webs grow thicker here. You can feel your heartbeat start to rise in preparation. ", [],[],[],True)
+    old_mines_floor2_wN = Location("Old Mines: The Forge", "This forge hasn't been operational for some time. There are bones and webs everywhere.","hnh_tunnelsTheme_conceptQ.WAV", [],[],[],True)
+    old_mines_floor2_wN2 = Location("Old Mines: The Armory", "This place was surely wondrous some time ago. Now various weapons and armor lay discarded on the stone, forgotten or abandoned by dwarves desparate to escape.","hnh_tunnelsTheme_conceptQ.WAV", [],[],[],True)
     old_mines_floor2_wN2_W = Location("Old Mines: Webbed Path", "You're not sure you should be here. The entirety of the corridor is covered with webs. The decaying husks of the spiders' victims hang from the ceiling.", [],[],[],True)
-    old_mines_floor2_wN2_W2 = Location("Old Mines room 7", "The webs are next to impassable here, but just ahead you can a clearer space.","hnh_forestTheme_conceptQ.mp3",[], [], [],True)
-    old_mines_spider_lair = Location("Spiders' Lair", "A large cavern littered with bodies, bones and webs. Hundreds of spider eggs cling to the floor, walls and ceiling of the cavern.","hnh_forestTheme_conceptQ.mp3", [],[],[],True)
+    old_mines_floor2_wN2_W2 = Location("Old Mines room 7", "The webs are next to impassable here, but just ahead you can a clearer space.","hnh_tunnelsTheme_conceptQ.WAV",[], [], [],True)
+    old_mines_spider_lair = Location("Spiders' Lair", "A large cavern littered with bodies, bones and webs. Hundreds of spider eggs cling to the floor, walls and ceiling of the cavern. The way they wriggle about is most unappealing. You take a deep breath, and steel yourself for the conflict to come.","hnh_tunnelsTheme_conceptQ.WAV", [],[],[],True)
     
     #OLD MINES FLOOR 1 DIRECTIONAL 
     old_mines_entrance.adj_locations = [old_mines_main_chamber, woodsN]
@@ -138,12 +138,12 @@ class map():
     
     
 
-    deepwoods_mid = Location("The Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
-    deepwoods_branch_1 = Location("The Northern(?) Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
-    deepwoods_branch_2 = Location("The Southern(?) Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
-    deepwoods_branch_3 = Location("The Western(?) Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
-    deepwoods_branch_4 = Location("The Western(?) Deepwoods", "The shadows creep in and the trees loom over you", "deepwoods.mp3", [], [], [])
-    deepwoods_HagLair = Location("The Core of the Deepwoods", "This is deeper than you've ever been before. you can barely see your hand infront of your face.", [],[],[])
+    deepwoods_mid = Location("The Deepwoods", "DEEP M DEEP DEEP DEEP", "hnh_deepwoodsTheme_conceptQ.mp3", [], [], [])
+    deepwoods_branch_1 = Location("The Northern(?) Deepwoods", "DEEP DEEP E DEEP DEEP F DEEP DEEP", "hnh_deepwoodsTheme_conceptQ.mp3", [], [], [])
+    deepwoods_branch_2 = Location("The Southern(?) Deepwoods", "deep deep deep I deep deep L", "hnh_deepwoodsTheme_conceptQ.mp3", [], [], [])
+    deepwoods_branch_3 = Location("The Western(?) Deepwoods", "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDEEP", "hnh_deepwoodsTheme_conceptQ.mp3", [], [], [])
+    deepwoods_branch_4 = Location("The Western(?) Deepwoods", "A    bloodcurdling sound erupts from the space above your head. You feel your knees buckle slightly.", "hnh_deepwoodsTheme_conceptQ.mp3", [], [], [])
+    deepwoods_HagLair = Location("The Core of the Deepwoods", "This is deeper than you've ever been before. you can barely see your hand infront of your face. You can barely see. You can't see. You can't see. you can't see. you can't see. you can't see. you can't see. you can't see.", "hnh_deepwoodsTheme_conceptQ", [],[],[])
 
     
     deepwoods_HagLair.adj_locations = [deepwoods_mid, woodsDeadN]
@@ -162,15 +162,15 @@ class map():
     #door room has no enemies
     populate_enemies(3, old_mines_floor2_W, giant_spider) """
 
-    hamlet = Location("The Hamlet", "The center of this once bustling hamlet now lies quiet and defeated", "hnh_forestTheme_conceptQ.mp3", [], [],[])
-    store = Location("The General Store", "A dusty counter sits at the back of this one room shop, the only other furnature being a small shelf laden with baubles","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
+    hamlet = Location("The Hamlet", "The center of this once bustling hamlet is now a quiet, gray place. It looks defeated, like so many of its inhabitants. Everywhere you turn to look, life seems to have escaped. The buildings are under-cared for and in need of repairs. Broken chunks of cobble lay ignored in the streets, and the few people that are walking around move at a hurried pace, their heads kept down.", "hnh_townThemeconceptQ.mp3", [], [],[])
+    store = Location("The General Store", "An impressive hardwood counter sits at the back of a one room shop, the only other furniture being a small shelf laden with trinkets and other baubles. You realize very quickly that this may be the cleanest place you've seen in all the surrounding area. Everything looks so well cared for, despite the circumstances of the world outside.","hnh_townThemeconceptQ.mp3", [], [],[],True)
     #sundial = Location("The Sundial", "A stone slab marked with anchient runes sits inbetween two small houses, nobody but you seems to even relize its there.","hnh_forestTheme_conceptQ.mp3", [], [],[])
-    tavern = Location("The Tavern", "Perhaps the only place in the hamlet with any life still inside, you even hear the occasional chuckle coming from inside","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
+    tavern = Location("The Tavern", "The familiar sound of clinking glasses and mugs clanging is enough to draw you in. Everyone knows that a Tavern means good food, a warm hearth, and just a bit of good in an otherwise dreary world. This Tavern, however, was not such a place. As you step in the door, you realize that the sounds you were hearing were just the day's dishes being gathered in a bin. The place was empty, save the three folks that have always been there and the tired innkeeper.","hnh_townThemeconceptQ.mp3", [], [],[],True)
     #QBoard = Location("The Message Board", "A Wooden board with a few slips of parchment halfheartedly nailed to it.","hnh_forestTheme_conceptQ.mp3", [], [],[])
-    blacksmith = Location("The Smithy", "the soft glow of the embers and the rythmic ringing of the hammer on metal is almost soothing.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
-    library = Location("The Library","Most of the books have been overrun by mold, but you may still be able to find something usefull","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
-    wagon = Location("The Merchant Wagon", "The small covered wagon smells of incense and dust.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
-    well = Location("The Well", "you cant see the bottom of the well, but for some reason, you can hear running water below.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
+    blacksmith = Location("The Smithy", "The soft glow of the embers and the rythmic ringing of the hammer on metal is almost soothing to your soul. All day and night, one can hear the Hamlet Smithy banging away at his anvil. When you think of it, you realize that the Smithy must not be sleeping well lately. He truly does work all day and night.","hnh_townThemeconceptQ.mp3", [], [],[],True)
+    library = Location("The Library"," The monks of the hamlet used to care for this place. It's long been abandoned, and most of the books that you're likely to find are now riddled with mold. A lone libraian stalks along the bookshelves, working endlessly to conserve what knowledge that remains. ","hnh_townThemeconceptQ.WAV", [], [],[],True)
+    wagon = Location("The Merchant Wagon", "The small covered wagon smells of incense and dust. The merchant is known as a benevolent person, and a good friend to all without prejudice.","hnh_forestTheme_conceptQ.mp3", [], [],[],True)
+    well = Location("The Well", "You find yourself inclined to look down the well. Sure enough, the darkness prevents you from seeing much of anything. For some reason you can hear running water below. Testing the rope, you determine it could hold your weight and that you could lower yourself downwards. In fact, you notice a board tied into the end of the rope as if for one's feet.","hnh_townThemeconceptQ.mp3", [], [],[],True)
 
     hamlet.adj_locations = [store, tavern, blacksmith, library, wagon, well, forest]
     hamlet.interactables = [small_weapon_chest, large_health_chest, townGreg]
@@ -188,19 +188,19 @@ class map():
     #QBoard.interactables = []
 
     library.adj_locations = [hamlet]
-    library.interactables = [librarian, small_health_chest, pamphlet, glass, ]
+    library.interactables = [librarian, small_health_chest, pamphlet, glass]
 
-    wagon.adj_locations = [store, tavern, blacksmith, library, well,]
+    wagon.adj_locations = [hamlet, store, tavern, blacksmith, library, well]
     wagon.interactables = [merchant]
 
    
 
      #SEWERS 
-    sewers = Location("Sewer Entrance", "It definitely smells like a sewer. With some effort, you would be able to move the cover and enter. It seems dark.", "", [],[],[])
-    sewer_tunnels = Location("Sewer Tunnels", "A disgusting smell assaults your senses every second that you spend here.", "", [],[],[],True)
-    sewer_tunnelsN = Location("North Sewer Tunnels", "The path widens. This looks like a maintenance tunnel.", "", [],[],[],True)
-    sewer_tunnelsE = Location("East Sewer Tunnels", "The path opens into a large room. There are two doors here. "", You can hear the sounds of clinking glasses. One door is guarded by a large, hooded man.", [],[],[],True)
-    sewer_tunnelsW = Location("West Sewer Tunnels", "Faint chittering sounds echo down the tunnel towards you.", "", [],[],[],True)
+    sewers = Location("Sewer Entrance", "It definitely smells like a sewer. With some effort, you would be able to move the cover and enter. It is dark and unappealing to exist in spaces like this for long.", "hnh_tunnelsTheme_conceptQ.WAV", [],[],[])
+    sewer_tunnels = Location("Sewer Tunnels", "A disgusting smell assaults your senses every second that you spend here. You wonder woefully, 'is it time to leave?'", "hnh_tunnelsTheme_conceptQ.WAV", [],[],[],True)
+    sewer_tunnelsN = Location("North Sewer Tunnels", "The path widens. This looks like a maintenance tunnel. You didn't expect such a small Hamlet to have such complex infrastructure.", "hnh_tunnelsTheme_conceptQ.WAV", [],[],[],True)
+    sewer_tunnelsE = Location("East Sewer Tunnels", "The path opens into a wide chamber with two doors. You can hear the sounds of clinking glasses coming from the one on the left. The other door is guarded by a large, hooded man.", "hnh_tunnelsTheme_conceptQ.WAV", [],[],[],True)
+    sewer_tunnelsW = Location("West Sewer Tunnels", "Faint chittering sounds echo down the tunnel towards you. If you didn't know better, you'd assume they led towards more of the ratmen.", "hnh_tunnelsTheme_conceptQ.WAV", [],[],[],True)
     
     ratman = enemy.enemy("Ratman", "", 15, [throwing_knife, sword, throwing_knife], 10, [cheddar_cheese], "", sewer_tunnels)
     tk_henchman = enemy.enemy("Henchman", "", 11, [shortsword, throwing_knife, sword], 12, [bananas], "", sewer_tunnels)
@@ -218,13 +218,13 @@ class map():
     sewer_tunnelsW.interactables = [small_health_chest]
 
 
-    speakeasy = Location("The Speakeasy", "A place for seedier types to relax and try to forget about the Hags' Curse.", "placeholder", [],[],[], True)
+    speakeasy = Location("The Speakeasy", "A place for seedier types to relax and try to forget about the Hags' Curse. Surprisingly enough, the air seems better here. Perhaps being far beneath the soil somehow dampened the effects of the curse. They have been the case, surely, but it could also have been the excessive debauchery. Tables full of gamblers and a bar serving large mugs of cheap beer greet your eyes.", "hnh_tunnelsTheme_conceptQ.WAV", [],[],[], True)
     speakeasy.interactables = [drunkard, beer, beer, beer, beer, wine, plate, small_weapon_chest, bottle]
 
-    thieves_den = Location("Thieves' Den", "This place is well hidden beneath the Hamlet. It seems odd that such a remote space in the world would be home to such a place.", "placeholder", [],[],[],True)
+    thieves_den = Location("Thieves' Den", "This place is well hidden beneath the Hamlet. It seems odd that such a remote space in the world would be home to such a place.", "hnh_tunnelsTheme_conceptQ.WAV", [],[],[],True)
     thieves_den.interactables = [thief_king]
 
-    rat_kings_nest = Location("The Rat King's Nest", "This place is a mess of trinkets, weapons, armor and scraps of paper. You're not sure which smells worse- the sewers or the nest.", "placeholder", [],[],[], True)
+    rat_kings_nest = Location("The Rat King's Nest", "This place is a mess of trinkets, weapons, armor and scraps of paper. You're not sure which smells worse- the sewers or the nest. You wonder if you made the right choice in coming here as several Ratmen surround you, blocking your exit.", "hnh_tunnelsTheme_conceptQ.WAV", [],[],[], True)
     rat_kings_nest.interactables = [rat_king]
     rat_kings_nest.adj_locations = [sewer_tunnels, sewer_tunnelsW]
     
@@ -258,7 +258,7 @@ class map():
 
     forest.adj_locations = [path, farm, cottage, hamlet] #town when its done
     farm.adj_locations = [forest]
-    cottage.adj_locations = [forest, glade, rat_kings_nest, dampCave]
+    cottage.adj_locations = [forest, glade]
     glade.adj_locations = [cottage]
 
     deathcap = qItem("Deathcap Mushroom", "Such a small vessel for such enourmous destructive ability.")
@@ -294,7 +294,7 @@ class map():
     #cemetery.interactables = [newGrave, medGrave, ancGrave, greg, smith, cemetery_box]
     
     
-    cemetery.interactables = [newGrave, medGrave, ancGrave, greg, smith, small_health_chest, small_weapon_chest, small_armor_chest, telePotion, dexPotion, strPotion, hpPotion] 
+    cemetery.interactables = [newGrave, medGrave, ancGrave] 
 
     
     outskirts.interactables = [oldSpear, tombStone, small_health_chest]
@@ -783,8 +783,9 @@ class map():
         prints("   The hag seems to grow too big for the room as she stands, looming over you.")
         self.local.enemyArr.append(map.hag1_BOSS)
         self.local.interactables.remove(self)
+        musicPlayer.playSound("hagthemeQ.WAV")
 
-    hag1 = npc("Hag1", hag1_ascii, hag1_intro, hag1_options, hag1_outcomes, -1, [], [],3, hagFight, -1, -1, cottage)
+    hag1 = npc("Old Hag", hag1_ascii, hag1_intro, hag1_options, hag1_outcomes, -1, [], [],3, hagFight, -1, -1, cottage)
 
     def hag2_intro():
         prints("")
@@ -813,8 +814,9 @@ class map():
       prints("  You feel the shadows around you begin to close in, dancing as if possesed")
       self.local.enemyArr.append(map.hag2_BOSS)
       self.local.interactables.remove(self)
+      musicPlayer.playSound("hagthemeQ.WAV")
 
-    hag2 = npc("hag2", hag2_ascii, hag2_intro, hag2_options, hag2_outcomes, -1, [], [], 3, hag2fight, -1, -1, deepwoods_HagLair)
+    hag2 = npc("Wizened Hag", hag2_ascii, hag2_intro, hag2_options, hag2_outcomes, -1, [], [], 3, hag2fight, -1, -1, deepwoods_HagLair)
 
     def hag3_intro():
         prints("")
@@ -842,9 +844,10 @@ class map():
       prints("she stands.",3) 
       self.local.enemyArr.append(map.hag3_BOSS)
       self.local.interactables.remove(self)
+      musicPlayer.playSound("hagthemeQ.WAV")
 
 
-    hag3 = npc("hag3", hag3_ascii, hag3_intro, hag3_options, hag3_outcomes , -1, [], [], 3, hag3fight, -1, -1, dampCave) 
+    hag3 = npc("Ancient hag", hag3_ascii, hag3_intro, hag3_options, hag3_outcomes , -1, [], [], 3, hag3fight, -1, -1, dampCave) 
 
     def hag4_intro():
         prints("")
@@ -875,10 +878,11 @@ class map():
       "she stands before you..."
       self.local.enemyArr.append(map.hag4_BOSS)
       self.local.interactables.remove(self)
+      musicPlayer.playSound()
       
       
 
-    hag4 = npc("hag4", hag4_ascii, hag4_intro, hag4_options, hag4_outcomes, -1, [], [], 0, hag4fight, -1, -1)
+    hag4 = npc("Hag Queen", hag4_ascii, hag4_intro, hag4_options, hag4_outcomes, -1, [], [], 0, hag4fight, -1, -1)
 
     cottage.interactables = [doll, toadEye, small_weapon_chest, hag1]
     dampCave.interactables = [hag3]

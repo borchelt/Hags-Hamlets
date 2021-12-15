@@ -3,7 +3,7 @@
 #from playsound import playsound
 
 import time
-#from ascii_art import *
+import music
 
 i = 0 
 border_left = ["#|.  ||     ", "#| . ||     ", "#|.  ||     ", "#| . ||     "]
@@ -22,17 +22,17 @@ def prints(var, delay =.1, sound= True):
         if i > 3: 
             i = 0 
         time.sleep(delay)
-        #if sound:
-            #playsound("line.wav", False)
-        print(border_left[i] + var1)
+        if sound:
+            music.playSound("line2.wav")
+        print(border_left[i] + var1 + "-")
 
         i += 1
         if i > 3: 
             i = 0 
         time.sleep(delay)
-        #if sound:
-            #playsound("line.wav", False)
-        print(border_left[i] + var2)
+        if sound:
+            music.playSound("line2.wav")
+        print(border_left[i] + "-" +var2)
 
     else:
 
@@ -40,12 +40,12 @@ def prints(var, delay =.1, sound= True):
         if i > 3: 
             i = 0 
         time.sleep(delay)
-        #if sound:
-            #playsound("line.wav", False)
+        if sound:
+            music.playSound("line2.wav")
         print(border_left[i] + var)
 
 #returnns with delay and sound    
-def printr(var, delay =.1):
+def printr(var, delay =.1, sound = True):
     global i
     if(var == None):
         time.sleep(0)
@@ -56,7 +56,22 @@ def printr(var, delay =.1):
         if i > 3: 
             i = 0 
         time.sleep(delay)
-        #if sound:
-            #playsound("line.wav", False)
+        if sound:
+            music.playSound("line2.wav")
         return(border_left[i] + var)
 
+def printsl(var, delay =.1, sound= True):
+    global i
+
+    if(var == None):
+        time.sleep(0)
+
+    else:
+
+        i += 1
+        if i > 3: 
+            i = 0 
+        time.sleep(delay)
+        if sound:
+            music.playSound("line2.wav")
+        print(border_left[i] + var)

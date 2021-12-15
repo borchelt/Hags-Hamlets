@@ -22,24 +22,24 @@ class Location(object):
     def look(self):
 
         if(self.enemyArr != []):
-            prints("")
-            prints(f"The forces of evil close in on you!")
+            prints("",.3)
+            prints(f"The forces of evil close in on you!",.3)
             for i in range(len(self.enemyArr)):
-                prints(f"{i+1}. {self.enemyArr[i].name}, {self.enemyArr[i].desc}")
-        prints("")
-        prints(f"You are in {self.name}")
-        prints(self.desc)
+                prints(f"{i+1}. {self.enemyArr[i].name}, {self.enemyArr[i].desc}",.3)
+        prints("",.3)
+        prints(f"You are in {self.name}",.3)
+        prints(self.desc,.3)
         
-        prints("")
-        prints("The following items are here:  ")
+        prints("",.3)
+        prints("The following items and people are here:  ",.3)
         
         for i in range(len(self.interactables)):
-            prints(f"{i+1}. {self.interactables[i].name}")
+            prints(f"{i+1}. {self.interactables[i].name}",.3)
             
-        prints("")
-        prints("From your current location, you can travel to:")
+        prints("",.3)
+        prints("From your current location, you can travel to:",.3)
         for i in range(len(self.adj_locations)):
-            prints(f"{i+1}. {self.adj_locations[i].name}")
+            prints(f"{i+1}. {self.adj_locations[i].name}",.3)
 
             
         

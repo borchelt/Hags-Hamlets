@@ -25,9 +25,10 @@ class console(object):
         self.everything = []
         self.hags = 0
         self.hagWarn = False
+        self.hasSword = False
     
     def move(self, action):
-        name = nameFetch()
+        name = nameFetch(self.player.location.song)
         target = action.lower()
         target = target.replace("go to ", '')
         target = target.replace("move to ", '')
@@ -41,14 +42,14 @@ class console(object):
                     if y.pickup == True:
                         self.player.location.interactables.remove(y)
             
-            name.printName(self.player.location.adj_locations[target-1].name, self.player.location.adj_locations[target-1])
+            name.printName(self.player.location.adj_locations[target-1].name, self.player.location.adj_locations[target-1], self.player)
             self.player.location = self.player.location.adj_locations[target-1]
             prints(self.player.location.look())
             self.turn = False
 
 
         
-        except ValueError:
+        except (ValueError, IndexError):
 
             for i in self.player.location.adj_locations:
                     tar = re.sub(r'[^\w\s]', '', i.name).lower()
@@ -58,10 +59,10 @@ class console(object):
                                 if y.pickup == True:
                                     self.player.location.interactables.remove(y)
                         self.player.location = i
-                        name.printName(i.name, i)
+                        name.printName(i.name, i, self.player)
                         prints(self.player.location.look())
                         self.turn = False
-            bigList = [self.player.location.interactables, self.player.location.enemyArr]
+            bigList = [self.player.location.interactables, self.player.location.enemyArr, self.player.inventory]
             for sub in bigList:
                 for i in sub:
                     self.everything.append(i)
@@ -77,6 +78,7 @@ class console(object):
         readyWeap = ""
         readyTurn = 0
         blocking = False
+        hasWarned = False
         
 
         self.quitB = False
@@ -135,7 +137,7 @@ class console(object):
 
             elif("pick up" in action):
                 
-                bigList = [p1.location.interactables, p1.location.enemyArr]
+                bigList = [p1.location.interactables, p1.location.enemyArr, p1.inventory]
                 self.everything = []
                 for sub in bigList:
                     for i in sub:
@@ -188,7 +190,7 @@ class console(object):
                 turn = True
                 p1.ac += p1.str
                 blocking = True
-                prints("You brace for impact")
+                prints("you focus on blocking this next attack")
             elif "ready" in action or "charge" in action:
                 turn = True
 
@@ -259,12 +261,117 @@ class console(object):
                
             
             elif "go" in action or "move" in action:
+                turn = True
                 if(p1.location.enemyArr == []):
-                    turn = False
+                    
                     self.move(action)
             
             #consumables from console
+            elif "equip" in action:
+                target = action.replace("equip the ", "")
+                target = target.replace("equip ", "")
+                target = re.sub(r'[^\w\s]', '', target).lower()
+                done = False
 
+                for i in p1.location.interactables:
+                    name1 = re.sub(r'[^\w\s]', '', i.name).lower()
+                    if name1 == target:
+                        done = True
+
+                        if type(i) == armor:
+                                    if  p1.armor == []:
+                                        p1.armor = [i]
+                                        p1.hp += i.toHP
+                                        p1.maxHp += i.toHP
+                                        p1.ac += i.toAC
+                                        p1.location.interactrables.remove(i)
+                                        prints("equipped!")
+
+                                    else:
+                                        p1.hp -= p1.armor[0].toHP
+                                        p1.maxHp -= p1.armor[0].toHP
+                                        p1.ac -= p1.armor[0].toAC
+                                        prints(f"Unequipped {p1.armor[0].name}")
+                                        p1.armor = [i]
+                                        p1.hp += i.toHP
+                                        p1.maxHp += i.toHP
+                                        p1.ac += i.toAC
+                                        p1.location.interactrables.remove(i)
+                                        prints("equipped!")
+                        if len(p1.equipped) >= 2:
+                            if type(i) == weapon:
+                                prints(f"1. {p1.equipped[0].name}")
+                                prints(f"2. {p1.equipped[1].name}")
+                                quitB = False
+                                while not quitB:
+                                    acc = (input(printr("Which item do you want to unequip first? ")))
+                                    try:
+                                        acc = int(acc)-1
+                                        p1.inventory.append(p1.equipped[acc])
+                                        p1.equipped[acc] = i
+                                        p1.location.interactables.remove(i)
+                                        prints("equipped!")
+                                        quitB = True
+                                    except ValueError:
+                                        continue
+                                    
+
+
+                        else:
+                            if type(i) == weapon:
+                                p1.equipped.append(i)
+                                p1.location.interactables.remove(i)
+                                prints("equipped!")
+                    if not done:
+                        for i in p1.inventory:
+                            name1 = re.sub(r'[^\w\s]', '', i.name).lower()
+                            if name1 == target:
+
+                                if type(i) == armor:
+                                            if  p1.armor == []:
+                                                p1.armor = [i]
+                                                p1.hp += i.toHP
+                                                p1.maxHp += i.toHP
+                                                p1.ac += i.toAC
+                                                p1.inventory.remove(i)
+                                                prints("equipped!")
+
+                                            else:
+                                                p1.hp -= p1.armor[0].toHP
+                                                p1.maxHp -= p1.armor[0].toHP
+                                                p1.ac -= p1.armor[0].toAC
+                                                prints(f"Unequipped {p1.armor[0].name}")
+                                                p1.armor = [i]
+                                                p1.hp += i.toHP
+                                                p1.maxHp += i.toHP
+                                                p1.ac += i.toAC
+                                                p1.inventory.remove(i)
+                                                prints("equipped!")
+                                if len(p1.equipped) >= 2:
+                                    if type(i) == weapon:
+                                        prints(f"1. {p1.equipped[0].name}")
+                                        prints(f"2. {p1.equipped[1].name}")
+                                        quitB = False
+                                        while not quitB:
+                                            acc = (input(printr("Which item do you want to unequip first? ")))
+                                            try:
+                                                acc = int(acc)-1
+                                                p1.inventory.append(p1.equipped[acc])
+                                                p1.equipped[acc] = i
+                                                p1.inventory.remove(i)
+                                                prints("equipped!")
+                                                quitB = True
+                                            except ValueError:
+                                                continue
+                                            
+
+
+                                else:
+                                    if type(i) == weapon:
+                                        p1.equipped.append(i)
+                                        p1.inventory.remove(i)
+                                        prints("equipped!")
+                               
             elif "drink" in action or "eat" in action or "use" in action:
                 turn = True
                 drank = False
@@ -424,8 +531,32 @@ class console(object):
                 prints("I'm not sure what you mean, type \"help\" for a list of commands")
 
             
-            #end of turn: enemies attack
+            #end of turn
+            
             if(turn):
+                for i in p1.equipped:
+                    if i.name == "Silver Sword" and map.hag3_BOSS.hp == 85:
+                        prints("The weight of this sword fills you with courage")
+                        map.hag3_BOSS.hp = 30
+                        self.hasSword = True
+                        break
+                if self.hasSword == True:
+                    for y in p1.equipped:
+                        if y.name == "Silver Sword":
+                            self.hasSword = True
+                            break
+                        else:
+                            print("no silsword")
+                            map.hag3_BOSS.hp = 85
+                            self.hasSword = False
+
+                    
+                if p1.hb:
+                    map.hag1_cleaver.dmg = 3
+                    map.hag1_cleaver.toHit = 3
+                    map.carriona_call.dmg = 1
+                    map.carriona_call.toHit = 1
+                    
                 if ready:
                     if readyTurn > 0:
                         ready = False
@@ -447,8 +578,8 @@ class console(object):
                 if blocking:
                     p1.ac -= p1.str
                     blocking = False
-            if(map.cottage.hag == True and map.deepwoods_HagLair.hag == True and map.dampCave.hag == True):
-
+            if(map.cottage.hag == True and map.deepwoods_HagLair.hag == True and map.dampCave.hag == True and hasWarned == False):
+                hasWarned = True
                 prints("As the last hag falls, you feel your stomach drop. Something isnt right.", 1)
                 map.hamlet.adj_locations = []
                 map.hamlet.interactables = [map.hag4]
